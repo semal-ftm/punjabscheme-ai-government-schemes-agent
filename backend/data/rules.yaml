@@ -1,0 +1,711 @@
+# Human-verified eligibility rules for PunjabScheme AI.
+#
+# Every criterion / benefit / document / step quotes the official page VERBATIM (`quote`) and names its
+# `source_url`. `python -m app.cli verify-quotes` and tests/test_source_accuracy.py check each quote still
+# appears in the saved official snapshot.
+#
+# Operators: eq | in | not_in | between | lt | gt | lte | gte | is_true | is_false | manual
+#   manual = a condition only the scheme authority can confirm (PMT score, criminal record, merit...).
+#   when   = the criterion only applies if the condition holds (e.g. plot limit for urban areas).
+# status stays "Unverified" unless an official page states the application window (status_quote + dates).
+#
+# Re-verification workflow: when the crawler flags a changed source, read the diff on the Updates page,
+# edit the affected entry, set last_verified to today (or a date-time like 2026-11-02T10:00 for a
+# same-day re-check) and run:  python -m app.cli reload-rules
+
+schemes:
+  # ======================================================== CM PUNJAB INITIATIVES (provincial)
+  - id: cm-honhaar-scholarship
+    name: Chief Minister Honhaar Scholarship Program
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab / Punjab Higher Education Commission
+    phase: "2025 (Academic Session 2024-25)"
+    sector: Education
+    summary: >-
+      Full tuition-fee scholarships on merit for undergraduate students of selected disciplines at public
+      sector universities, colleges and medical/dental colleges in Punjab.
+    source_url: https://punjab.gov.pk/node/6433
+    application_url: https://honhaarscholarship.punjabhec.gov.pk/
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: domicile
+        field: province
+        op: eq
+        value: punjab
+        label: Punjab domicile
+        quote: Have domicile of respective province
+      - id: income
+        field: monthly_household_income
+        op: lt
+        value: 300000
+        label: Family monthly income less than Rs 300,000
+        quote: Family monthly income should be less than Rs 300,000
+      - id: level
+        field: education_level
+        op: eq
+        value: undergraduate
+        label: Enrolled in an undergraduate programme
+        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
+      - id: semester
+        field: current_semester
+        op: between
+        value: [1, 2]
+        label: In 1st or 2nd semester
+        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
+      - id: public
+        field: institution_type
+        op: eq
+        value: public
+        label: Public sector university / college
+        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
+      - id: marks
+        field: intermediate_marks_percent
+        op: gte
+        value: 65
+        label: Intermediate marks at least 65% (Arts/Social Sciences); 70% for Sciences; 80% for medical/dental
+        quote: "≥ 65% for Arts and Social Sciences"
+      - id: merit
+        op: manual
+        label: Selected discipline and merit-based selection (confirmed by the authority)
+        quote: Scholarships will be awarded on merit basis.
+    benefits:
+      - text: 100% tuition fees covered
+        quote: 100% Tuition Fees
+    documents:
+      - text: Affidavit on e-stamp paper about family income
+        quote: (Affidavit on E-Stamp Required)
+    steps:
+      - text: Apply on the official Honhaar Scholarship website
+        quote: https://honhaarscholarship.punjabhec.gov.pk/
+
+  - id: cm-punjab-laptop-program
+    name: CM Punjab Laptop Program
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab / Higher Education Department
+    phase: "2025"
+    sector: Education
+    summary: >-
+      Laptops for students in the 1st or 2nd semester of BS programmes at public sector universities,
+      colleges and medical/dental colleges in Punjab.
+    source_url: https://punjab.gov.pk/cm-laptop
+    application_url: https://cmlaptophed.punjab.gov.pk/
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: domicile
+        field: province
+        op: eq
+        value: punjab
+        label: Domicile of any district of Punjab
+        quote: Must have a domicile from any district of Punjab.
+      - id: level
+        field: education_level
+        op: eq
+        value: undergraduate
+        label: Enrolled in a BS programme
+        quote: 1st or 2nd semester of BS in any Public University / College
+      - id: semester
+        field: current_semester
+        op: between
+        value: [1, 2]
+        label: In 1st or 2nd semester
+        quote: 1st or 2nd semester of BS in any Public University / College
+      - id: public
+        field: institution_type
+        op: eq
+        value: public
+        label: Public university / college
+        quote: 1st or 2nd semester of BS in any Public University / College
+      - id: marks
+        field: intermediate_marks_percent
+        op: gte
+        value: 65
+        label: At least 65% marks in Intermediate (80% for medical/dental)
+        quote: Minimum of 65% Marks in Intermediate
+      - id: no_previous_laptop
+        field: received_laptop_before
+        op: is_false
+        label: Has not received a laptop from any laptop scheme
+        quote: Student must not be a recipient of any laptop scheme
+    benefits:
+      - text: "Laptop with Core i7 (13th generation) processor and SSD storage"
+        quote: "Processor: Core i7, 13th Generation"
+    steps:
+      - text: Apply online on the official laptop portal
+        quote: https://cmlaptophed.punjab.gov.pk/
+
+  - id: cm-e-bikes-scheme
+    name: CM e-Bikes Scheme
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab
+    phase: "Phase 2 (2026)"
+    sector: Youth / Transport
+    summary: >-
+      Electric bikes for college and university students on monthly instalments with government-paid
+      interest and insurance. Phase 2 was announced for 2026; the application window must be confirmed on
+      the official portal.
+    source_url: https://punjab.gov.pk/cm-ebikes-scheme
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: age
+        field: age
+        op: gte
+        value: 18
+        label: At least 18 years old
+        quote: Eligible applicants must be at least 18 years old
+      - id: enrolled
+        field: currently_enrolled
+        op: is_true
+        label: Regular student
+        quote: be regular students of degree colleges or universities recognized by the Higher Education Commission (HEC)
+      - id: level
+        field: education_level
+        op: in
+        value: [undergraduate, graduate, postgraduate]
+        label: Student of an HEC-recognised degree college or university
+        quote: be regular students of degree colleges or universities recognized by the Higher Education Commission (HEC)
+      - id: licence
+        field: has_driving_licence
+        op: is_true
+        label: Valid motorcycle learner's permit or driving licence
+        quote: hold a valid motorcycle learner's permit or driving license
+      - id: quota
+        op: manual
+        label: Quota and e-balloting by domicile district if applications exceed quota
+        quote: In case applications exceed the available quota, an e-balloting process will be conducted based on domicile district.
+    benefits:
+      - text: No down payment for students (Phase 2 announcement)
+        quote: students will not be required to pay a down payment
+      - text: Monthly instalment of about Rs. 3,000 (agreed in principle)
+        quote: A monthly instalment of approximately Rs. 3,000 has been agreed upon in principle.
+      - text: Free helmet and safety rod, plus free two-day riding training
+        quote: Students will also receive a helmet and safety rod free of cost
+
+  - id: apni-chhat-apna-ghar
+    name: Apni Chhat Apna Ghar Program
+    category: cm_punjab
+    level: provincial
+    department: Punjab Housing & Town Planning Agency (HUD&PHED)
+    sector: Housing
+    summary: >-
+      Help for low-income families living in rented or informal housing to build their own house on a
+      small plot they own (100,000 affordable houses planned).
+    source_url: https://punjab.gov.pk/apni-chhat-apna-ghar
+    application_url: https://acag.punjab.gov.pk/index.aspx
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: residency
+        field: province
+        op: eq
+        value: punjab
+        label: Permanent resident of Punjab
+        quote: Applicant is a permanent resident of Punjab as per his/her CNIC
+      - id: owns_plot
+        field: owns_plot
+        op: is_true
+        label: Sole owner of the plot where the house will be built
+        quote: Applicant is sole owner and possessor of a parcel of land measuring 5 Marla or less in urban areas and land upto 10 Marla in rural areas
+      - id: plot_urban
+        field: plot_size_marla
+        op: lte
+        value: 5
+        when: {field: area_type, op: eq, value: urban}
+        label: Plot of 5 marla or less (urban)
+        quote: Applicant is sole owner and possessor of a parcel of land measuring 5 Marla or less in urban areas and land upto 10 Marla in rural areas
+      - id: plot_rural
+        field: plot_size_marla
+        op: lte
+        value: 10
+        when: {field: area_type, op: eq, value: rural}
+        label: Plot up to 10 marla (rural)
+        quote: Applicant is sole owner and possessor of a parcel of land measuring 5 Marla or less in urban areas and land upto 10 Marla in rural areas
+      - id: head_of_family
+        op: manual
+        label: Head of the nucleus family as per NADRA record
+        quote: Applicant is a head of his/her beta (nucleus) family as per NADRA record
+      - id: nser
+        op: manual
+        label: Registered in NSER with household PMT score of 60 or less
+        quote: Applicant is registered with National Socio-Economic Registry (NSER) in a household having a PMT score of 60 or less
+      - id: criminal_record
+        op: manual
+        label: No criminal record
+        quote: Applicant should not have a criminal record
+      - id: no_default
+        op: manual
+        label: Not a loan defaulter
+        quote: Applicant should not be a loan defaulter of any financial institution/ bank etc.
+    benefits:
+      - text: Support to build an affordable house (100,000 houses planned across Punjab)
+        quote: This scheme aims to provide 100,000 affordable Houses / Apartments to eligible residents in all areas of the province
+    steps:
+      - text: Apply by filling the Citizen Registration Form on the official portal
+        quote: Apply for Apni Chhat Apna Ghar Program by filling Citizen Registration Form
+
+  - id: apni-chhat-mehfooz-chhat
+    name: Apni Chhat, Mehfooz Chhat
+    category: cm_punjab
+    level: provincial
+    department: Punjab Housing & Town Planning Agency (ACAG sub-component)
+    sector: Housing
+    summary: >-
+      Interest-free loans for low-income families to repair roofs or expand their existing homes, under the
+      Apni Chhat Apna Ghar program.
+    source_url: https://punjab.gov.pk/apni-chat-mehfoz-chat-project
+    application_url: https://acag.punjab.gov.pk/index.aspx
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: residency
+        field: province
+        op: eq
+        value: punjab
+        label: Permanent resident of Punjab
+        quote: The applicant must be a permanent resident of Punjab holding a valid Computerized National Identity Card (CNIC)
+      - id: owns_home
+        field: owns_plot
+        op: is_true
+        label: Owns a residential plot or home
+        quote: Ownership of a residential land plot or home measuring up to 5 Marla in urban areas or 10 Marla in rural areas
+      - id: plot_urban
+        field: plot_size_marla
+        op: lte
+        value: 5
+        when: {field: area_type, op: eq, value: urban}
+        label: Up to 5 marla (urban)
+        quote: Ownership of a residential land plot or home measuring up to 5 Marla in urban areas or 10 Marla in rural areas
+      - id: plot_rural
+        field: plot_size_marla
+        op: lte
+        value: 10
+        when: {field: area_type, op: eq, value: rural}
+        label: Up to 10 marla (rural)
+        quote: Ownership of a residential land plot or home measuring up to 5 Marla in urban areas or 10 Marla in rural areas
+      - id: age
+        field: age
+        op: between
+        value: [21, 60]
+        label: Aged 21 to 60 years
+        quote: Applicants must be between 21 and 60 years of age at the time of application submission
+      - id: no_default
+        op: manual
+        label: Clean financial record (no loan defaults)
+        quote: Must maintain a clean financial record with no defaults registered with commercial banks or financial institutions
+      - id: criminal_record
+        op: manual
+        label: No conviction in heinous criminal offences
+        quote: No conviction or involvement in heinous criminal offenses
+    benefits:
+      - text: "Roof repair / structural reinforcement: up to PKR 500,000 (repay in up to 3 years)"
+        quote: "Maximum Financing: Up to PKR 500,000"
+      - text: "Home expansion: up to PKR 1,000,000 (repay in up to 6 years)"
+        quote: "Maximum Financing: Up to PKR 1,000,000"
+      - text: Interest-free (0% markup)
+        quote: interest-free financial support (0% markup)
+    documents:
+      - text: CNIC, land ownership details (Fard) and photographs of the existing home
+        quote: Upload the required documentation (CNIC, land ownership details / Fard, and existing home photographs)
+    steps:
+      - text: Register an account on the official ACAG portal
+        quote: Register an account on the official ACAG Portal
+      - text: Select the financial assistance plan under Loan Category
+        quote: Select your required financial assistance plan under Loan Category
+
+  - id: cm-kissan-card
+    name: CM Kissan Card Scheme
+    category: cm_punjab
+    level: provincial
+    department: Agriculture Department, Punjab (with PITB and Bank of Punjab)
+    sector: Agriculture
+    summary: Interest-free loans for small farmers to buy agricultural inputs such as seed and fertilizer.
+    source_url: https://punjab.gov.pk/cm-kissan-card-scheme
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: farmer
+        field: employment_type
+        op: eq
+        value: farmer
+        label: Farmer
+        quote: All farmers, with land holding upto 12.5 acres will be eligible
+      - id: land
+        field: land_acres
+        op: lte
+        value: 12.5
+        label: Land holding up to 12.5 acres
+        quote: All farmers, with land holding upto 12.5 acres will be eligible
+      - id: plra
+        op: manual
+        label: Owns land with record available in PLRA
+        quote: Famers who own land and whose land record is available in PLRA will be entitled for loan
+      - id: sim
+        op: manual
+        label: Mobile SIM registered against own CNIC
+        quote: Farmer have to mobile SIM registered against his own CNIC (PMD Verified)
+    benefits:
+      - text: "Loan up to Rs. 150,000 per season (Rs. 30,000 per acre, up to 5 acres)"
+        quote: Maximum loan per farmer per season will be Rs. 150,000 for 5 Acres (@PKR 30,000/acre)
+      - text: Loan can only be used for agricultural inputs (fertilizer, seed etc.)
+        quote: Loan amount can only be used for purchase of agriculture inputs (Fertilizer, Seed etc)
+    steps:
+      - text: Register by SMS to 8070 (format given on the official page)
+        quote: For registration, write pkc<space>CNIC number and send SMS to 8070
+
+  - id: cm-punjab-ration-card
+    name: CM Punjab Ration Card
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab
+    phase: "2025"
+    sector: Social Protection
+    summary: Monthly financial assistance for kitchen essentials for low-income households in Punjab.
+    source_url: https://punjab.gov.pk/ration-card
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: residency
+        field: province
+        op: eq
+        value: punjab
+        label: Permanent resident of Punjab
+        quote: Applicants/Families must be permanent residents of Punjab
+      - id: income
+        field: monthly_household_income
+        op: lt
+        value: 50000
+        label: Monthly income less than PKR 50,000
+        quote: Monthly income should be less than 50,000 PKR
+      - id: not_govt_employee
+        field: employment_type
+        op: not_in
+        value: [government_employee]
+        label: Not a government employee
+        quote: Applicant must not be a government employee
+      - id: not_bisp
+        field: bisp_beneficiary
+        op: is_false
+        label: Family is not a BISP beneficiary
+        quote: Applicant's family must not be a beneficiary of the BISP
+      - id: pser
+        op: manual
+        label: Registered in the Punjab Socio-Economic Registry (PSER)
+        quote: The applicant must be registered with the PSER (Punjab Socio-Economic Registry) Survey
+      - id: pmt
+        op: manual
+        label: PMT score below 35
+        quote: The PMT Score (Proxy Means Test Score) must be less than 35
+    benefits:
+      - text: Monthly financial assistance (programme covers 1.25 million low-income households)
+        quote: This initiative aims to provide monthly financial assistance to 1.25 million low-income households across the province.
+      - text: Usable at utility stores and registered karyana shops
+        quote: Easily usable at the utility stores and registered karyana shops
+    steps:
+      - text: Register through the Punjab Socio-Economic Registry (PSER) portal
+        quote: Apply online by registering through Punjab Socio-Economic Registry portal
+
+  - id: cm-himmat-card
+    name: CM Himmat Card Program
+    category: cm_punjab
+    level: provincial
+    department: Social Welfare Department, Punjab
+    sector: Social Protection
+    summary: Quarterly cash stipend through ATM cards for persons with disabilities (PWDs).
+    source_url: https://punjab.gov.pk/cm-himmat-card-program
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: disability
+        field: has_disability
+        op: is_true
+        label: Person with disability
+        quote: providing support to persons with disabilities (PWDs) through ATM cards
+    benefits:
+      - text: Quarterly stipend of Rs 10,500 via ATM card
+        quote: each receiving a quarterly stipend of Rs10,500
+      - text: 30% quota reserved for women
+        quote: 30% quota has been reserved for women.
+    steps:
+      - text: Verify Himmat Card status through the official verification link
+        quote: Click on the given link for Himmat Card Verification
+      - text: Call helpline 1312 for assistance
+        quote: For further assistance and information call 1312
+
+  - id: punjab-dhee-rani-program
+    name: Punjab Dhee Rani Program
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab
+    phase: "2025-26"
+    sector: Social Protection
+    summary: Collective marriage ceremonies with a cash gift for brides from deserving families.
+    source_url: https://punjab.gov.pk/punjab-dhee-rani-program
+    application_url: https://cmp.punjab.gov.pk
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: domicile
+        field: province
+        op: eq
+        value: punjab
+        label: Domiciled in Punjab
+        quote: Must be domiciled in Punjab
+      - id: bride
+        op: manual
+        label: Bride is destitute / orphan / a PWD / daughter of a PWD, aged 18-40
+        quote: Girls who are destitute / orphan / Persons with Disabilities (PWDs) / daughter of a PWD of ages between 18-40 years
+      - id: balloting
+        op: manual
+        label: Electronic balloting if applications exceed capacity
+        quote: In case of more applications, selection of the applicants shall be made through electronic balloting.
+    benefits:
+      - text: Rs 200,000 salami for the bride through an ATM card
+        quote: the bride is given 200,000 rupees salami through an ATM card
+      - text: "Collective marriages of 5,000 girls planned for 2025-26"
+        quote: Collective Marriages of 5000 poor girls will be organized across Punjab.
+    documents:
+      - text: Affidavit that the bride is unmarried and willing to take part in the collective wedding
+        quote: Affidavit (regarding being unmarried and willingness to participate in the collective wedding ceremony)
+    steps:
+      - text: The father, mother, guardian or the bride herself can apply
+        quote: Applicant can be the father or mother or guardian of the bride or the bride herself
+      - text: Register at cmp.punjab.gov.pk (helpline 1312)
+        quote: cmp.punjab.gov.pk
+
+  # ======================================================== PUNJAB DEPARTMENTS (provincial)
+  - id: pspa-zewar-e-taleem
+    name: Zewar-e-Taleem Program
+    category: punjab_department
+    level: provincial
+    department: Punjab Social Protection Authority (PSPA)
+    sector: Education
+    summary: >-
+      Monthly stipend for girl students of grades 6-10 in government schools of selected low-literacy
+      districts, linked to 80% attendance.
+    source_url: https://pspa.punjab.gov.pk/zewar-e-taleem-program
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: girl
+        field: gender
+        op: eq
+        value: female
+        label: Girl student
+        quote: conditional cash transfer to the girl students enrolled in public sector schools
+      - id: enrolled
+        field: currently_enrolled
+        op: is_true
+        label: Currently enrolled in school
+        quote: conditional cash transfer to the girl students enrolled in public sector schools
+      - id: public
+        field: institution_type
+        op: eq
+        value: public
+        label: Government (public sector) school
+        quote: conditional cash transfer to the girl students enrolled in public sector schools
+      - id: grade
+        field: education_level
+        op: in
+        value: [middle, matric]
+        label: Grades 6 to 10
+        quote: from 6th to 10th grade
+      - id: district
+        field: district
+        op: in
+        value: [bahawalnagar, bahawalpur, bhakkar, chiniot, dera ghazi khan, jhang, kasur, khanewal, kot addu,
+                layyah, lodhran, muzaffargarh, okara, pakpattan, rajanpur, rahim yar khan, vehari]
+        label: School in one of the listed districts
+        quote: Bahawalnagar, Bahawalpur, Bhakkar, Chinniot, DG Khan, Jhang, Kasur, Khanewal, Kot Addu, Layyah, Lodhran, Muzaffargarh, Okara, Pakpattan, Rajanpur, Rahim Yar Khan and Vehari districts
+      - id: attendance
+        op: manual
+        label: 80% school attendance (reported by School Education Department)
+        quote: funds are released on receipt of 80% attendance report from School Education Department
+    benefits:
+      - text: Rs 1,000 monthly stipend (released quarterly)
+        quote: Rs.1000 monthly stipend is being given to the girls of government schools
+
+  - id: pspa-khud-mukhtar
+    name: Khud Mukhtar Program
+    category: punjab_department
+    level: provincial
+    department: Punjab Social Protection Authority (PSPA)
+    sector: Livelihood
+    summary: Productive assets and training for young married couples from BISP beneficiary households.
+    source_url: https://pspa.punjab.gov.pk/khudmukhtar-program
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: married
+        field: marital_status
+        op: eq
+        value: married
+        label: Married couple
+        quote: Be a married couple aged between 18–35 years.
+      - id: age
+        field: age
+        op: between
+        value: [18, 35]
+        label: Aged 18 to 35
+        quote: Be a married couple aged between 18–35 years.
+      - id: bisp
+        field: bisp_beneficiary
+        op: is_true
+        label: BISP beneficiary household
+        quote: Belong to a BISP beneficiary household.
+      - id: lmr
+        op: manual
+        label: Completes Labor Market Readiness (LMR) training
+        quote: Have successfully completed the Labor Market Readiness (LMR) training package to qualify for the Livelihood Support Grant.
+    benefits:
+      - text: Productive assets worth up to PKR 150,000
+        quote: Provision of Productive Assets worth up to PKR 150,000
+      - text: Labor Market Readiness training (entrepreneurship, financial literacy)
+        quote: the program also provides Labor Market Readiness (LMR) training
+
+  - id: pwwf-workers-welfare-schools
+    name: Workers Welfare Schools (Free Education for Workers' Children)
+    category: punjab_department
+    level: provincial
+    department: Punjab Workers Welfare Fund (PWWF), Directorate of Education
+    sector: Education
+    summary: >-
+      Free education from Primary to Higher Secondary in 69 Workers Welfare Schools, with free uniform,
+      books, stationery and transport, for children of registered workers.
+    source_url: https://pwwf.punjab.gov.pk/education
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: worker_family
+        field: registered_industrial_worker
+        op: is_true
+        label: Child of a registered worker
+        quote: provides education free of cost to enrolled workers students
+      - id: level
+        field: education_level
+        op: in
+        value: [primary, middle, matric, intermediate]
+        label: Primary to Higher Secondary level
+        quote: from Primary to Higher Secondary levels
+    benefits:
+      - text: Free education plus free uniform, shoes, stationery, books and transport
+        quote: free Uniform, Shoes, Stationery, Books and Transport
+
+  # ======================================================== FEDERAL PROGRAMMES (available in Punjab)
+  - id: bisp-benazir-kafaalat
+    name: Benazir Kafaalat Programme (BISP)
+    category: federal
+    level: federal
+    department: Benazir Income Support Programme (Federal)
+    sector: Social Protection
+    summary: >-
+      Unconditional quarterly cash transfer to women of poor households identified through the National
+      Socio-Economic Registry (NSER) survey.
+    source_url: https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: woman
+        field: gender
+        op: in
+        value: [female, transgender]
+        label: Woman of the household (transgender persons included under BISP policy)
+        quote: Only an ever married female with valid CNIC and cleared from profiling in an eligible household will be declared as beneficiary.
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf
+      - id: ever_married
+        field: marital_status
+        op: in
+        value: [married, widowed, divorced]
+        when: {field: gender, op: eq, value: female}
+        label: Ever-married woman
+        quote: Only an ever married female with valid CNIC and cleared from profiling in an eligible household will be declared as beneficiary.
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf
+      - id: pmt
+        op: manual
+        label: Household PMT score within the cut-off (32; 37 with a differently-abled member) via NSER survey
+        quote: The current PMT cut-off score of 32 was approved by the BISP Board
+    benefits:
+      - text: Rs. 8,500 per beneficiary per quarter (as stated on the official page)
+        quote: the present Benazir Kafaalat stipend is Rs. 8,500/- per beneficiary per quarter
+    documents:
+      - text: Original CNIC for biometric verification when receiving payments
+        quote: along with her original CNIC to receive the first installment through biometric verification
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf
+    steps:
+      - text: Check your eligibility status with your CNIC on the 8171 portal
+        quote: CNIC can be checked on 8171 portal to check the eligibility status of an individual.
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf
+      - text: If there is no record, an adult household member visits the Benazir registration desk at the BISP Tehsil Office for a household survey
+        quote: any adult member of the household may visit nearest Benazir registration desk, established at BISP Tehsil Office, for household survey.
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf
+
+  - id: bisp-taleemi-wazaif
+    name: Benazir Taleemi Wazaif (BISP)
+    category: federal
+    level: federal
+    department: Benazir Income Support Programme (Federal)
+    sector: Education
+    summary: >-
+      Conditional education stipends for children of active Benazir Kafaalat beneficiaries, from primary
+      up to higher secondary level.
+    source_url: https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3
+    last_verified: 2026-11-01
+    status: Unverified
+    criteria:
+      - id: kafaalat_family
+        field: bisp_beneficiary
+        op: is_true
+        label: Child of an active BISP Kafaalat beneficiary
+        quote: Children of active BISP Kafalat Beneficiary
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - id: level
+        field: education_level
+        op: in
+        value: [primary, middle, matric, intermediate]
+        label: Studying at primary, secondary or higher secondary level
+        quote: for education of children of BISP active Kafalat beneficiaries up to higher secondary level
+      - id: age_primary
+        field: age
+        op: between
+        value: [4, 12]
+        when: {field: education_level, op: eq, value: primary}
+        label: Age 4-12 for primary education
+        quote: Age criteria of child is 4-12 years for enrollment in Primary Education
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - id: age_secondary
+        field: age
+        op: between
+        value: [8, 18]
+        when: {field: education_level, op: in, value: [middle, matric]}
+        label: Age 8-18 for secondary education
+        quote: Age criteria of child is 8-18 years for enrollment in Secondary Education
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - id: age_higher_secondary
+        field: age
+        op: between
+        value: [13, 22]
+        when: {field: education_level, op: eq, value: intermediate}
+        label: Age 13-22 for higher secondary education
+        quote: Age criteria of child is 13-22 years for enrollment in Higher Secondary Education
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+    documents:
+      - text: CNIC of the beneficiary (mother)
+        quote: CNIC of the beneficiary
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - text: Child's B-form / CRC issued by NADRA
+        quote: B-form/CRC issued by NADRA
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - text: School admission slip with class and school name, verified by the teacher
+        quote: School admission slip containing information of class, school name verified by the teacher
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+    steps:
+      - text: Visit an enrolment camp / BISP field office with the child and documents
+        quote: Beneficiary has to visit enrolment camp/field offices
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+      - text: Or enrol through BISP's digital self-enrolment application
+        quote: A digital application is established for self -enrollment.
+        source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf

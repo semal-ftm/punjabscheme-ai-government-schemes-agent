@@ -1,0 +1,1397 @@
+<!DOCTYPE html>
+<html lang="en">
+   
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pakistan Bait-ul-mal</title>
+    <!-- favicon  -->
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- swiper css  -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+    <!-- fontawasome cdn -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <!-- customize google fonts  -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+        rel="stylesheet">
+    <!-- customize css -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/projects.css">  
+    <link rel="stylesheet" href="css/tab.css">  
+</head>
+<body>
+<div id="header"></div>
+<!-- ******************************************************************************************************************************** -->
+<!-- <section class="text-center pt-3 ">
+    <div class="container">
+      <h4 class="fw-bold text-primary animate-heading">Empowering Lives, Transforming Communities</h4>
+      <p class="text-muted fs-6 animate-text">Together, we create a brighter future through impactful initiatives.</p>
+    </div>
+</section> -->
+<!-- our project  -->
+
+<div class="container tab-wrapper">
+    <div class="row g-0">
+      <!-- Tabs Navigation -->
+      <div class="col-md-4 bg-white p-3">
+        <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist">
+          <!-- HealthCare -->
+          <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fa-solid fa-heart-pulse me-2" style="color: red;" ></i>HealthCare</h5>
+          <button class="nav-link active" id="medical-tab" data-bs-toggle="pill" data-bs-target="#medical" type="button">
+            <i class="bi bi-house-door"></i> Medical Assistance
+          </button>
+          <button class="nav-link" id="cochlear-tab" data-bs-toggle="pill" data-bs-target="#cochlear" type="button">
+            <i class="bi bi-people"></i> Cochlear Implant
+          </button>
+          <button class="nav-link" id="ptc-tab" data-bs-toggle="pill" data-bs-target="#ptc" type="button">
+            <i class="bi bi-people"></i> Pakistan Thalassaemia Centre (PTC)
+          </button>
+          <hr class="border border-2 border-danger mt-0 mb-1">
+
+          <!-- Education -->
+           <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fa-solid fa-user-graduate me-2" style="color: red;" ></i>Education</h5>
+          <button class="nav-link" id="education-tab" data-bs-toggle="pill" data-bs-target="#education" type="button">
+            <i class="bi bi-people"></i> Scholarships
+          </button>
+          <button class="nav-link" id="owsp-tab" data-bs-toggle="pill" data-bs-target="#owsp" type="button">
+            <i class="bi bi-people"></i> Orphan Widow Support Prog (OWSP)
+          </button>
+          <hr class="border border-2 border-danger mt-0 mb-1">
+
+          <!-- Women Impowerment -->
+           <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fas fa-user-nurse me-2 " style="color: red;"></i></i>Women Empowerment</h5>
+           <button class="nav-link" id="wec-tab" data-bs-toggle="pill" data-bs-target="#wec" type="button">
+            <i class="bi bi-people"></i> Women Empowerment Centres (WEC)
+          </button>
+          <hr class="border border-2 border-danger mt-0 mb-1">
+
+          <!-- Child Protection --><i class=""></i>
+           <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fa-solid fa-hands-holding-child me-2 " style="color: red;" ></i>Child Protection</h5>
+          <button class="nav-link" id="srcl-tab" data-bs-toggle="pill" data-bs-target="#srcl" type="button">
+            <i class="bi bi-people"></i> Rehabilitation of Child Labour (SRCL)
+          </button>
+           <button class="nav-link" id="psh-tab" data-bs-toggle="pill" data-bs-target="#psh" type="button">
+            <i class="bi bi-people"></i> Pakistan Sweet Home (PSH)
+          </button>
+          <hr class="border border-2 border-danger mt-0 mb-1">
+
+          <!-- Food and Shelter -->
+           <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fa-solid fa-people-roof me-2" style="color: red;" ></i>Food and Shelter</h5>
+           <button class="nav-link" type="button" onclick="window.open('http://shelterhome.pbm.gov.pk/', '_blank')">
+            <i class="bi bi-people"></i> Pakistan Shelter Home
+          </button>
+           <!-- <button class="nav-link" id="shelter-tab" data-bs-toggle="pill" data-bs-target="#shelter" type="button">
+            <i class="bi bi-people"></i> Pakistan Shelter Home
+          </button>           -->
+          <button class="nav-link" id="oldhome-tab" data-bs-toggle="pill" data-bs-target="#oldhome" type="button">
+            <i class="bi bi-people"></i> Old Home/Great Home
+          </button>  
+           <hr class="border border-2 border-danger mt-0 mb-1">
+
+          <!-- Individual with a disability -->
+           <h5 class="mb-2 ms-1 fs-5 text-primary"><i class="fa-solid fa-wheelchair me-2" style="color: red;" ></i>Special Friend Person (SFP)</h5>
+          <button class="nav-link" id="sfp-tab" data-bs-toggle="pill" data-bs-target="#sfp" type="button">
+            <i class="bi bi-people"></i> Special Friend
+          </button>        
+         
+          
+          
+        
+          
+          
+        </div>
+      </div>
+  
+      <!-- Tabs Content -->
+      <div class="col-md-8">
+        <div class="tab-content" id="v-pills-tabContent">
+    <!-- ____________________________________________________________________________________________________________ -->
+            <!-- medical -->
+          <div class="tab-pane fade show active" id="medical" role="tabpanel">
+           
+                  <h2 class="section-title text-center mb-4"><i class="fa-solid fa-heart-pulse" style="color: red;" ></i> Individual Financial Assistance (Medical)</h2>
+              
+                  <div class="text-center mb-4">
+                    <a href="images/projects/medical/ifapolicy.pdf" target="_blank" class="btn btn-outline-danger btn-lg shadow-sm">
+                      <i class="fas fa-file-download me-2"></i>Download policy
+                    </a>
+                  </div>
+              
+                  <!-- Description -->
+                  <div class="card shadow-sm mb-5">
+                    <div class="card-body">
+                      <p>
+                        Through <strong>Individual Financial Assistance (Medical)</strong>, PBM supports the <strong>poor, widows, destitute women, orphans, and disabled persons</strong> for treatment of major illnesses. 
+                        PBM provides help for <strong>cancer, heart disease, hepatitis, tuberculosis, vital organ surgeries, and kidney dialysis</strong> based on hospital recommendations.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Objectives & Criteria -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h4 class="mb-3">🎯 Objectives</h4>
+                      <ul class="list-group shadow-sm">
+                        <li class="list-group-item"><i class="fas fa-bolt text-success me-2"></i>Fulfillment of immediate needs of the poor</li>
+                        <li class="list-group-item"><i class="fas fa-notes-medical text-danger me-2"></i>Medical treatment for major ailments and disabilities</li>
+                        <li class="list-group-item"><i class="fas fa-hand-holding-heart text-primary me-2"></i>Economic empowerment through rehabilitation</li>
+                      </ul>
+                    </div>
+              
+                    <div class="col-md-6">
+                      <h4 class="mb-3">📝 Enrolment Criteria</h4>
+                      <ul class="list-group shadow-sm">
+                        <li class="list-group-item"><i class="fas fa-user-check text-success me-2"></i>Needy individuals on a first-come, first-served basis</li>
+                        <li class="list-group-item"><i class="fas fa-heart-broken text-danger me-2"></i>Persons facing suffering beyond their means</li>
+                        <li class="list-group-item"><i class="fas fa-arrow-down text-warning me-2"></i>Sudden economic downfall victims</li>
+                        <li class="list-group-item"><i class="fas fa-wheelchair text-secondary me-2"></i>Severe physical/mental disability, unable to earn</li>
+                        <li class="list-group-item"><i class="fas fa-female text-secondary me-2"></i>Widowed/divorced women raising children alone</li>
+                        <li class="list-group-item"><i class="fas fa-blind text-info me-2"></i>Invalid/infirm people with no family support</li>
+                        <li class="list-group-item"><i class="fas fa-money-bill text-success me-2"></i>Monthly income ≤ <strong>Rs. 74,000/-</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+              
+                  <!-- Ineligibility -->
+                  <div class="mt-5">
+                    <h4 class="text-danger">🚫 Ineligible Applicants</h4>
+                    <ul class="list-group shadow-sm">
+                      <li class="list-group-item"><i class="fas fa-ban text-danger me-2"></i>Govt. servants (including contract) and their family members</li>
+                      <li class="list-group-item"><i class="fas fa-ban text-danger me-2"></i>Beneficiaries of other government aid organizations</li>
+                    </ul>
+                  </div>
+              
+                  <!-- Features -->
+                  <div class="mt-5">
+                    <h4 class="text-primary">🌟 Salient Features</h4>
+                    <div class="card shadow-sm p-3 bg-white rounded">
+                      <p>
+                        <i class="fas fa-heart text-danger me-2"></i>
+                        Any deserving individual can apply for medical assistance. PBM offers support of up to <strong>Rs. 1 million</strong> for treatment.
+                      </p>
+                      <p>
+                        <i class="fas fa-hospital text-success me-2"></i>
+                        Funds are released based on recommendations by the <strong>hospital committee</strong>, specialist doctor, or <strong>Medical Superintendent</strong> of the government hospital.
+                      </p>
+                    </div>
+                  </div>
+                  <div class="text-center mt-4">
+                    <a href="Forms.html" target="_blank" class="btn btn-outline-danger btn-lg shadow-sm">
+                      <i class="fas fa-file-download me-2"></i>Download Forms
+                    </a>
+                  </div>
+              
+          </div>
+
+  <!-- __________________________________________________________________________________________________________________________ -->
+        <!-- education         -->
+  <div class="tab-pane fade" id="education" role="tabpanel">
+            <h2 class="section-title text-center mb-4">🎓 Individual Financial Assistance (Education)</h2>
+              
+                  <div class="text-center mb-4">
+                    <a href="images/projects/education/ifapolicy.pdf" target="_blank" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-download me-2"></i>Download Policy
+                    </a>
+                  </div>
+              
+                  <!-- Description -->
+                  <div class="card shadow-sm mb-5">
+                    <div class="card-body">
+                      <p>
+                        Through <strong>Individual Financial Assistance (Education)</strong>, PBM supports poor, deserving, and brilliant students enrolled in public-sector educational and technical institutions with <strong>education stipends</strong> for completing their studies.
+                      </p>
+                      <p>
+                        Assistance is provided only to <strong>regular/merit-based students</strong> in government institutes. <span class="text-danger fw-bold">Self-financed or private institute students, and children of government employees, are ineligible.</span>
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- IFA Policy & Objectives -->
+                  <div class="row">
+                    <div class="col-md-6">
+                      <h4 class="mb-3">🎯 Objectives</h4>
+                      <ul class="list-group shadow-sm">
+                        <li class="list-group-item"><i class="fas fa-bolt text-success me-2"></i>Fulfilment of immediate need of the poor</li>
+                        <li class="list-group-item"><i class="fas fa-briefcase text-info me-2"></i>Economic empowerment through rehabilitation</li>
+                        <li class="list-group-item"><i class="fas fa-graduation-cap text-primary me-2"></i>Stipends for deserving students in public-sector institutions</li>
+                      </ul>
+                    </div>
+              
+                    <div class="col-md-6">
+                      <h4 class="mb-3">📝 Enrolment Criteria</h4>
+                      <ul class="list-group shadow-sm">
+                        <li class="list-group-item"><i class="fas fa-user-check text-success me-2"></i>Needy individuals on first-come, first-served basis</li>
+                        <li class="list-group-item"><i class="fas fa-sad-tear text-danger me-2"></i>People facing misery beyond their control</li>
+                        <li class="list-group-item"><i class="fas fa-arrow-down text-warning me-2"></i>Victims of sudden economic downfall</li>
+                        <li class="list-group-item"><i class="fas fa-female text-secondary me-2"></i>Widowed/divorced women raising children alone</li>
+                        <li class="list-group-item"><i class="fas fa-wheelchair text-info me-2"></i>Infirm/isolated persons with no income</li>
+                        <li class="list-group-item"><i class="fas fa-money-bill text-success me-2"></i>Monthly income below <strong>Rs. 74,000/-</strong></li>
+                      </ul>
+                    </div>
+                  </div>
+              
+                  <!-- Ineligibility -->
+                  <div class="mt-5">
+                    <h4 class="text-danger">🚫 Ineligible Applicants</h4>
+                    <ul class="list-group shadow-sm">
+                      <li class="list-group-item"><i class="fas fa-ban text-danger me-2"></i>Govt. servants, even on contract, and their family members</li>
+                      <li class="list-group-item"><i class="fas fa-ban text-danger me-2"></i>Beneficiaries of similar assistance from other govt. orgs</li>
+                    </ul>
+                  </div>
+              
+                  <!-- Features -->
+                  <div class="mt-5">
+                    <h4 class="text-primary">🌟 Salient Features</h4>
+                    <div class="card shadow-sm p-3 bg-white rounded">
+                      <p>
+                        <i class="fas fa-hand-holding-heart text-success me-2"></i>
+                        Any eligible individual can apply. PBM pays <strong>university fees (including boarding charges)</strong> directly to the institution so that brilliant students can complete their education and fulfill their dreams.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Criteria of Selection -->
+                  <div class="mt-5">
+                    <h4 class="text-success">📌 Criteria of Selection</h4>
+                    <ul class="list-group shadow-sm">
+                      <li class="list-group-item">
+                        <i class="fas fa-file-signature text-primary me-2"></i>
+                        Application with address, thumb signature, CNIC/B-form (if < 18 years)
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-university text-info me-2"></i>
+                        Bonafide certificate (PBM format) signed by Head of Institution
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-certificate text-warning me-2"></i>
+                        Educational testimonial (certificates copy)
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-file-alt text-secondary me-2"></i>
+                        Affidavit filled by parents
+                      </li>
+                      <li class="list-group-item">
+                        <i class="fas fa-receipt text-success me-2"></i>
+                        Fee slip or structure of the institute
+                      </li>
+                    </ul>
+                  </div>
+              
+          </div>
+  <!-- __________________________________________________________________________________________________________________________ -->
+        <!-- owsp         -->
+         <div class="tab-pane fade" id="owsp" role="tabpanel">
+  <h2 class="section-title text-center mb-4">🤝 Orphan Widow Support Program (OWSP)</h2>
+          <div class="text-center mb-4">
+            <a href="images/projects/education/ifapolicy.pdf" target="_blank" class="btn btn-outline-primary btn-lg shadow-sm">
+              <i class="fas fa-download me-2"></i>Download Policy
+            </a>
+          </div>
+  <!-- Description -->
+  <div class="card shadow-sm mb-5">
+    <div class="card-body">
+      <p>
+        Initiated in <strong>2020</strong> as a pilot, this Conditional Cash Transfer (CCT) program provides family support such as <strong>education</strong> and <strong>healthcare</strong> to orphans and widows, fostering a more inclusive society.
+      </p>
+    </div>
+  </div>
+
+  <!-- Purpose and Target -->
+  <div class="row">
+    <div class="col-md-6">
+      <h4 class="mb-3">🎯 Why Are We Serving?</h4>
+      <ul class="list-group shadow-sm">
+        <li class="list-group-item">
+          <i class="fas fa-hands-helping text-success me-2"></i>
+          Aims at poverty graduation by transitioning from institutional care to family-based support.
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <h4 class="mb-3">📌 Target of Our Services</h4>
+      <ul class="list-group shadow-sm">
+        <li class="list-group-item">
+          <i class="fas fa-child text-info me-2"></i>
+          Offers alternative care for widows and orphan children, especially girls, across the country.
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Objectives -->
+  <div class="mt-5">
+    <h4 class="text-primary">🎯 Objectives</h4>
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item">
+        <i class="fas fa-globe text-success me-2"></i>
+        Aligns with SDGs: Zero Hunger, Good Health & Well-being, Quality Education, and Gender Equality.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-home text-info me-2"></i>
+        Provision of home and family-based services.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-book-reader text-warning me-2"></i>
+        Improve literacy and reduce dropout rates via conditional cash transfers.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-users text-secondary me-2"></i>
+        Supports the whole family, not just the orphan child.
+      </li>
+    </ul>
+  </div>
+
+  <!-- Scope of Benefits -->
+  <div class="mt-5">
+    <h4 class="text-success">💼 Scope of Benefits</h4>
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item">
+        <i class="fas fa-female text-danger me-2"></i>
+        Special focus on female orphans.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-money-bill-wave text-success me-2"></i>
+        Cash assistance of <strong>Rs. 8,000/month</strong> per orphan child.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-university text-primary me-2"></i>
+        Support for higher education of orphans.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-user-shield text-info me-2"></i>
+        Comprehensive support for widowed families.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-tools text-warning me-2"></i>
+        Vocational training opportunities.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-heartbeat text-danger me-2"></i>
+        Healthcare service provision.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-hands text-secondary me-2"></i>
+        Individual financial assistance for education, medical, and general needs.
+      </li>
+    </ul>
+  </div>
+
+  <!-- MIS and Monitoring -->
+  <div class="mt-5">
+    <h4 class="text-info">📊 MIS & Monitoring</h4>
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item">
+        <i class="fas fa-network-wired text-primary me-2"></i>
+        MIS ensures transparency, efficiency, and robust data management.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-fingerprint text-success me-2"></i>
+        Payments made via Biometric Verification System (BVS).
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-map-marked-alt text-warning me-2"></i>
+        Compliance monitoring through geo-tagging.
+      </li>
+    </ul>
+  </div>
+
+  <!-- Impact -->
+  <div class="mt-5">
+    <h4 class="text-secondary">🌍 Impact</h4>
+    <ul class="list-group shadow-sm">
+      <li class="list-group-item">
+        <i class="fas fa-hand-holding-usd text-success me-2"></i>
+        Immediate financial relief to families in need.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-school text-primary me-2"></i>
+        Promotes access to education and quality healthcare.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-users-cog text-info me-2"></i>
+        Social inclusion for vulnerable families.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-briefcase text-warning me-2"></i>
+        Encourages economic self-sufficiency.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-lightbulb text-secondary me-2"></i>
+        Invests in human capital and drives societal transformation.
+      </li>
+      <li class="list-group-item">
+        <i class="fas fa-chart-line text-danger me-2"></i>
+        Breaks inter-generational cycles of poverty.
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- psh -->
+        <div class="tab-pane fade" id="psh" role="tabpanel">
+            <h2 class="text-center mb-4 section-title">🏠 Pakistan Bait-ul-Mal Sweet Home</h2>
+              
+                  <div class="card shadow-sm mb-4">
+                    <div class="card-body">
+                      <p>
+                        Pakistan has a proud tradition of caring for orphans. Since signing the <strong>Convention on the Rights of the Child (1989)</strong>,
+                        several initiatives have been launched to support children without parental care.
+                        As per <strong>PBM Act-1991 (amended)</strong>, Sweet Homes offer shelter and support for <strong>100 orphans (aged 4–6)</strong> in each unit nationwide.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Policy -->
+                  <div class="text-center mb-4">
+                    <a href="images/projects/psh/pshpolicy2022.pdf" target="_blank" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-download me-2"></i>Download Policy
+                    </a>
+                  </div>
+              
+                  <!-- Facilities -->
+                  <div class="row mt-5">
+                    <div class="col-md-6">
+                      <h4 class="mb-3">🌟 Facilities Provided</h4>
+                      <ul class="list-group shadow-sm">
+                        <li class="list-group-item"><i class="fas fa-bed text-primary me-2"></i>Free furnished accommodation (family unit)</li>
+                        <li class="list-group-item"><i class="fas fa-utensils text-danger me-2"></i>Nutritious diet (breakfast/lunch/dinner)</li>
+                        <li class="list-group-item"><i class="fas fa-school text-info me-2"></i>Free education in quality city schools</li>
+                        <li class="list-group-item"><i class="fas fa-book-open text-success me-2"></i>Free uniform, books & stationery</li>
+                        <li class="list-group-item"><i class="fas fa-tshirt text-secondary me-2"></i>Seasonal clothing & footwear</li>
+                        <li class="list-group-item"><i class="fas fa-hospital text-danger me-2"></i>Medical care through govt. hospitals</li>
+                        <li class="list-group-item"><i class="fas fa-hands-helping text-warning me-2"></i>Skill development programs</li>
+                        <li class="list-group-item"><i class="fas fa-soap text-primary me-2"></i>Free laundry services</li>
+                        <li class="list-group-item"><i class="fas fa-mosque text-success me-2"></i>Religious education & prayer rooms</li>
+                        <li class="list-group-item"><i class="fas fa-balance-scale text-danger me-2"></i>Counseling & legal aid for victims</li>
+                      </ul>
+                    </div>
+              
+                    <div class="col-md-6 text-center">
+                      <img src="images/projects/psh/psh.jpg" alt="Sweet Home" class="img-fluid rounded shadow">
+                    </div>
+                  </div>
+              
+                  <!-- Enrolment Criteria -->
+                  <div class="mt-5">
+                    <h4 class="text-primary">🧾 Enrolment Criteria</h4>
+                    <div class="card shadow-sm p-3">
+                      <p>
+                        <i class="fas fa-user text-success me-2"></i>
+                        Orphans aged <strong>4 to 6 years</strong>, recommended preferably by Parliamentarians, Govt officials, Social Workers, Civil Societies, or PBM functionaries.
+                        Children remain enrolled until the completion of their education or skill development and transition to adulthood.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Enrolment Procedure -->
+                  <div class="mt-4">
+                    <h4 class="text-warning">📝 Enrolment Procedure</h4>
+                    <div class="card shadow-sm p-3">
+                      <p>
+                        The guardian must submit the prescribed <strong>application form</strong> along with required documents to the PBM District Officer.
+                        Upon verification, the application is forwarded to the <strong>Provincial/Regional Office</strong>. 
+                        The Sweet Home Incharge maintains a detailed biography and background record of every child for proper care and future guidance.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- List of Sweet Homes -->
+                  <div class="text-center mt-4">
+                    <a href="#" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-list me-2"></i>View List of Sweet Homes
+                    </a>
+                  </div>
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- sfp -->
+          <div class="tab-pane fade" id="sfp" role="tabpanel">
+            
+                  <h2 class="text-center text-primary mb-4">
+                    ♿ Individual Financial Assistance (Special Friends)
+                  </h2>
+              
+                  <!-- Intro Card -->
+                  <div class="card shadow-sm border-0 mb-4">
+                    <div class="card-body">
+                      <p>
+                        <strong>Pakistan Bait-ul-Mal (PBM)</strong> is committed to empowering Persons with Disabilities (PWDs) by providing financial assistance,
+                        standard/customized wheelchairs, hearing aids, white canes, and artificial limbs. 
+                      </p>
+                      <p>
+                        A family with <strong>one PWD</strong> is eligible for <strong>Rs. 20,000/- annually</strong>, while families with <strong>two or more PWDs</strong> receive <strong>Rs. 30,000/- annually</strong>, 
+                        along with assistive devices to help individuals live with dignity and independence.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Objectives -->
+                  <div class="row text-center mb-5">
+                    <div class="col-md-4">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-hand-holding-heart fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">Fulfil Basic Needs</h5>
+                          <p class="card-text">Support the immediate needs of people with disabilities.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-wheelchair fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">Assistive Devices</h5>
+                          <p class="card-text">Provision of wheelchairs, hearing aids, white canes & limbs.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-chart-line fa-2x text-warning mb-3"></i>
+                          <h5 class="card-title">Empowerment</h5>
+                          <p class="card-text">Enable social and economic participation through support.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Area of Support -->
+                  <h4 class="text-secondary mb-3">🎯 Area of Support</h4>
+                  <ul class="list-group list-group-flush mb-4 shadow-sm">
+                    <li class="list-group-item"><i class="fas fa-rupee-sign me-2 text-success"></i> Financial Assistance (Rs. 20,000 – 30,000 annually)</li>
+                    <li class="list-group-item"><i class="fas fa-wheelchair me-2 text-primary"></i> Standard & Customized Wheelchairs</li>
+                    <li class="list-group-item"><i class="fas fa-deaf me-2 text-danger"></i> Hearing Aids</li>
+                    <li class="list-group-item"><i class="fas fa-walking me-2 text-info"></i> White Canes & Artificial Limbs</li>
+                  </ul>
+              
+                  <!-- Criteria Tabs -->
+                  <h4 class="mb-3 text-dark">✅ Eligibility & Application Criteria</h4>
+                  <div class="accordion" id="specialFriendsAccordion">
+              
+                    <!-- Financial Assistance -->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="fa-heading">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#fa-collapse" aria-expanded="true" aria-controls="fa-collapse">
+                          📄 Financial Assistance
+                        </button>
+                      </h2>
+                      <div id="fa-collapse" class="accordion-collapse collapse show" aria-labelledby="fa-heading" data-bs-parent="#specialFriendsAccordion">
+                        <div class="accordion-body">
+                          <ul>
+                            <li>Application on PBM prescribed form</li>
+                            <li>Copy of valid CNIC</li>
+                            <li>B-Form (for minors)</li>
+                            <li>Disability certificate / NADRA CNIC with disability logo</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <!-- Standard Wheelchairs -->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="wheelchair-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#wheelchair-collapse" aria-expanded="false" aria-controls="wheelchair-collapse">
+                          🦽 Standard Wheelchairs
+                        </button>
+                      </h2>
+                      <div id="wheelchair-collapse" class="accordion-collapse collapse" aria-labelledby="wheelchair-heading" data-bs-parent="#specialFriendsAccordion">
+                        <div class="accordion-body">
+                          <ul>
+                            <li>Application with CNIC copy</li>
+                            <li>Disability certificate or visible photo of disability</li>
+                            <li>Recommendation from govt. medical officer</li>
+                            <li>Senior citizens (60+ years) also eligible</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <!-- Customized Wheelchairs -->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="custom-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#custom-collapse" aria-expanded="false" aria-controls="custom-collapse">
+                          🛠️ Customized Wheelchairs (21 Districts)
+                        </button>
+                      </h2>
+                      <div id="custom-collapse" class="accordion-collapse collapse" aria-labelledby="custom-heading" data-bs-parent="#specialFriendsAccordion">
+                        <div class="accordion-body">
+                          <p>Online application required for these districts: Islamabad, Gujranwala, Hyderabad, Sukkur, Kotli, Rahim Yar Khan, Haripur, Tank, etc.</p>
+                          <ul>
+                            <li>Disability certificate from social welfare dept / NADRA</li>
+                            <li>Photograph showing disability</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+              
+                    <!-- Hearing Aids / Artificial Limbs -->
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="hearing-heading">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#hearing-collapse" aria-expanded="false" aria-controls="hearing-collapse">
+                          👂 Hearing Aids / 🦿 Artificial Limbs
+                        </button>
+                      </h2>
+                      <div id="hearing-collapse" class="accordion-collapse collapse" aria-labelledby="hearing-heading" data-bs-parent="#specialFriendsAccordion">
+                        <div class="accordion-body">
+                          <ul>
+                            <li>Application with CNIC copy</li>
+                            <li>Estimate from Govt. hospital</li>
+                            <li>Medical test reports</li>
+                            <li>Undertaking for Sehat Sahulat Card</li>
+                            <li>NOC from Sehat Sahulat Programme if not covered</li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Download Forms Button -->
+                  <div class="text-center mt-5">
+                    <a href="images/AllForms/proforma-jpg/sfp.jpg" target="_blank" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-file-download me-2"></i>Download Application Forms
+                    </a>
+                  </div>
+               
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- wec -->
+          <div class="tab-pane fade" id="wec" role="tabpanel">
+            
+                  <h2 class="text-center text-primary mb-4">
+                    👩‍🎓 Women Empowerment Centres (WEC)
+                  </h2>
+              
+                  <!-- Intro Card -->
+                  <div class="card shadow-sm border-0 mb-5">
+                    <div class="card-body">
+                      <p>
+                        <strong>Since 1995, Pakistan Bait-ul-Mal (PBM)</strong> has been operating <strong>165 Women Empowerment Centres (WEC)</strong> across Pakistan, 
+                        including AJK and Gilgit Baltistan. These centers aim to train widows, orphans, and poor girls in professional and income-generating skills, 
+                        empowering them to become financially independent.
+                      </p>
+                      <p>
+                        Trainees receive a <strong>stipend of Rs. 50/day</strong> based on attendance. Local market-oriented courses are tailored according to the 
+                        region’s needs with support from NGOs and community stakeholders.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Objectives -->
+                  <h4 class="text-secondary mb-3">🎯 Objectives</h4>
+                  <div class="row mb-4">
+                    <div class="col-md-4">
+                      <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                          <i class="fas fa-chalkboard-teacher fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">Skill Development</h5>
+                          <p class="card-text">Train low-income group of women in practical trades.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                          <i class="fas fa-child fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">Support Orphans</h5>
+                          <p class="card-text">Focus on empowering orphans and widows through free training.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body text-center">
+                          <i class="fas fa-hand-holding-usd fa-2x text-warning mb-3"></i>
+                          <h5 class="card-title">Income Generation</h5>
+                          <p class="card-text">Enable self-reliance through vocational and marketable skills.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Courses Offered -->
+                  <h4 class="text-secondary mb-3">🎓 Courses Offered</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-4">
+                    <li class="list-group-item">✂️ Cutting, Drafting, Tailoring</li>
+                    <li class="list-group-item">🧵 Hand & Machine Embroidery</li>
+                    <li class="list-group-item">💻 Basic & Advance Computer Courses</li>
+                    <li class="list-group-item">💄 Beautician Course</li>
+                    <li class="list-group-item">🎨 Tie & Dye, Fabric Painting</li>
+                    <li class="list-group-item">🧶 Hand Knitting</li>
+                  </ul>
+              
+                  <!-- Features Grid -->
+                  <div class="row text-center mt-5">
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-school fa-2x text-info mb-3"></i>
+                          <h5 class="card-title">165 Centers</h5>
+                          <p class="card-text">Located across Pakistan including AJK, GB & ICT.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-coins fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">Stipend Rs. 50/Day</h5>
+                          <p class="card-text">Paid on attendance basis to each enrolled trainee.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-users fa-2x text-dark mb-3"></i>
+                          <h5 class="card-title">228,604 Graduates</h5>
+                          <p class="card-text">Passed out in last 10 years; 25,054 currently enrolled.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Enrolment Criteria -->
+                  <h4 class="text-secondary mt-5 mb-3">📝 Enrolment Criteria</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-4">
+                    <li class="list-group-item">👩‍👧 Widows with dependent children</li>
+                    <li class="list-group-item">🧕 Orphans & destitute girls with no support</li>
+                    <li class="list-group-item">💼 Must belong to low-income households</li>
+                    <li class="list-group-item">🕋 Preference given with involvement of local representatives</li>
+                  </ul>
+              
+                  <!-- Final Call-to-Action -->
+                  <div class="text-center mt-5">
+                    <a href="#" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-file-alt me-2"></i>List of WECs & Application Form
+                    </a>
+                  </div>
+                
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- srcl -->
+           
+          <div class="tab-pane fade" id="srcl" role="tabpanel">
+            
+                  <h2 class="text-center text-primary mb-4">
+                    📘 PBM Schools for Rehabilitation of Child Labour (SRCL)
+                  </h2>
+              
+                  <!-- Intro Card -->
+                  <div class="card shadow-sm border-0 mb-5">
+                    <div class="card-body">
+                      <p>
+                        Since <strong>1995</strong>, Pakistan Bait-ul-Mal has been running <strong>160 Schools for Rehabilitation of Child Labour (SRCL)</strong>, 
+                        previously known as National Centres for Rehabilitation of Child Labour (NCRCL), aiming to rescue children from hazardous labour conditions 
+                        and bring them into the fold of education and hope.
+                      </p>
+                      <p>
+                        Children aged <strong>8–14 years</strong> from vulnerable backgrounds are enrolled, provided with <strong>free primary education</strong>, uniforms, 
+                        books, daily stipends, medical care, and religious and extracurricular activities. Each center maintains a sanctioned strength of <strong>120 students</strong>.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Objective Cards -->
+                  <h4 class="text-secondary mb-3">🎯 Objectives</h4>
+                  <div class="row mb-4">
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-ban fa-2x text-danger mb-3"></i>
+                          <h5 class="card-title">Eradicate Child Labour</h5>
+                          <p class="card-text">Rescue children from hazardous labor environments and bonded industries.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-school fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">Provide Primary Education</h5>
+                          <p class="card-text">Deliver quality education in a nurturing classroom environment.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-graduation-cap fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">Enable Higher Learning</h5>
+                          <p class="card-text">Support further education and integration into the mainstream society.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Salient Features -->
+                  <h4 class="text-secondary mb-3">📌 Salient Features</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-4">
+                    <li class="list-group-item">👦 Standard strength of 120 students per school</li>
+                    <li class="list-group-item">📚 Free education, books, uniform, shoes, religious education, and medical checkups</li>
+                    <li class="list-group-item">💸 Rs. 50/day student stipend & Rs. 300/month wage compensation for parents</li>
+                    <li class="list-group-item">⏳ Primary education delivered in 4 years (informal format)</li>
+                    <li class="list-group-item">❌ No summer breaks or long local holidays to avoid regression</li>
+                    <li class="list-group-item">🎓 19,574 students passed out; 11,858 admitted to government schools</li>
+                    <li class="list-group-item">📖 Rs. 4,100/annum support for passed-out students for continued education</li>
+                  </ul>
+              
+                  <!-- Enrolment Criteria -->
+                  <h4 class="text-secondary mt-5 mb-3">📝 Enrolment Criteria</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-4">
+                    <li class="list-group-item">🏭 Must be involved in or at risk of hazardous labour (brick-kilns, mines, domestic work, etc.)</li>
+                    <li class="list-group-item">👧 Aged between 8 – 14 years</li>
+                    <li class="list-group-item">📍 Availability of bonded labor within region for at least 5 years</li>
+                    <li class="list-group-item">✅ Verified and recommended by Labour Department or Ministry of Labour guidelines</li>
+                  </ul>
+              
+                  <!-- Stats Summary -->
+                  <div class="row text-center mt-5">
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-school fa-2x text-info mb-3"></i>
+                          <h5 class="card-title">160 SRCLs</h5>
+                          <p class="card-text">Across Pakistan: Punjab, Sindh, KPK, Balochistan, AJK, GB, ICT</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-users fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">27,941 Active Students</h5>
+                          <p class="card-text">Currently benefiting from these schools</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <i class="fas fa-user-graduate fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">217,699 Graduates</h5>
+                          <p class="card-text">Passed out over the last 10 years</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Final CTA -->
+                  <div class="text-center mt-5">
+                    <a href="#" class="btn btn-outline-primary btn-lg shadow-sm">
+                      <i class="fas fa-list me-2"></i>View School List & Enrollment Form
+                    </a>
+                  </div>
+                
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- ptc -->
+          <div class="tab-pane fade" id="ptc" role="tabpanel">
+            
+                  <h2 class="text-center text-danger mb-4">
+                    🩸 Pakistan Thalassaemia Centre
+                  </h2>
+                  <p class="lead text-center mb-5">
+                    <strong>Saving lives just by donating blood</strong> – A lifeline for children battling Thalassaemia.
+                  </p>
+              
+                  <!-- Intro Card -->
+                  <div class="card shadow-sm border-0 mb-5">
+                    <div class="card-body">
+                      <p>
+                        <strong>Thalassaemia</strong> is an inherited blood disorder that results in an abnormal form of hemoglobin,
+                        leading to anemia. Pakistan faces a grave situation with around <strong>100,000 registered patients</strong>, 
+                        and <strong>5,000 new cases</strong> each year. These patients require <strong>lifelong blood transfusions, iron chelation, 
+                        and diagnostic tests</strong> — a heavy burden for underprivileged families.
+                      </p>
+                      <p>
+                        In response, <strong>Pakistan Bait-ul-Mal (PBM)</strong> established a <strong>State-of-the-Art Thalassaemia Centre</strong> 
+                        in <strong>F-9 Park, Islamabad</strong>, in collaboration with <strong>NOVARTIS (PVT) Ltd</strong>, providing 
+                        <strong>completely free-of-cost treatment</strong> for the most vulnerable.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Objectives -->
+                  <h4 class="text-secondary mb-3">🎯 Objectives</h4>
+                  <div class="row mb-4">
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-hospital-user fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">Free Medical Care</h5>
+                          <p class="card-text">Delivering advanced treatment to underprivileged Thalassaemia patients.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-heartbeat fa-2x text-danger mb-3"></i>
+                          <h5 class="card-title">Improve Life Expectancy</h5>
+                          <p class="card-text">Supporting quality of life through consistent and professional care.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body text-center">
+                          <i class="fas fa-child fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">A Ray of Hope</h5>
+                          <p class="card-text">Bringing hope to orphans and impoverished families battling this disorder.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Stats -->
+                  <h4 class="text-secondary mb-3">📊 Project Impact</h4>
+                  <div class="row text-center mb-4">
+                    <div class="col-md-6 col-lg-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="card-title">15,000+ Patients Treated</h5>
+                          <p class="card-text">Since 2020, with blood transfusions, iron chelation, Ferritin, LFT/RFT tests.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="card-title">100,000+ Living with Thalassaemia</h5>
+                          <p class="card-text">Urgent need for consistent, affordable medical support in Pakistan.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12 col-lg-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="card-title">5,000 New Cases Annually</h5>
+                          <p class="card-text">Born into families unaware of prevention or unable to afford care.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Enrolment Criteria -->
+                  <h4 class="text-secondary mb-3">📝 Enrolment Procedure</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-4">
+                    <li class="list-group-item">✅ Open to poor, destitute, orphans, widows, and infirm individuals</li>
+                    <li class="list-group-item">🧾 Must submit application to PBM with CNIC or NADRA receipt</li>
+                    <li class="list-group-item">🏥 Evaluation and eligibility confirmed through medical documentation</li>
+                  </ul>
+              
+                  <!-- CTA -->
+                  <div class="text-center mt-5">
+                    <a href="images/AllForms/proforma-jpg/ptc.JPG" class="btn btn-danger btn-lg shadow-sm">
+                      <i class="fas fa-file-medical me-2"></i>Apply for Free Treatment
+                    </a>
+                  </div>
+                
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- old home -->
+
+         <div class="tab-pane fade" id="oldhome" role="tabpanel">
+            
+                  <h2 class="text-center text-primary mb-4">
+                    👵 PBM Old Home
+                  </h2>
+                  <p class="lead text-center mb-5">
+                    Providing <strong>dignity, care, and comfort</strong> to shelterless senior citizens of Pakistan.
+                  </p>
+              
+                  <!-- Overview Card -->
+                  <div class="card shadow-sm border-0 mb-5">
+                    <div class="card-body">
+                      <p>
+                        As per the PBM Act, the <strong>Pakistan Bait-ul-Mal Board</strong> launched the PBM Old Home project 
+                        to rehabilitate the <strong>invalid, shelterless, and abandoned elderly</strong>. Initially launched in 
+                        <strong>Islamabad, Lahore, Karachi, Peshawar, and Quetta</strong>, this initiative aims to expand nationwide. 
+                        With capacity for 50 residents per location, the homes provide <strong>boarding, food, clothing, 
+                        medical care, and recreation</strong> in a warm, family-like atmosphere.
+                      </p>
+                    </div>
+                  </div>
+              
+                  <!-- Mission & Goal -->
+                  <div class="row mb-5">
+                    <div class="col-md-6">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="card-title text-secondary">🎯 Mission</h5>
+                          <p class="card-text">
+                            To help <strong>destitute people</strong> live a <strong>happier, more comfortable life</strong> with respect, dignity, and protection.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="card-title text-secondary">🏆 Goal</h5>
+                          <p class="card-text">
+                            To create a <strong>family-like environment</strong> offering emotional, physical, and social 
+                            support for <strong>neglected senior citizens</strong> in the third phase of life.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Target Group -->
+                  <h4 class="text-secondary mb-3">👥 Target Group</h4>
+                  <ul class="list-group list-group-flush shadow-sm mb-5">
+                    <li class="list-group-item">✅ Shelterless elderly citizens from across Pakistan, including AJK, Gilgit-Baltistan, and FATA</li>
+                    <li class="list-group-item">✅ Invalid, abandoned, or socially deprived seniors</li>
+                  </ul>
+              
+                  <!-- Facilities -->
+                  <h4 class="text-secondary mb-3">🏡 Facilities Provided</h4>
+                  <div class="row text-center mb-4">
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-bed fa-2x text-primary mb-3"></i>
+                          <h5 class="card-title">Furnished Accommodation</h5>
+                          <p class="card-text">Dormitory-style rooms with bedding and personal space.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-utensils fa-2x text-danger mb-3"></i>
+                          <h5 class="card-title">Nutritious Meals</h5>
+                          <p class="card-text">Balanced diet provided three times a day, tailored to health needs.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-user-md fa-2x text-success mb-3"></i>
+                          <h5 class="card-title">Medical Care</h5>
+                          <p class="card-text">Regular check-ups and access to medication through government facilities.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <div class="row text-center mb-4">
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-tshirt fa-2x text-warning mb-3"></i>
+                          <h5 class="card-title">Clothing & Laundry</h5>
+                          <p class="card-text">Seasonal clothes and free laundry services for personal hygiene.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-pray fa-2x text-secondary mb-3"></i>
+                          <h5 class="card-title">Prayer Room</h5>
+                          <p class="card-text">Designated spiritual space to offer daily prayers peacefully.</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm h-100 border-0">
+                        <div class="card-body">
+                          <i class="fas fa-smile-beam fa-2x text-info mb-3"></i>
+                          <h5 class="card-title">Recreational Activities</h5>
+                          <p class="card-text">Social, cultural, and wellness events for happiness and engagement.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- CTA -->
+                  <!-- <div class="text-center mt-5">
+                    <a href="" class="btn btn-primary btn-lg shadow-sm">
+                      <i class="fas fa-hands-helping me-2"></i>Support or Enroll Now
+                    </a>
+                  </div> -->
+               
+              
+         </div>
+
+<!-- __________________________________________________________________________________________________________________________ -->
+         <!-- sh -->
+             <div class="tab-pane fade" id="shelter" role="tabpanel">
+            
+                  <h2 class="text-center text-primary mb-4">
+                    National Meals & Shelter Dashboard
+                  </h2>
+                  <p class="text-center text-muted mb-5">
+                    <strong>Last Updated:</strong> April 17, 2025 – 10:50 PM
+                  </p>
+              
+                  <!-- Overall Stats -->
+                  <div class="row text-center mb-5">
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="text-muted">Total Beneficiaries</h5>
+                          <h2 class="text-primary">17,687,871</h2>
+                          <p class="text-muted">Since 1st Sept 2020</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="text-muted">Meals Served</h5>
+                          <h2 class="text-success">16,205,287</h2>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                      <div class="card shadow-sm border-0 h-100">
+                        <div class="card-body">
+                          <h5 class="text-muted">Shelter Provided</h5>
+                          <h2 class="text-danger">1,482,584</h2>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- This Month -->
+                  <h4 class="text-secondary mb-3">📅 This Month</h4>
+                  <div class="row text-center mb-5">
+                    <div class="col-md-6 mb-3">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <h6 class="text-muted">Meals</h6>
+                          <h3 class="text-success">76,575</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                      <div class="card shadow-sm border-0">
+                        <div class="card-body">
+                          <h6 class="text-muted">Shelter Provided</h6>
+                          <h3 class="text-danger">9,496</h3>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Last 24 Hours Per Region -->
+                  <h4 class="text-secondary mb-4">⏱️ Last 24 Hours - Regional Summary</h4>
+                  <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <!-- ICT -->
+                    <div class="col">
+                      <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                          <h5 class="card-title">📍 ICT</h5>
+                          <p>Total: <strong>2,398</strong> beneficiaries</p>
+                          <p>Meals: <span class="text-success">2,043</span></p>
+                          <p>Shelter: <span class="text-danger">355</span></p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Sindh -->
+                    <div class="col">
+                      <div class="card h-100 shadow-sm border-0">
+                        <div class="card-body">
+                          <h5 class="card-title">📍 Sindh</h5>
+                          <p>Total: <strong>3,830</strong> beneficiaries</p>
+                          <p>Meals: <span class="text-success">3,506</span></p>
+                          <p>Shelter: <span class="text-danger">324</span></p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- Balochistan -->
+                    <div class="col">
+                      <div class="card h-100 shadow-sm border-0 bg-light text-muted">
+                        <div class="card-body">
+                          <h5 class="card-title">📍 Balochistan</h5>
+                          <p class="mb-0">All Shelter Homes closed</p>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- KPK -->
+                    <div class="col">
+                      <div class="card h-100 shadow-sm border-0 bg-light text-muted">
+                        <div class="card-body">
+                          <h5 class="card-title">📍 Khyber Pakhtunkhwa</h5>
+                          <p class="mb-0">All Shelter Homes closed</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
+                  <!-- Khana Sab Kay Liye -->
+                  <h4 class="text-secondary mt-5 mb-3">🍽️ Khana...Sab Kay Liye - Meals Served</h4>
+                  <div class="table-responsive">
+                    <table class="table table-bordered text-center">
+                      <thead class="table-light">
+                        <tr>
+                          <th>Region</th>
+                          <th>Total Meals</th>
+                          <th>Last 24 Hours</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>ICT</td>
+                          <td>1,240,943</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Punjab I (Not Functional)</td>
+                          <td>2,268,920</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>KPK</td>
+                          <td>516,503</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>South Punjab</td>
+                          <td>227,975</td>
+                          <td>400</td>
+                        </tr>
+                        <tr>
+                          <td>Balochistan (Not Functional)</td>
+                          <td>33,493</td>
+                          <td>0</td>
+                        </tr>
+                        <tr>
+                          <td>Sindh</td>
+                          <td>1,609,940</td>
+                          <td>2,430</td>
+                        </tr>
+                        <tr>
+                          <td>Gilgit-Baltistan (Not Functional)</td>
+                          <td>97,171</td>
+                          <td>0</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+          <!-- cochlear implant -->
+          <div class="tab-pane fade" id="cochlear" role="tabpanel">
+            
+                  <div class="row justify-content-center">
+                    <div class="col-lg-10">
+                      <div class="text-center mb-5">
+                        <h2 class="text-primary">Cochlear Implant Program</h2>
+                        <p class="text-muted">
+                          Restoring hearing, empowering lives.
+                        </p>
+                      </div>
+              
+                      <div class="card shadow-sm border-0 mb-4">
+                        <div class="card-body">
+                          <p>
+                            A <strong>cochlear implant</strong> is a small electronic device that electrically stimulates the
+                            cochlear nerve (nerve for hearing). This device can significantly improve the ability to hear
+                            and understand speech for individuals suffering from hearing loss.
+                          </p>
+                          <p>
+                            <strong>Poor and deserving applicants</strong> seeking a cochlear implant can register with
+                            Pakistan Bait-ul-Mal (PBM) using the provided form. Once submitted, your application will
+                            be reviewed by our <strong>Standing/Special Medical Board</strong>.
+                          </p>
+                          <p>
+                            If approved, PBM officials will contact you for the next steps of the process.
+                          </p>
+                        </div>
+                      </div>
+              
+                      <div class="card shadow-sm border-0 bg-light">
+                        <div class="card-body">
+                          <h5 class="text-dark">📝 Registration Instructions</h5>
+                          <ul class="list-group list-group-flush mb-3">
+                            <li class="list-group-item">Fill in all questions accurately and completely.</li>
+                            <li class="list-group-item">Ensure you provide valid contact and medical information.</li>
+                            <li class="list-group-item">You must complete the form in a single session.</li>
+                            <li class="list-group-item">Incomplete or false information may delay or deny assistance.</li>
+                          </ul>
+              
+                          <div class="text-center">
+                            <a href="#" class="btn btn-primary btn-lg">
+                              Register Now for Cochlear Implant
+                            </a>
+                          </div>
+                        </div>
+                      </div>
+              
+                    </div>
+                  </div>
+               
+              
+          </div>
+<!-- __________________________________________________________________________________________________________________________ -->
+
+
+
+
+          <div class="tab-pane fade" id="about" role="tabpanel">
+            <h3>About Us</h3>
+            <p>Our organization works tirelessly to provide support to the underserved — from education to food programs, rehabilitation to social awareness. Together, we bring hope and dignity back into lives.</p>
+          </div>
+  
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- ******************************************************************************************************************************** -->
+<div id="footer"></div>
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+<!-- swiper js -->
+<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+<!-- customize js -->
+<script src="js/script.js"></script>
+<script src="js/main.js"></script>
+<script src="js/header-footer.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,11 @@
+.venv/
+.cache/
+__pycache__/
+*.pyc
+.pytest_cache/
+backend/.env
+backend/data/punjabscheme.db*
+backend/data/chroma/
+backend/data/test_*/
+frontend/node_modules/
+frontend/dist/
