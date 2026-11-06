@@ -11,11 +11,11 @@
 | `test_mcp.py` | 6 | **Real stdio MCP server process**: exactly the 7 tools exposed; Roman-Urdu synonyms ("wazifa"); deterministic eligibility with sources and disclaimer; documents / deadline / application process / compare; "Not Officially Confirmed" when data is missing; unknown id → `did_you_mean` |
 | `test_agent.py` | 8 | **Matric → university replanning** (plan v1 → v2, eligibility re-run, verdict changes); trace contains memory / understanding / plan / tool calls / links / retrieval / answer; short-term follow-up ("the second one"); long-term memory only with consent, recalled in a new session, deleted on request; **official rule change → replan**; CNIC masked before storage; out-of-scope uses no tools; LLM outage falls back to the rule-based planner |
 | `test_api.py` | 4 | FastAPI end to end: scheme list/detail/404; eligibility and compare via MCP; **SSE chat stream** (session → trace events → final); user consent / profile / saved / delete endpoints |
-| `test_source_accuracy.py` | 115 | Real `rules.yaml`: 8+ schemes across all 3 categories; **each of the 111 quotes appears verbatim in its saved official snapshot**; only `gov.pk` / `gop.pk` links; no status or date without an official quote; federal/provincial labels consistent |
+| `test_source_accuracy.py` | 129 | Real `rules.yaml`: 8+ schemes across all 3 categories; **each of the 111 rule quotes and 13 status quotes appears verbatim in its saved official snapshot**; only `gov.pk` / `gop.pk` links; no status or date without an official quote; federal/provincial labels consistent |
 
 ## Manual / live checks (same date)
 
-- `python -m app.cli verify-quotes` → **111/111 quotes found** in the stored official sources.
+- `python -m app.cli verify-quotes` → **124/124 quotes found** (re-run 2026-11-07 after adding official status evidence) in the stored official sources.
 - Live crawl report: punjab_flagship 55 pages (45 stored, 10 skipped as irrelevant), pspa 10, pessi 3,
   pwwf 2, bisp 11 (procurement PDFs skipped), punjab_autonomous_bodies 1. The following sources are
   reported as unavailable: **agri_cm_initiatives** (`ssl_error`), **pbm** (`unreachable`, hosting
@@ -33,3 +33,8 @@
 
 - Live DeepSeek responses (tests use a scripted fake LLM so they are deterministic and need no key).
 - Visual rendering of the React UI (verified by a successful `npm run build` and the route/proxy smoke test).
+
+
+## Re-run 2026-11-07 (official application status)
+
+`python -m pytest -q` → **169 passed**. New: every status quote is verified against its saved official page, status links must be official domains, Open/Ongoing need an official quote, and an Open scheme closes automatically after its official deadline.

@@ -1,0 +1,529 @@
+
+<!DOCTYPE html>
+
+<html lang="en"><head>
+
+<meta charset="utf-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<meta name="csrf-token" content="yDwwYKuqUWPXAaI6w3JtYDIampgFhKByDm5tnjhJ">
+
+<title>CM Punjab Honhaar Scholarship Program</title>
+
+<link rel="stylesheet" href="CM%20Scholarships%20Program_files/honhaar.css?v=1793996194">
+
+<link rel="stylesheet" href="css/font-awesome.css">
+
+<style>
+
+    .hn-home { background: var(--bg); }
+
+    .hn-home-banner { position: relative; isolation: isolate; padding-top: 14px; background: #075332; }
+
+    .hn-home-banner > .hn-header { margin-top: 0; }
+
+    .hn-home .hn-hero { margin-top: 4px; min-height: max(420px, 36.25vw); background: transparent; isolation: auto; }
+
+    .hn-home .hn-home-banner > .hn-banner { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right top; z-index: -2; }
+
+    @media (max-width: 700px) {
+
+        .hn-home-banner { padding-top: 10px; }
+
+        .hn-home .hn-hero { margin-top: 4px; min-height: 360px; }
+
+        .hn-home .hn-home-banner > .hn-banner { object-position: 65% top; }
+
+    }
+
+    .hn-registration-notice { position: relative; margin: 0; padding: 30px 20px 10px; overflow: hidden; background: var(--bg); text-align: center; }
+
+    .hn-registration-text { position: relative; display: inline-block; max-width: 1100px; padding-bottom: 16px; color: #027439; font-family: "Trebuchet MS", "Segoe UI", Arial, sans-serif; font-size: clamp(19px, 2.2vw, 30px); font-weight: 700; line-height: 1.65; letter-spacing: -.025em; }
+
+    .hn-registration-text::after { position: absolute; bottom: 0; left: 50%; width: min(220px, 65%); height: 3px; border-radius: 3px; background: linear-gradient(90deg, transparent, var(--a), var(--p), var(--a), transparent); content: ""; transform: translateX(-50%); box-shadow: 0 0 12px rgba(25, 193, 105, .5); }
+
+    .hn-registration-word { display: inline-block; white-space: nowrap; }
+
+    .hn-registration-word.is-highlight { color: #C8963E; }
+
+    .hn-registration-character { display: inline-block; }
+
+    .hn-registration-text { transform-origin: center; animation: hnRegistrationReveal 8s infinite; }
+
+    .hn-registration-sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); clip-path: inset(50%); white-space: nowrap; border: 0; }
+
+    @keyframes hnRegistrationReveal {
+
+        0% { transform: translateX(100vw) scale(1); opacity: 0; filter: blur(5px); animation-timing-function: cubic-bezier(.16, 1, .3, 1); }
+
+        22% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0); }
+
+        68% { transform: translateX(0) scale(1); opacity: 1; filter: blur(0); animation-timing-function: cubic-bezier(.6, 0, .8, .4); }
+
+        88%, 100% { transform: translateX(0) scale(.015); opacity: 0; filter: blur(6px); }
+
+    }
+
+    .hn-registration-notice:hover .hn-registration-text { animation-play-state: paused; }
+
+    @media (prefers-reduced-motion: reduce) {
+
+        .hn-registration-text { animation: none; transform: none; opacity: 1; filter: none; }
+
+    }
+
+    .hn-registration-countdown { margin: 10px auto 0; }
+
+    .hn-registration-deadline { margin: 0 0 10px; color: red; font-size: 23px; font-weight: 600; }
+
+    .hn-registration-deadline strong { color: red; }
+
+    .hn-deadline-timer { display: grid; grid-template-columns: repeat(4, minmax(64px, 90px)); justify-content: center; gap: 10px; }
+
+    .hn-deadline-unit { padding: 10px 6px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); box-shadow: 0 5px 16px rgba(1, 65, 28, .07); }
+
+    .hn-deadline-value { display: block; color: red; font-size: clamp(22px, 4vw, 30px); font-weight: 700; line-height: 1.15; font-variant-numeric: tabular-nums; }
+
+    .hn-deadline-label { color: var(--mute); font-size: 10px; text-transform: uppercase; letter-spacing: .04em; }
+
+    @media (max-width: 420px) {
+
+        .hn-deadline-timer { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px; }
+
+        .hn-deadline-unit { padding: 9px 3px; }
+
+        .hn-deadline-label { font-size: 9px; }
+
+    }
+
+</style>
+
+</head>
+
+<body class="hn-home">
+
+
+
+<div class="hn-home-banner">
+
+<img class="hn-banner" src="images/banner/banner_latest.webp" alt="Chief Minister Punjab Maryam Nawaz with graduating students" width="3176" height="1704" fetchpriority="high">
+
+<!-- Redesigned header: logo + nav + login in one include. Pages should include this INSTEAD of their old navbar-area block. -->
+<header class="hn-header">
+    <div class="hn-topbar"><div class="hn-wrap"><span></span></div></div>
+    <div class="hn-wrap hn-bar">
+        <a class="hn-brand" href="/" aria-label="Honhaar Scholarship home"><img src="images/Logo.png" alt="Honhaar Scholarship Program"></a>
+        <button class="hn-burger" type="button" aria-label="Menu" aria-controls="hnNav" aria-expanded="false" onclick="var n=document.getElementById('hnNav');var o=n.classList.toggle('open');this.setAttribute('aria-expanded',o);"><i class="fa fa-bars" aria-hidden="true"></i></button>
+        <nav class="hn-nav" id="hnNav">
+            <ul>
+                <li><a href="/" class="active">Home</a></li>
+                <!--<li><a href="#eligibility">Eligibility</a></li>-->
+                <li><a href="discipline.php" class="">Discipline</a></li>
+                <li><a href="universities.php" class="">Institutes</a></li>
+                <li><a href="faqs.php" class="">FAQs</a></li>
+                <li><a href="/queries/users/index.php">Help Desk</a></li>
+                <!-- <li><a href="/process_flow/How to Apply.pdf" target="_blank">How to Apply</a></li> -->
+				<li><a href="/honhaar_apply_video_1.mp4" target="_blank">How to Apply</a></li>
+				<li><a href="/Mobile_App.mp4" target="_blank">Mobile App Tutorial</a></li>
+            </ul>
+            <a class="hn-login" href="signin.php">Login</a>
+        </nav>
+    </div>
+</header>
+
+
+
+<section class="hn-hero" aria-labelledby="hnHeroTitle">
+
+    <div class="hn-wrap">
+
+        <div>
+
+
+
+            <!--<h1 style="margin-bottom:23px;">Chief Minister’s Youth Initiative</h1>-->
+
+            <h1 id="hnHeroTitle"> CM PUNJAB HONHAAR<br>SCHOLARSHIP</h1>
+
+            <h2>Undergraduate Scholarship Program</h2>
+
+            <p>100% tuition fee coverage. Scholarships will be awarded on merit basis.</p>
+
+            <!-- <a class="btn btn-light new_btn" href="register.php">Apply Now</a> -->
+
+            <div class="hn-row">
+
+                <a class="hn-btn gold" href="#eligibility">Eligibility Criteria</a>
+
+                <a class="hn-btn ghost" href="signin.php">Apply Now</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</div>
+
+
+
+
+
+
+
+<section class="hn-registration-notice" aria-label="Registration announcement">
+
+    <p class="hn-registration-text">
+
+        <span class="hn-registration-sr-only">New Registration is now open for Punjab students</span>
+
+        <span aria-hidden="true"><span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 0">N</span><span class="hn-registration-character" style="--char-index: 1">e</span><span class="hn-registration-character" style="--char-index: 2">w</span></span> <span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 3">R</span><span class="hn-registration-character" style="--char-index: 4">e</span><span class="hn-registration-character" style="--char-index: 5">g</span><span class="hn-registration-character" style="--char-index: 6">i</span><span class="hn-registration-character" style="--char-index: 7">s</span><span class="hn-registration-character" style="--char-index: 8">t</span><span class="hn-registration-character" style="--char-index: 9">r</span><span class="hn-registration-character" style="--char-index: 10">a</span><span class="hn-registration-character" style="--char-index: 11">t</span><span class="hn-registration-character" style="--char-index: 12">i</span><span class="hn-registration-character" style="--char-index: 13">o</span><span class="hn-registration-character" style="--char-index: 14">n</span></span> <span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 15">i</span><span class="hn-registration-character" style="--char-index: 16">s</span></span> <span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 17">n</span><span class="hn-registration-character" style="--char-index: 18">o</span><span class="hn-registration-character" style="--char-index: 19">w</span></span> <span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 20">o</span><span class="hn-registration-character" style="--char-index: 21">p</span><span class="hn-registration-character" style="--char-index: 22">e</span><span class="hn-registration-character" style="--char-index: 23">n</span></span> <span class="hn-registration-word"><span class="hn-registration-character" style="--char-index: 24">f</span><span class="hn-registration-character" style="--char-index: 25">o</span><span class="hn-registration-character" style="--char-index: 26">r</span></span> <span class="hn-registration-word is-highlight"><span class="hn-registration-character" style="--char-index: 27">P</span><span class="hn-registration-character" style="--char-index: 28">u</span><span class="hn-registration-character" style="--char-index: 29">n</span><span class="hn-registration-character" style="--char-index: 30">j</span><span class="hn-registration-character" style="--char-index: 31">a</span><span class="hn-registration-character" style="--char-index: 32">b</span></span> <span class="hn-registration-word is-highlight"><span class="hn-registration-character" style="--char-index: 33">s</span><span class="hn-registration-character" style="--char-index: 34">t</span><span class="hn-registration-character" style="--char-index: 35">u</span><span class="hn-registration-character" style="--char-index: 36">d</span><span class="hn-registration-character" style="--char-index: 37">e</span><span class="hn-registration-character" style="--char-index: 38">n</span><span class="hn-registration-character" style="--char-index: 39">t</span><span class="hn-registration-character" style="--char-index: 40">s</span></span></span>
+
+    </p>
+
+        <div class="hn-registration-countdown" data-deadline="1794250800000">
+        <p class="hn-registration-deadline">Application Deadline <strong>November 9, 2026</strong> <br> Time Left:</p>
+        <div class="hn-deadline-timer" role="timer" aria-label="Time remaining until the November 9, 2026 application deadline">
+            <div class="hn-deadline-unit"><span class="hn-deadline-value" data-countdown-days>--</span><span class="hn-deadline-label">Days</span></div>
+            <div class="hn-deadline-unit"><span class="hn-deadline-value" data-countdown-hours>--</span><span class="hn-deadline-label">Hours</span></div>
+            <div class="hn-deadline-unit"><span class="hn-deadline-value" data-countdown-minutes>--</span><span class="hn-deadline-label">Minutes</span></div>
+            <div class="hn-deadline-unit"><span class="hn-deadline-value" data-countdown-seconds>--</span><span class="hn-deadline-label">Seconds</span></div>
+        </div>
+    </div>
+    
+</section>
+
+
+<div class="hn-high"><div class="hn-wrap">
+
+    <div class="hn-hi hn-rv"><b><span data-count="100">100</span>%</b><span>Tuition Fee Coverage</span></div>
+
+    <div class="hn-hi hn-rv" style="--d:.1s"><b>No Limit</b><span>Age or gender</span></div>
+
+    <div class="hn-hi hn-hi-merit hn-rv" style="--d:.2s"><b><span>Merit Based</span></b><span>Purely Merit Based Selection</span></div>
+
+    <div class="hn-hi hn-rv" style="--d:.3s"><b>Disciplines</b><span>70 Selected Disciplines</span></div>
+
+</div></div>
+
+
+
+
+
+
+
+<section class="hn-sec" id="eligibility">
+
+    <div class="hn-wrap">
+
+        <h2 class="hn-title hn-rv">Eligibility Criteria</h2>
+
+        <div class="hn-grid">
+
+            <div class="hn-panel hn-rv">
+
+                <h3><u>1st Semester / 1 Year Students (Fall 2026)</u></h3>
+
+				<ul class="hn-checks">
+
+                    <li>No Age Limit</li>
+
+                    <li>Have domicile of Punjab province</li>
+
+                    <li>No Gender specific </li>
+
+                    <li>Monthly Family income of the applicant must be less than Rs. 350,000/- for Public Sector HEIs and Rs. 500,000 for Federal / Private Sector HEIs (Affidavit on E-Stamp Required) <a href="/affidavit/Affidavit_HONHAAR.docx"><u>(Download Sample Affidavit)</u></a></li>
+
+                    <li>The applicant must be enrolled in the 1st semester/year of Selected <a href="#disciplines"><u>Disciplines</u></a> in the Selected <a href="universities.php"><u>Universities / Colleges</u></a> in 2026. Students already enrolled in 1st year of MBBS and BDS in 2026 are also eligible for the scholarship program.</li>
+
+                </ul>
+
+				<h3 style="margin-top: 15px;"><u>2nd Semester / Year Onward</u></h3>
+
+				<ul class="hn-checks">
+
+                    <li>No Age Limit</li>
+
+                    <li>Have domicile of Punjab province</li>
+
+                    <li>No Gender specific </li>
+
+                    <li>Monthly Family income of the applicant must be less than Rs. 350,000/- for Public Sector HEIs (Affidavit on E-Stamp Required) <a href="/affidavit/Affidavit_HONHAAR.docx"><u>(Download Sample Affidavit)</u></a></li>
+
+                    
+
+					<li>The Applicant must be enrolled in 2nd semester / year onward in selected <a href="#disciplines"><u>Disciplines</u></a> in the selected Public Sector <a href="universities.php">Universities, Medical & Dental Colleges and HED Colleges</a>.</li>
+
+				 </ul>
+
+            </div>
+
+            <div class="hn-panel hn-rv" style="--d:.15s">
+
+                <h3 style="margin-bottom: 0;"><u>1st Semester / 1 Year Students (Fall 2026)</u></h3>
+
+				<h4 style="font-size: 17px;margin-top: 9px;margin-bottom: 13px;}">Minimum FSc. / Intermediate marks</h4>
+
+                <table class="hn-t">
+
+                    <tr><th>Institution</th><th>Sciences</th><th>Arts</th></tr>
+
+                    <tr><td>Public Sector Universities / Colleges</td><td>&#8805; 70%</td><td>&#8805; 65%</td></tr>
+
+                    <tr><td>MBBS / BDS (Public Sector Medical and Dental Colleges)</td><td>&#8805; 80%</td><td>&mdash;</td></tr>
+
+                    <tr><td>Federal and Private Universities</td><td>&#8805; 70%</td><td>&#8805; 65%</td></tr>
+
+                    <tr><td>HED Colleges</td><td>&#8805; 65%</td><td>&#8805; 60%</td></tr>
+
+                </table>
+
+                <div class="hn-merit hn-rv"><div class="m">Matric 30%</div><div class="i">Intermediate 70%</div></div>
+
+				
+
+				<h3 style="margin-bottom: 0;margin-top: 20px;"><u>2nd Semester / Year Onward</u></h3>
+
+				<h4 style="font-size: 17px;margin-top: 9px;margin-bottom: 13px;}">Minimum GPA / CGPA / annual exam percentage</h4>
+
+                <table class="hn-t">
+
+                    <tr><th>Institution</th><th>Sciences</th><th>Arts</th></tr>
+
+                    <tr><td>Public Sector Universities / Colleges</td><td>&#8805; 70%</td><td>&#8805; 65%</td></tr>
+
+                    <tr><td>MBBS / BDS (Public Sector Medical and Dental Colleges)</td><td>&#8805; 60%</td><td>&mdash;</td></tr>
+
+                    
+
+                </table>
+
+				
+
+                <!-- <p class="hn-mnote">Selection of merit criteria will be Matric weightage 30% + Intermediate weightage 70%</p> -->
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="hn-sec alt">
+
+    <div class="hn-wrap">
+
+        <h2 class="hn-title hn-rv">Details Required</h2>
+
+        <p class="hn-sub hn-rv">The information you’ll need to complete your scholarship application.</p>
+
+        <div class="hn-cards">
+
+            <div class="hn-card hn-rv" style="--d:0.1s"><small>01</small><div class="ic"><i class="fa fa-user-o" aria-hidden="true"></i></div><h4>Personal Details</h4><p>Student Personal Details</p></div>
+
+            <div class="hn-card hn-rv" style="--d:0.2s"><small>02</small><div class="ic"><i class="fa fa-graduation-cap" aria-hidden="true"></i></div><h4>Educational Details</h4><p>Student Educational Details</p></div>
+
+            <div class="hn-card hn-rv" style="--d:0.4s"><small>03</small><div class="ic"><i class="fa fa-home" aria-hidden="true"></i></div><h4>Socio-Economic Details</h4><p>Student Socio-Economic Details</p></div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+
+
+<section class="hn-sec hn-disciplines" id="disciplines" aria-labelledby="disciplines-title">
+
+ <div class="hn-wrap"><div class="hn-details-heading"><div><span class="hn-details-label"></span><h2 class="hn-title" id="disciplines-title" tabindex="-1">Selected Disciplines</h2><p class="hn-sub">Discover the disciplines available under the scholarship program.</p></div><button type="button" class="hn-motion-toggle" style="display:none;" id="discipline-motion" aria-pressed="false"><i class="fa fa-pause" aria-hidden="true"></i> <span>Pause</span></button></div></div>
+
+ <div class="hn-discipline-marquee" id="discipline-marquee" tabindex="0" aria-label="Continuously scrolling selected disciplines"><div class="hn-marquee-row"><div class="hn-marquee-belt"><div class="hn-marquee-group"><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>Artificial Intelligence / Computer Science</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Robotics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span><h3>Climate Change</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span><h3>Environmental Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>Information Network</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>Mobile System Applications</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></span><h3>Architecture</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>Cyber Security</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>Data Sciences, Mining and Analysis</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Innovation and Entrepreneurship</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Strategic Business Management</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Biochemical Engineering</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Biotechnology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span><h3>Molecular Genetics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-flask" aria-hidden="true"></i></span><h3>Space Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Business Analytics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Hospitality Management</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Tourism Management</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Agri Business</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Archaeology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Geography</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></span><h3>Film and Performing Arts</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></span><h3>Law</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Human Resources</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span><h3>MBBS</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span><h3>BDS</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Engineering Programs</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Business Administration</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-flask" aria-hidden="true"></i></span><h3>Chemistry</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-flask" aria-hidden="true"></i></span><h3>Zoology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span><h3>Botany</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-flask" aria-hidden="true"></i></span><h3>Physics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Mathematics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Statistics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>English</h3></article></div></div></div><div class="hn-marquee-row"><div class="hn-marquee-belt"><div class="hn-marquee-group"><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>Urdu</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>Punjabi</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Islamic Studies</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Education</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span><h3>Agriculture and Allied Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Mass Communication</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span><h3>Pharmacy /  Allied Health Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-flask" aria-hidden="true"></i></span><h3>Veterinary Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-heartbeat" aria-hidden="true"></i></span><h3>Nursing</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Coal Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Civil Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Electrical Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Mechanical Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Polymer Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Textile Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Chemical Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Commerce / Economics</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>Banking and Finance</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></span><h3>Political Sciences</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>History</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Social Works</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Sociology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Philosophy</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Geology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-laptop" aria-hidden="true"></i></span><h3>GIS</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-paint-brush" aria-hidden="true"></i></span><h3>Fine Arts</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>Arabic</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-balance-scale" aria-hidden="true"></i></span><h3>Public Administration</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-briefcase" aria-hidden="true"></i></span><h3>HRM</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-book" aria-hidden="true"></i></span><h3>Psychology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Water Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-cogs" aria-hidden="true"></i></span><h3>Solar Manufacturing/ Technology</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-leaf" aria-hidden="true"></i></span><h3>Fisheries/ Wildlife</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>Languages &amp; Literature</h3></article><article class="hn-discipline-mini"><span class="hn-mini-icon"><i class="fa fa-language" aria-hidden="true"></i></span><h3>Persian</h3></article></div></div></div></div><div class="hn-wrap"><p class="hn-discipline-note"> </p></div></section>
+
+
+
+
+
+
+
+<section style="background: #FBF8F1">
+
+    <div class="hn-wrap">
+
+        <div class="hn-help hn-rv" aria-labelledby="hn-help-title">
+
+            <span class="hn-help-icon" aria-hidden="true"><i class="fa fa-life-ring"></i></span>
+
+            <div class="hn-help-copy">
+
+                <span class="hn-help-label">Scholarship support</span>
+
+                <h3 id="hn-help-title">Need help with your scholarship?</h3>
+
+                <p>Our help desk is here to help with questions or application issues.</p>
+
+            </div>
+
+            <a class="hn-btn hn-help-link" href="/queries">Visit the help desk <i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<section class="hn-sec hn-home-faq" id="home-faq" aria-labelledby="home-faq-title"><div class="hn-wrap"><div class="hn-faq-layout"><div class="hn-faq-home-intro"><span class="hn-details-label"></span><h2 class="hn-title" id="home-faq-title">Frequently Asked Questions</h2><p class="hn-sub">A few answers to help you get started.</p><a href="faqs.php" class="hn-btn">View all FAQs <i class="fa fa-arrow-right" aria-hidden="true"></i></a></div><div><div class="hn-faq-list">
+<details class="hn-faq-item" open>
+ <summary><span class="hn-faq-num">01</span><span>Who is eligible to apply for the Honhaar Scholarship Program?</span><i class="fa fa-plus" aria-hidden="true"></i></summary>
+ <div class="hn-faq-answer"><p>Students domiciled in any district of Punjab who meet the prescribed academic, financial, and enrollment criteria are eligible to apply. Phase-IV covers the following categories;</p>
+<ul><li><strong>1st Semester / 1st Year Students (Fall 2026)</strong>: Students enrolled in selected disciplines at selected public sector universities, Public Sector Medical &amp; Dental Colleges, HED colleges, and partner Federal/Private Higher Education Institutions (HEIs).</li><li><strong>2nd Semester / Year Onward Students</strong>: Students enrolled in selected disciplines at eligible public sector universities, public sector medical and dental colleges, and HED colleges.</li></ul>
+<p>Applicants must fulfill all applicable eligibility requirements.</p></div>
+</details>
+<details class="hn-faq-item" >
+ <summary><span class="hn-faq-num">02</span><span>What is the last date to apply for Phase-IV?</span><i class="fa fa-plus" aria-hidden="true"></i></summary>
+ <div class="hn-faq-answer"><p>The last date for submission of online applications is <strong>November 09, 2026</strong>. Applicants are advised to complete and submit their applications well before the deadline.</p></div>
+</details>
+<details class="hn-faq-item" >
+ <summary><span class="hn-faq-num">03</span><span>Can students from private universities apply for the Honhaar Scholarship?</span><i class="fa fa-plus" aria-hidden="true"></i></summary>
+ <div class="hn-faq-answer"><p>Yes. Students enrolled in the 1st semester/1st year (Fall 2026) in selected disciplines at partner Federal/Private HEIs are eligible to apply, subject to fulfillment of the prescribed criteria. The eligibility of students enrolled in the 2nd semester/year onward is limited to the public sector institutions specified under Phase-IV.</p></div>
+</details>
+<details class="hn-faq-item" >
+ <summary><span class="hn-faq-num">05</span><span>Are students from HED colleges eligible to apply?</span><i class="fa fa-plus" aria-hidden="true"></i></summary>
+ <div class="hn-faq-answer"><p>Yes. Students enrolled in selected disciplines at eligible HED colleges may apply, subject to the prescribed academic requirements:</p>
+<p>1st Semester / 1st Year: At least 65% marks in Sciences and 60% in Arts and Social Sciences.</p>
+<p>2nd Semester / Year Onward: At least 70% equivalent GPA/CGPA in Sciences and 65% in Arts.</p></div>
+</details>
+</div></div></div></div></section>
+
+
+
+
+
+
+
+
+<footer class="hn-footer">
+    <div class="hn-wrap">
+        <div class="hn-fgrid">
+            <div>
+                <a href="/"><img src="images/logo-white.png" alt="Honhaar Scholarship"></a>
+                <p style="margin-top:16px"><i style="color:#d6dfd8;" class="fa fa-envelope-o" aria-hidden="true"></i> <a href="mailto:honhaar@punjabhec.gov.pk">honhaar@punjabhec.gov.pk</a></p>
+                <p><i style="color:#d6dfd8;" class="fa fa-phone" aria-hidden="true"></i> <a href="tel:+9204299231903">042-99231903, 042-99231904</a></p>
+            </div>
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="/">Home</a></li>
+                    <!-- <li><a href="/process_flow/How to Apply.pdf" target="_blank">How to Apply</a> <a class="hn-new" href="/terms/terms_conditions.pdf" target="_blank">New</a></li> -->
+					<li><a href="/honhaar_apply_video_1.mp4" target="_blank">How to Apply</a> <a class="hn-new" href="/terms/terms_conditions.pdf" target="_blank">New</a></li>
+                    <!-- <li><a href="universities.php">Institutes</a></li>-->
+                    <li><a href="faqs.php">FAQs</a></li>
+                    <li><a href="/terms/TermsCondition of Program_0001.pdf" target="_blank">Terms &amp; Conditions</a></li>
+                    <li><a href="/terms/SOPsUPDATED.pdf" target="_blank">SOPs</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Follow Us</h3>
+                <p style="color:#d6dfd8;">Follow us on social media for more information</p>
+                <a href="https://www.facebook.com/punjabhecofficial" target="_blank"><img src="images/banner/social_media.png" alt="Facebook" style="max-width:140px"></a> 
+				<br>
+				<h4>Download  App</h4>
+				<a href="https://play.google.com/store/apps/details?id=pk.gov.punjabhec.honhaarscholarship" target="_blank">
+				<img src="assets/google.png" alt="Google" style="max-width:140px">
+				</a>
+			<br>
+				<a href="https://apps.apple.com/us/app/honhaar-scholarships/id6813452374" target="_blank">
+				<img src="assets/apple.png" alt="Apple" style="max-width:140px">
+				</a>
+            </div>
+        </div>
+        <div class="hn-copy" id="bottom">
+            <span class="hn-visit">Visitors: 7,54,514</span>
+            <span class="hn-powered">Powered by: Punjab Higher Education Commission</span>
+        </div>
+    </div>
+</footer>
+<link rel="stylesheet" href="chatbot/widget.css">
+<aside class="hn-assistant" aria-label="Scholarship virtual assistant">
+    <section id="hn-assistant-panel" class="hn-assistant-panel" aria-labelledby="hn-assistant-title" hidden>
+        <header class="hn-assistant-header">
+            <div><strong id="hn-assistant-title">Honhaar Virtual Assistant</strong><span>Honhaar Virtual Assistant</span></div>
+            <button type="button" id="hn-assistant-close" aria-label="Close virtual assistant">&times;</button>
+        </header>
+        <iframe id="hn-assistant-frame" title="Honhaar scholarship chat" data-src="chatbot/index.php?embed=1"></iframe>
+    </section>
+    <button type="button" id="hn-assistant-toggle" class="hn-assistant-toggle" aria-expanded="false" aria-controls="hn-assistant-panel">
+        <i class="fa fa-comments" aria-hidden="true"></i><span>How may I help you?</span>
+    </button>
+</aside>
+<script src="chatbot/widget.js" defer></script>
+<script src="CM%20Scholarships%20Program_files/jquery.js"></script>
+<script src="CM%20Scholarships%20Program_files/bootstrap.js"></script>
+<script src="CM%20Scholarships%20Program_files/meanmenu.js"></script>
+<script src="CM%20Scholarships%20Program_files/custom.js"></script>
+<script type="text/javascript" src="CM%20Scholarships%20Program_files/loadingoverlay.js"></script>
+<script type="text/javascript" src="CM%20Scholarships%20Program_files/common.js"></script>
+<script>
+	function openTab(tabId) {
+		// Hide all tab contents
+		var tabContents = document.getElementsByClassName('tab-content');
+		for (var i = 0; i < tabContents.length; i++) {
+			tabContents[i].style.display = 'none';
+		}
+		// Remove 'active-tab' class from all tabs
+		var tabs = document.getElementsByClassName('tab');
+		for (var i = 0; i < tabs.length; i++) {
+			tabs[i].classList.remove('active-tab');
+		}
+		// Show the selected tab content and mark it as active
+		document.getElementById(tabId).style.display = 'block';
+		document.querySelector('[onclick="openTab(\'' + tabId + '\')"]').classList.add('active-tab');
+	}
+</script>
+<script>
+    _$.ready(function(){
+        $('select[name=university]').change(function() {
+            $('select[name=programs]').attr('data-otheridvalue', $(this).val());
+            loadDropdown($('select[name=programs]'), true);
+        });
+    });
+</script>
+
+
+
+<script src="CM%20Scholarships%20Program_files/honhaar.js?v=1793996194"></script>
+
+<script>
+    (function () {
+        var countdown = document.querySelector('.hn-registration-countdown');
+        if (!countdown) {
+            return;
+        }
+
+        var deadline = Number(countdown.getAttribute('data-deadline'));
+        var days = countdown.querySelector('[data-countdown-days]');
+        var hours = countdown.querySelector('[data-countdown-hours]');
+        var minutes = countdown.querySelector('[data-countdown-minutes]');
+        var seconds = countdown.querySelector('[data-countdown-seconds]');
+
+        function updateCountdown() {
+            var remainingSeconds = Math.max(0, Math.floor((deadline - Date.now()) / 1000));
+            days.textContent = Math.floor(remainingSeconds / 86400);
+            hours.textContent = Math.floor((remainingSeconds % 86400) / 3600);
+            minutes.textContent = Math.floor((remainingSeconds % 3600) / 60);
+            seconds.textContent = remainingSeconds % 60;
+        }
+
+        updateCountdown();
+        window.setInterval(updateCountdown, 1000);
+    }());
+</script>
+
+</body></html>

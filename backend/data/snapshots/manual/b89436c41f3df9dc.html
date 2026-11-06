@@ -1,0 +1,1172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title> CM Punjab Laptop Program | Home </title>
+	<link rel="stylesheet" href="https://cmlaptophed.punjab.gov.pk/landing/css/bootstrap.min.css">
+	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"> -->
+	<link rel="stylesheet" href="https://cmlaptophed.punjab.gov.pk/landing/css/style.css">
+    <link rel="icon"  href="https://cmlaptophed.punjab.gov.pk/assets/images/favicon/governmentofpunjab.ico">
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <style>
+        .faq .accordion {
+            overflow-y: auto;
+            max-height: 377px;
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+            background-color: #e8e8e8;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #198754;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #198754;
+        }
+
+        .progress-wrap.active-progress {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .progress-wrap {
+            position: fixed;
+            background-color: white;
+            right: 50px;
+            bottom: 50px;
+            height: 46px;
+            width: 46px;
+            cursor: pointer;
+            display: block;
+            border-radius: 50px;
+            box-shadow: inset 0 0 0 2px rgba(0, 0, 0, 0.2);
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(15px);
+            -webkit-transition: all 200ms linear;
+            transition: all 200ms linear;
+        }
+
+        .progress-wrap::after {
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f062";
+            text-align: center;
+            line-height: 46px;
+            font-size: 18px;
+            color: #1f2029;
+            left: 0;
+            top: 0;
+            height: 46px;
+            width: 46px;
+            cursor: pointer;
+            display: block;
+            z-index: 1;
+            -webkit-transition: all 200ms linear;
+            transition: all 200ms linear;
+        }
+
+        .progress-wrap::before {
+            position: absolute;
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+            content: "\f062";
+            text-align: center;
+            line-height: 46px;
+            font-size: 18px;
+            opacity: 0;
+            left: 0;
+            top: 0;
+            height: 46px;
+            width: 46px;
+            cursor: pointer;
+            display: block;
+            z-index: 2;
+            -webkit-transition: all 200ms linear;
+            transition: all 200ms linear;
+        }
+        .bg-ini-4 {
+            background: #EFDAFF;
+            border-radius: 8px;
+            min-height: 105px;
+        }
+
+        .bg-ini-5 {
+            background: #FFE5CF;
+            border-radius: 8px;
+            min-height: 105px;
+        }
+
+        .bg-ini-6 {
+            background: #FFF3B3;
+            border-radius: 8px;
+            min-height: 105px;
+        }
+
+        .card-content .card-amount{
+            font-weight: 600;
+        }
+
+        .banner_area h2 {
+            max-width: 500px;
+        }
+
+        .banner_area .banner-laptop {
+            position: absolute;
+            bottom: 0px;
+            left: 140px;
+            opacity: 0.3;
+        }
+
+        .banner-laptop img{
+            height: 290px;
+        }
+        .custom_li{
+            margin-top: 10px !important;
+        }
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+
+        }
+        .countdown-box {
+            background-color: #f8e8ff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            min-width: 80px;
+        }
+        .countdown-box span {
+            font-size: 2em;
+            font-weight: bold;
+            display: block;
+        }
+        .countdown-box .label {
+            font-size: 0.9em;
+            color: #666;
+            text-transform: uppercase;
+        }
+    </style>
+
+
+<div class="wrapper px-5">
+    <div class="header_area position-relative pt-4">
+		    <img src="https://cmlaptophed.punjab.gov.pk/landing/images/before_image.png" alt="" class="before_image">
+			<div class="container-fluid">
+            <nav class="navbar navbar-expand-xl">
+	                <a class="navbar-brand" href="">
+	                    <img src="https://cmlaptophed.punjab.gov.pk/landing/images/logo_main.png" class="img-fluid">
+	                </a>
+	                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+	                    <span class="navbar-toggler-icon"></span>
+	                </button>
+	                <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+	                    <ul class="navbar-nav mb-2 mb-lg-0">
+
+
+
+                            <li class="nav-item ps-3">
+                                <a class="nav-link" href="https://cmlaptophed.punjab.gov.pk/view-institutes">Institutes</a>
+                            </li>
+                            <li class="nav-item px-md-3">
+                                <a class="nav-link" href="#eligibility_criteria">Eligibility Criteria</a>
+                            </li>
+                            <li class="nav-item px-md-3">
+                                <a class="nav-link" href="#faqs">FAQ’s</a>
+                            </li>
+                            <li class="nav-item px-md-3">
+                                <a class="nav-link" href="#contact_us">Contact us</a>
+                            </li>
+                                                                                    <li class="nav-item">
+                                <a class="nav-link btn rounded-pill bg-white px-4 btn-login" href="https://cmlaptophed.punjab.gov.pk/admin/login">Sign In</a>
+                            </li>
+                                                        
+	                    </ul>
+
+	                </div>
+		        </nav>
+		        <div class="banner_area position-relative">
+		        	<img src="https://cmlaptophed.punjab.gov.pk/landing/images/cm_punjab.png" alt="" class="cm_punjab">
+                    <div class="banner-laptop">
+                        <img src="https://cmlaptophed.punjab.gov.pk/landing/images/eligibility_image.png" alt="" class="laptop-img">
+                    </div>
+		        	<div class="col-md-6 pt-5">
+		        		<h2 class="mb-lg-5 mb-sm-3">Empowering Youth, Bridging the Digital Divide</h2>
+		        		<div class="sub-info 2026-11-07 01:19:02">CM Punjab Laptop Program  </div>
+                                                    <p class="m-0" style="color: red">Application Submission is Closed!  </p>
+                            <h5 class="fw-bold">&nbsp;</h5>
+                        
+		        	</div>
+		        </div>
+			</div>
+		</div>
+        <div class="text-gray mt-5">
+        <div class="section_title" style="max-width: 100%">
+            <div class="text-success" style="color: red !important;font-size: 20px">October 13, 2026: </br>
+The Laptop Distribution Ceremony Sahiwal Division will be held on 15th October, 2026. All Selected Students are advised to contact their respective institute for more details. </br>
+--------------------------------------------------------------------</br>
+June 01, 2026: </br>
+The Grievance Round for Rejected Candidates is live now and will remain open until 6th June 2026. </br>
+✅ Students whose applications have been rejected after being returned twice may apply for grievance if they still claim eligibility.
+</br>
+--------------------------------------------------------------------</br>
+May 21, 2026: </br>
+As directed by the higher authorities, the deadline for re-submission of returned applications has been extended to 31st May, 2026
+</br>
+--------------------------------------------------------------------</br>
+April 21, 2026: </br>Dear Applicants. The re-submission date of your returned applications is 3rd May, 2026. After that, no re-submission will be entertained by the system
+</br>
+--------------------------------------------------------------------</br>
+April 10, 2026: </br>Dear Applicants. Last date of application is 20th April, 2026. After this date, no application will be submitted on the portal.
+</br>--------------------------------------------------------------------</br>
+March 10, 2026: </br>Dear Applicants: Please continue to check your portal regularly. If your application status is marked as Returned, you must review and correct the required information, then resubmit it before the closing date. Failure to do so will result in the loss of your candidature. You have only one opportunity to resubmit your application.
+</br>--------------------------------------------------------------------</br>
+Mar 01, 2026: </br>Allama Iqbal Open University is included in the CM Laptop Program
+</br>--------------------------------------------------------------------</br>
+
+Feb 04, 2026: </br>All Federal Chartered Universities are also included in the program. Please check the list of institutes.
+</br>--------------------------------------------------------------------</br>
+Jan 26, 2026:</br>Dear Students. If your email is incorrect, visit your focal person in your College/University and get your email corrected. 
+</br>--------------------------------------------------------------------</br>
+
+Jan 25, 2026: </br>The CM Punjab Laptop Program Phase-II, Portal is live now for applications. Students of Private Universities can also apply.
+</br>--------------------------------------------------------------------</br></div>
+        </div>
+    </div>
+        		<div class="container-fluid px-0 px-md-3" id="about_program">
+            <section class="initiative py-4">
+                <div class="text-gray">
+                    <div class="section_title">
+                         <span class="text-success text-center">CM Laptop Program Phase II</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row home-counts">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-2" style="background: #d4e7c5">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="42.1371" cy="42.3572" r="41.7713" fill="#759C6D"/>
+                                                    <path d="M54.9385 27.1378H53.9159V26.1161C53.9159 23.8391 52.1012 22 49.8688 22H26.0615C23.8147 22 22 23.8391 22 26.1161V53.7462C22 56.0231 23.8147 57.8622 26.0615 57.8622H27.0697V58.8839C27.0735 59.9744 27.5026 61.0191 28.2635 61.7902C29.0243 62.5613 30.0552 62.9962 31.1312 63H47.3325C45.6515 61.1311 44.7193 58.6936 44.7185 56.1647C44.7212 53.4585 45.7831 50.8639 47.6714 48.9503C49.5596 47.0367 52.1198 45.9605 54.7901 45.9578C56.2938 45.9578 57.7167 46.3022 59 46.9051V31.2538C58.9962 30.1634 58.5671 29.1187 57.8062 28.3476C57.0454 27.5765 56.0145 27.1416 54.9385 27.1378ZM29.6621 35.9639V35.2385C29.6621 35.0429 29.7457 34.843 29.8738 34.7058L34.51 29.9927C34.6527 29.8475 34.8464 29.7656 35.0487 29.765H35.7745V34.4854C35.7745 35.2998 35.1192 35.9639 34.3156 35.9639H29.6621ZM42.8188 52.396H35.8768C35.533 52.396 35.2033 52.2577 34.9602 52.0113C34.7171 51.7649 34.5806 51.4308 34.5806 51.0824C34.5806 50.734 34.7171 50.3999 34.9602 50.1535C35.2033 49.9072 35.533 49.7688 35.8768 49.7688H42.8188C43.1626 49.7688 43.4923 49.9072 43.7354 50.1535C43.9785 50.3999 44.115 50.734 44.115 51.0824C44.115 51.4308 43.9785 51.7649 43.7354 52.0113C43.4923 52.2577 43.1626 52.396 42.8188 52.396ZM48.0109 46.3022H35.884C35.5402 46.3022 35.2105 46.1638 34.9674 45.9175C34.7243 45.6711 34.5878 45.337 34.5878 44.9886C34.5878 44.6402 34.7243 44.3061 34.9674 44.0597C35.2105 43.8134 35.5402 43.675 35.884 43.675H48.0109C48.3547 43.675 48.6844 43.8134 48.9275 44.0597C49.1706 44.3061 49.3071 44.6402 49.3071 44.9886C49.3071 45.337 49.1706 45.6711 48.9275 45.9175C48.6844 46.1638 48.3547 46.3022 48.0109 46.3022ZM51.3307 27.1378H35.0487C34.1543 27.1378 33.3117 27.4925 32.6766 28.1376L28.0231 32.8681C27.4132 33.5025 27.0712 34.3528 27.0697 35.2385V55.2335H26.0543C25.2478 55.2335 24.591 54.5679 24.591 53.7506V26.1102C24.591 25.3074 25.2607 24.6273 26.0543 24.6273H49.8688C50.6754 24.6273 51.3307 25.2928 51.3307 26.1102V27.1378Z" fill="white"/>
+                                                    <path d="M55.1079 48.0007C54.0484 47.9864 52.9965 48.1828 52.0135 48.5784C51.0304 48.9739 50.1358 49.5609 49.3814 50.3051C48.6271 51.0493 48.0281 51.936 47.6193 52.9136C47.2105 53.8912 47 54.9403 47 56C47 57.0597 47.2105 58.1088 47.6193 59.0864C48.0281 60.064 48.6271 60.9507 49.3814 61.6949C50.1358 62.4391 51.0304 63.0261 52.0135 63.4216C52.9965 63.8172 54.0484 64.0136 55.1079 63.9993C57.2108 63.9709 59.2179 63.1156 60.6949 61.6186C62.1719 60.1215 63 58.103 63 56C63 53.897 62.1719 51.8785 60.6949 50.3814C59.2179 48.8844 57.2108 48.0291 55.1079 48.0007ZM58.6499 55.6585L54.7438 58.8058C54.6089 58.915 54.4535 58.9962 54.2868 59.0447C54.1201 59.0932 53.9454 59.108 53.7729 59.0882C53.6005 59.0684 53.4337 59.0144 53.2823 58.9294C53.1309 58.8444 52.998 58.7301 52.8913 58.5931L51.3563 56.6357C51.1417 56.3621 51.0446 56.0144 51.0864 55.6691C51.1282 55.3239 51.3054 55.0094 51.5791 54.7948C51.8527 54.5803 52.2004 54.4832 52.5457 54.525C52.8909 54.5668 53.2054 54.744 53.42 55.0177L54.1351 55.9294L57.0071 53.6166C57.1406 53.5036 57.2953 53.4185 57.4622 53.3662C57.6291 53.3139 57.8047 53.2956 57.9788 53.3123C58.1529 53.3289 58.3219 53.3803 58.4758 53.4632C58.6298 53.5462 58.7656 53.6591 58.8752 53.7954C58.9848 53.9317 59.0661 54.0885 59.1142 54.2566C59.1623 54.4247 59.1762 54.6008 59.1552 54.7744C59.1342 54.948 59.0787 55.1157 58.9919 55.2675C58.9051 55.4194 58.7888 55.5523 58.6499 55.6585Z" fill="white"/>
+                                                </svg>
+
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Total Applications</div>
+                                                <div class="card-amount">163,326</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-2" style="background: #f8edc3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="41.8272" cy="42.3572" r="41.7713" fill="#E4893A"/>
+                                                    <path d="M51.6664 41.3743C47.6231 41.3743 44.3331 44.6128 44.3331 48.5928C44.3331 52.5728 47.6231 55.8113 51.6664 55.8113C55.7098 55.8113 58.9998 52.5728 58.9998 48.5928C58.9998 44.6128 55.7098 41.3743 51.6664 41.3743ZM54.7756 47.4345C52.6438 50.5825 53.2483 49.6901 52.1089 51.3719C51.6997 51.9761 50.8711 52.1364 50.2598 51.7353L48.2598 50.4228C47.6473 50.0209 47.4823 49.2064 47.8906 48.6026C48.2989 47.9997 49.1264 47.8373 49.7398 48.2392L50.6298 48.8233C52.7563 45.684 52.6419 45.7709 52.9998 45.57C54.2142 44.8785 55.556 46.2807 54.7756 47.4345ZM45.6664 56.4626V63.686C45.6664 64.6916 46.7729 65.3253 47.6614 64.8253L51.6664 62.5728L55.6714 64.8253C56.5563 65.3246 57.6664 64.6943 57.6664 63.686V56.4626C54.1141 59.0934 49.2238 59.0971 45.6664 56.4626ZM54.3331 39.1054V25.8505C54.3331 24.2788 53.0339 23 51.4373 23H27.8956C26.2989 23 24.9998 24.2788 24.9998 25.8505V56.2419C24.9998 57.8136 26.2989 59.0924 27.8956 59.0924H42.9998C42.9998 53.4445 42.9908 53.7941 43.0206 53.5342C38.5571 46.0018 45.6645 36.7358 54.3331 39.1054ZM32.9998 29.5623H44.3331C45.0698 29.5623 45.6664 30.1496 45.6664 30.8747C45.6664 31.5998 45.0698 32.1872 44.3331 32.1872H32.9998C32.2631 32.1872 31.6664 31.5998 31.6664 30.8747C31.6664 30.1496 32.2631 29.5623 32.9998 29.5623ZM39.6664 42.6868H32.9998C32.2631 42.6868 31.6664 42.0994 31.6664 41.3743C31.6664 40.6492 32.2631 40.0619 32.9998 40.0619H39.6664C40.4031 40.0619 40.9998 40.6492 40.9998 41.3743C40.9998 42.0994 40.4031 42.6868 39.6664 42.6868ZM32.9998 37.437C32.2631 37.437 31.6664 36.8496 31.6664 36.1245C31.6664 35.3994 32.2631 34.8121 32.9998 34.8121H44.3331C45.0698 34.8121 45.6664 35.3994 45.6664 36.1245C45.6664 36.8496 45.0698 37.437 44.3331 37.437H32.9998Z" fill="white"/>
+                                                </svg>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Total Verified</div>
+                                                                                                    <div class="mt-2 fst-italic text-muted d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-clock me-2"></i>
+                                                        Under Process
+                                                    </div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="41.8273" cy="42.3572" r="41.7713" fill="#128749"/>
+                                                    <path d="M65.8905 38.8508L62.4903 34.9018C61.8403 34.152 61.3153 32.7523 61.3153 31.7526V27.5036C61.3153 24.8543 59.1401 22.6798 56.4899 22.6798H52.2397C51.2646 22.6798 49.8395 22.155 49.0895 21.5051L45.1392 18.106C43.4141 16.6313 40.589 16.6313 38.8389 18.106L34.9136 21.5301C34.1636 22.155 32.7385 22.6798 31.7634 22.6798H27.4381C24.788 22.6798 22.6128 24.8543 22.6128 27.5036V31.7776C22.6128 32.7523 22.0878 34.152 21.4628 34.9018L18.0876 38.8758C16.6375 40.6004 16.6375 43.3997 18.0876 45.1242L21.4628 49.0982C22.0878 49.848 22.6128 51.2477 22.6128 52.2225V56.4964C22.6128 59.1457 24.788 61.3202 27.4381 61.3202H31.7634C32.7385 61.3202 34.1636 61.845 34.9136 62.4949L38.8639 65.894C40.589 67.3687 43.4141 67.3687 45.1642 65.894L49.1145 62.4949C49.8645 61.845 51.2646 61.3202 52.2647 61.3202H56.5149C59.1651 61.3202 61.3403 59.1457 61.3403 56.4964V52.2474C61.3403 51.2727 61.8653 49.848 62.5153 49.0982L65.9155 45.1492C67.3656 43.4246 67.3656 40.5754 65.8905 38.8508ZM52.3897 37.2762L40.3139 49.3482C39.9624 49.6992 39.4858 49.8964 38.9889 49.8964C38.492 49.8964 38.0154 49.6992 37.6638 49.3482L31.6134 43.2997C30.8884 42.5749 30.8884 41.3752 31.6134 40.6503C32.3385 39.9255 33.5385 39.9255 34.2636 40.6503L38.9889 45.3742L49.7395 34.6268C50.4646 33.902 51.6646 33.902 52.3897 34.6268C53.1147 35.3517 53.1147 36.5514 52.3897 37.2762Z" fill="white"/>
+                                                </svg>
+
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Selected Students</div>
+                                                                                                    <div class="mt-2 fst-italic text-muted d-flex align-items-center justify-content-center">
+                                                        <i class="fa-solid fa-clock me-2"></i>
+                                                        Under Process
+                                                    </div>
+                                                                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label style="text-align: left;color: grey;font-size: 12px;">Last Updated: 07-Nov-2026 01:01:AM</label>
+            </section>
+            <section class="initiative py-4">
+                <div class="text-gray">
+                    <div class="section_title">
+                         <span class="text-success text-center">CM Laptop Program Phase I</span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div class="row home-counts">
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-2" style="background: #d4e7c5">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="42.1371" cy="42.3572" r="41.7713" fill="#759C6D"/>
+                                                    <path d="M54.9385 27.1378H53.9159V26.1161C53.9159 23.8391 52.1012 22 49.8688 22H26.0615C23.8147 22 22 23.8391 22 26.1161V53.7462C22 56.0231 23.8147 57.8622 26.0615 57.8622H27.0697V58.8839C27.0735 59.9744 27.5026 61.0191 28.2635 61.7902C29.0243 62.5613 30.0552 62.9962 31.1312 63H47.3325C45.6515 61.1311 44.7193 58.6936 44.7185 56.1647C44.7212 53.4585 45.7831 50.8639 47.6714 48.9503C49.5596 47.0367 52.1198 45.9605 54.7901 45.9578C56.2938 45.9578 57.7167 46.3022 59 46.9051V31.2538C58.9962 30.1634 58.5671 29.1187 57.8062 28.3476C57.0454 27.5765 56.0145 27.1416 54.9385 27.1378ZM29.6621 35.9639V35.2385C29.6621 35.0429 29.7457 34.843 29.8738 34.7058L34.51 29.9927C34.6527 29.8475 34.8464 29.7656 35.0487 29.765H35.7745V34.4854C35.7745 35.2998 35.1192 35.9639 34.3156 35.9639H29.6621ZM42.8188 52.396H35.8768C35.533 52.396 35.2033 52.2577 34.9602 52.0113C34.7171 51.7649 34.5806 51.4308 34.5806 51.0824C34.5806 50.734 34.7171 50.3999 34.9602 50.1535C35.2033 49.9072 35.533 49.7688 35.8768 49.7688H42.8188C43.1626 49.7688 43.4923 49.9072 43.7354 50.1535C43.9785 50.3999 44.115 50.734 44.115 51.0824C44.115 51.4308 43.9785 51.7649 43.7354 52.0113C43.4923 52.2577 43.1626 52.396 42.8188 52.396ZM48.0109 46.3022H35.884C35.5402 46.3022 35.2105 46.1638 34.9674 45.9175C34.7243 45.6711 34.5878 45.337 34.5878 44.9886C34.5878 44.6402 34.7243 44.3061 34.9674 44.0597C35.2105 43.8134 35.5402 43.675 35.884 43.675H48.0109C48.3547 43.675 48.6844 43.8134 48.9275 44.0597C49.1706 44.3061 49.3071 44.6402 49.3071 44.9886C49.3071 45.337 49.1706 45.6711 48.9275 45.9175C48.6844 46.1638 48.3547 46.3022 48.0109 46.3022ZM51.3307 27.1378H35.0487C34.1543 27.1378 33.3117 27.4925 32.6766 28.1376L28.0231 32.8681C27.4132 33.5025 27.0712 34.3528 27.0697 35.2385V55.2335H26.0543C25.2478 55.2335 24.591 54.5679 24.591 53.7506V26.1102C24.591 25.3074 25.2607 24.6273 26.0543 24.6273H49.8688C50.6754 24.6273 51.3307 25.2928 51.3307 26.1102V27.1378Z" fill="white"/>
+                                                    <path d="M55.1079 48.0007C54.0484 47.9864 52.9965 48.1828 52.0135 48.5784C51.0304 48.9739 50.1358 49.5609 49.3814 50.3051C48.6271 51.0493 48.0281 51.936 47.6193 52.9136C47.2105 53.8912 47 54.9403 47 56C47 57.0597 47.2105 58.1088 47.6193 59.0864C48.0281 60.064 48.6271 60.9507 49.3814 61.6949C50.1358 62.4391 51.0304 63.0261 52.0135 63.4216C52.9965 63.8172 54.0484 64.0136 55.1079 63.9993C57.2108 63.9709 59.2179 63.1156 60.6949 61.6186C62.1719 60.1215 63 58.103 63 56C63 53.897 62.1719 51.8785 60.6949 50.3814C59.2179 48.8844 57.2108 48.0291 55.1079 48.0007ZM58.6499 55.6585L54.7438 58.8058C54.6089 58.915 54.4535 58.9962 54.2868 59.0447C54.1201 59.0932 53.9454 59.108 53.7729 59.0882C53.6005 59.0684 53.4337 59.0144 53.2823 58.9294C53.1309 58.8444 52.998 58.7301 52.8913 58.5931L51.3563 56.6357C51.1417 56.3621 51.0446 56.0144 51.0864 55.6691C51.1282 55.3239 51.3054 55.0094 51.5791 54.7948C51.8527 54.5803 52.2004 54.4832 52.5457 54.525C52.8909 54.5668 53.2054 54.744 53.42 55.0177L54.1351 55.9294L57.0071 53.6166C57.1406 53.5036 57.2953 53.4185 57.4622 53.3662C57.6291 53.3139 57.8047 53.2956 57.9788 53.3123C58.1529 53.3289 58.3219 53.3803 58.4758 53.4632C58.6298 53.5462 58.7656 53.6591 58.8752 53.7954C58.9848 53.9317 59.0661 54.0885 59.1142 54.2566C59.1623 54.4247 59.1762 54.6008 59.1552 54.7744C59.1342 54.948 59.0787 55.1157 58.9919 55.2675C58.9051 55.4194 58.7888 55.5523 58.6499 55.6585Z" fill="white"/>
+                                                </svg>
+
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Total Applications</div>
+                                                <div class="card-amount">73,274</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-2" style="background: #f8edc3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="41.8272" cy="42.3572" r="41.7713" fill="#E4893A"/>
+                                                    <path d="M51.6664 41.3743C47.6231 41.3743 44.3331 44.6128 44.3331 48.5928C44.3331 52.5728 47.6231 55.8113 51.6664 55.8113C55.7098 55.8113 58.9998 52.5728 58.9998 48.5928C58.9998 44.6128 55.7098 41.3743 51.6664 41.3743ZM54.7756 47.4345C52.6438 50.5825 53.2483 49.6901 52.1089 51.3719C51.6997 51.9761 50.8711 52.1364 50.2598 51.7353L48.2598 50.4228C47.6473 50.0209 47.4823 49.2064 47.8906 48.6026C48.2989 47.9997 49.1264 47.8373 49.7398 48.2392L50.6298 48.8233C52.7563 45.684 52.6419 45.7709 52.9998 45.57C54.2142 44.8785 55.556 46.2807 54.7756 47.4345ZM45.6664 56.4626V63.686C45.6664 64.6916 46.7729 65.3253 47.6614 64.8253L51.6664 62.5728L55.6714 64.8253C56.5563 65.3246 57.6664 64.6943 57.6664 63.686V56.4626C54.1141 59.0934 49.2238 59.0971 45.6664 56.4626ZM54.3331 39.1054V25.8505C54.3331 24.2788 53.0339 23 51.4373 23H27.8956C26.2989 23 24.9998 24.2788 24.9998 25.8505V56.2419C24.9998 57.8136 26.2989 59.0924 27.8956 59.0924H42.9998C42.9998 53.4445 42.9908 53.7941 43.0206 53.5342C38.5571 46.0018 45.6645 36.7358 54.3331 39.1054ZM32.9998 29.5623H44.3331C45.0698 29.5623 45.6664 30.1496 45.6664 30.8747C45.6664 31.5998 45.0698 32.1872 44.3331 32.1872H32.9998C32.2631 32.1872 31.6664 31.5998 31.6664 30.8747C31.6664 30.1496 32.2631 29.5623 32.9998 29.5623ZM39.6664 42.6868H32.9998C32.2631 42.6868 31.6664 42.0994 31.6664 41.3743C31.6664 40.6492 32.2631 40.0619 32.9998 40.0619H39.6664C40.4031 40.0619 40.9998 40.6492 40.9998 41.3743C40.9998 42.0994 40.4031 42.6868 39.6664 42.6868ZM32.9998 37.437C32.2631 37.437 31.6664 36.8496 31.6664 36.1245C31.6664 35.3994 32.2631 34.8121 32.9998 34.8121H44.3331C45.0698 34.8121 45.6664 35.3994 45.6664 36.1245C45.6664 36.8496 45.0698 37.437 44.3331 37.437H32.9998Z" fill="white"/>
+                                                </svg>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Total Verified</div>
+                                                <div class="card-amount">71,725</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-3">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="64" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="41.8273" cy="42.3572" r="41.7713" fill="#128749"/>
+                                                    <path d="M65.8905 38.8508L62.4903 34.9018C61.8403 34.152 61.3153 32.7523 61.3153 31.7526V27.5036C61.3153 24.8543 59.1401 22.6798 56.4899 22.6798H52.2397C51.2646 22.6798 49.8395 22.155 49.0895 21.5051L45.1392 18.106C43.4141 16.6313 40.589 16.6313 38.8389 18.106L34.9136 21.5301C34.1636 22.155 32.7385 22.6798 31.7634 22.6798H27.4381C24.788 22.6798 22.6128 24.8543 22.6128 27.5036V31.7776C22.6128 32.7523 22.0878 34.152 21.4628 34.9018L18.0876 38.8758C16.6375 40.6004 16.6375 43.3997 18.0876 45.1242L21.4628 49.0982C22.0878 49.848 22.6128 51.2477 22.6128 52.2225V56.4964C22.6128 59.1457 24.788 61.3202 27.4381 61.3202H31.7634C32.7385 61.3202 34.1636 61.845 34.9136 62.4949L38.8639 65.894C40.589 67.3687 43.4141 67.3687 45.1642 65.894L49.1145 62.4949C49.8645 61.845 51.2646 61.3202 52.2647 61.3202H56.5149C59.1651 61.3202 61.3403 59.1457 61.3403 56.4964V52.2474C61.3403 51.2727 61.8653 49.848 62.5153 49.0982L65.9155 45.1492C67.3656 43.4246 67.3656 40.5754 65.8905 38.8508ZM52.3897 37.2762L40.3139 49.3482C39.9624 49.6992 39.4858 49.8964 38.9889 49.8964C38.492 49.8964 38.0154 49.6992 37.6638 49.3482L31.6134 43.2997C30.8884 42.5749 30.8884 41.3752 31.6134 40.6503C32.3385 39.9255 33.5385 39.9255 34.2636 40.6503L38.9889 45.3742L49.7395 34.6268C50.4646 33.902 51.6646 33.902 52.3897 34.6268C53.1147 35.3517 53.1147 36.5514 52.3897 37.2762Z" fill="white"/>
+                                                </svg>
+
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Selected Students</div>
+                                                <div class="card-amount">43,568</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <label style="text-align: left;color: grey;font-size: 12px;">Last Updated: 07-Nov-2026 01:01:AM</label>
+            </section>
+            <section class="initiative py-4">
+                <!-- <div class="text-gray">
+                    <div class="section_title">
+                         <span class="text-success">CM Laptop Program 2025</span>
+                    </div>
+                </div> -->
+                <div class="section_title">
+                    <span class="text-success text-center">Laptop Specifications</span>
+                </div>
+
+                <div class="card shadow shadow-sm border-0 mb-5">
+                    <div class="card-body">
+                        <div class="row home-counts">
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-4">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="65" height="65" viewBox="0 0 85 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="42.6177" cy="42.3572" r="41.7713" fill="#C400D5"/>
+                                                    <path d="M63.0227 37.1141C63.5629 37.1141 64 36.677 64 36.1368C64 35.5966 63.5629 35.1596 63.0227 35.1596H60.0909V31.2504H63.0227C63.5629 31.2504 64 30.8133 64 30.2731C64 29.733 63.5629 29.2959 63.0227 29.2959H60.0909V28.3186C60.0909 26.1627 58.3377 24.4095 56.1818 24.4095H55.2045V21.4777C55.2045 21.3493 55.1793 21.2222 55.1302 21.1037C55.0811 20.9851 55.0092 20.8773 54.9184 20.7865C54.8277 20.6958 54.7199 20.6238 54.6013 20.5747C54.4827 20.5256 54.3556 20.5004 54.2273 20.5005C54.0989 20.5004 53.9718 20.5256 53.8532 20.5747C53.7346 20.6238 53.6268 20.6958 53.536 20.7865C53.4452 20.8773 53.3733 20.9851 53.3242 21.1037C53.2751 21.2223 53.2499 21.3494 53.25 21.4778V24.4096H49.3408V21.4778C49.3408 20.9376 48.9037 20.5005 48.3636 20.5005C47.8235 20.5005 47.3863 20.9376 47.3863 21.4778V24.4096H43.4772V21.4778C43.4772 20.9376 43.0401 20.5005 42.5 20.5005C41.9599 20.5005 41.5227 20.9376 41.5227 21.4778V24.4096H37.6136V21.4778C37.6136 20.9376 37.1765 20.5005 36.6364 20.5005C36.0963 20.5005 35.6591 20.9376 35.6591 21.4778V24.4096H31.75V21.4778C31.75 20.9376 31.3128 20.5005 30.7727 20.5005C30.2326 20.5005 29.7954 20.9376 29.7954 21.4778V24.4096H28.8181C26.6622 24.4096 24.909 26.1627 24.909 28.3187V29.2959H21.9772C21.4371 29.2959 21 29.733 21 30.2732C21 30.8134 21.4371 31.2505 21.9773 31.2505H24.9091V35.1596H21.9773C21.4371 35.1596 21 35.5967 21 36.1369C21 36.677 21.4371 37.1142 21.9773 37.1142H24.9091V41.0232H21.9773C21.4371 41.0232 21 41.4603 21 42.0005C21 42.5407 21.4371 42.9778 21.9773 42.9778H24.9091V46.8868H21.9773C21.4371 46.8868 21 47.3239 21 47.8641C21 48.4043 21.4371 48.8414 21.9773 48.8414H24.9091V52.7504H21.9773C21.8489 52.7504 21.7218 52.7756 21.6032 52.8247C21.4846 52.8737 21.3768 52.9457 21.2861 53.0365C21.1953 53.1273 21.1233 53.235 21.0742 53.3536C21.0251 53.4723 20.9999 53.5994 21 53.7277C20.9999 53.8561 21.0251 53.9832 21.0742 54.1018C21.1233 54.2205 21.1953 54.3282 21.2861 54.419C21.3768 54.5098 21.4846 54.5817 21.6032 54.6308C21.7218 54.6799 21.8489 54.7051 21.9773 54.705H24.9091V55.6823C24.9091 57.8381 26.6622 59.5914 28.8182 59.5914H29.7954V62.5232C29.7954 63.0634 30.2326 63.5005 30.7727 63.5005C31.3129 63.5005 31.75 63.0634 31.75 62.5232V59.5914H35.6591V62.5232C35.6591 63.0634 36.0962 63.5005 36.6364 63.5005C37.1766 63.5005 37.6137 63.0634 37.6137 62.5232V59.5914H41.5227V62.5232C41.5227 63.0634 41.9598 63.5005 42.5 63.5005C43.0402 63.5005 43.4773 63.0634 43.4773 62.5232V59.5914H47.3863V62.5232C47.3863 63.0634 47.8234 63.5005 48.3636 63.5005C48.9038 63.5005 49.3409 63.0634 49.3409 62.5232V59.5914H53.25V62.5232C53.2499 62.6516 53.2751 62.7787 53.3242 62.8973C53.3733 63.0159 53.4452 63.1237 53.536 63.2144C53.6268 63.3052 53.7346 63.3772 53.8532 63.4263C53.9718 63.4753 54.0989 63.5006 54.2273 63.5005C54.3556 63.5006 54.4827 63.4753 54.6014 63.4263C54.72 63.3772 54.8277 63.3052 54.9185 63.2144C55.0093 63.1237 55.0813 63.0159 55.1303 62.8973C55.1794 62.7787 55.2046 62.6516 55.2046 62.5232V59.5914H56.1818C58.3377 59.5914 60.0909 57.8382 60.0909 55.6823V54.705H63.0227C63.1511 54.705 63.2782 54.6798 63.3968 54.6307C63.5154 54.5816 63.6232 54.5097 63.7139 54.4189C63.8047 54.3281 63.8767 54.2204 63.9258 54.1017C63.9749 53.9831 64.0001 53.856 64 53.7276C64.0001 53.5993 63.9749 53.4722 63.9258 53.3536C63.8767 53.2349 63.8047 53.1272 63.7139 53.0364C63.6232 52.9456 63.5154 52.8737 63.3968 52.8246C63.2782 52.7755 63.1511 52.7503 63.0227 52.7504H60.0909V48.8412H63.0227C63.5629 48.8412 64 48.4041 64 47.8639C64 47.3237 63.5629 46.8868 63.0227 46.8868H60.0909V42.9777H63.0227C63.5629 42.9777 64 42.5406 64 42.0004C64 41.4602 63.5629 41.0232 63.0227 41.0232H60.0909V37.1141H63.0227ZM56.1818 54.705C56.1819 54.8333 56.1566 54.9604 56.1075 55.0791C56.0585 55.1977 55.9865 55.3054 55.8957 55.3962C55.8049 55.487 55.6972 55.559 55.5786 55.608C55.46 55.6571 55.3328 55.6823 55.2045 55.6823H29.7954C29.6671 55.6823 29.54 55.6571 29.4213 55.608C29.3027 55.559 29.195 55.487 29.1042 55.3962C29.0134 55.3054 28.9414 55.1977 28.8924 55.0791C28.8433 54.9604 28.8181 54.8333 28.8181 54.705V29.2959C28.8181 29.1676 28.8433 29.0404 28.8924 28.9218C28.9414 28.8032 29.0134 28.6955 29.1042 28.6047C29.195 28.5139 29.3027 28.4419 29.4213 28.3928C29.54 28.3438 29.6671 28.3185 29.7954 28.3186H55.2045C55.3328 28.3185 55.46 28.3438 55.5786 28.3928C55.6972 28.4419 55.8049 28.5139 55.8957 28.6047C55.9865 28.6955 56.0585 28.8032 56.1075 28.9218C56.1566 29.0404 56.1819 29.1676 56.1818 29.2959V54.705Z" fill="white"/>
+                                                    <path d="M30.7727 30.2732H54.2272V53.7277H30.7727V30.2732Z" fill="white"/>
+                                                </svg>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Processor</div>
+                                                <div class="card-amount">Core i7, 13th Generation</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-5">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="65" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="42.137" cy="42.3572" r="41.7713" fill="#F6821C"/>
+                                                    <path d="M42.0606 43.9152C34.1138 43.9152 27.4543 41.5806 25.6361 38.4331C25.3165 38.9871 25.1299 39.5628 25.1299 40.1602V45.311C25.1299 49.2902 32.7122 52.5187 42.0606 52.5187C51.4148 52.5187 59 49.2902 59 45.311V40.1602C59 39.5628 58.8105 38.9871 58.488 38.4331C56.6698 41.5791 50.0161 43.9152 42.0606 43.9152Z" fill="white"/>
+                                                    <path d="M42.0606 54.5551C34.1138 54.5551 27.4543 52.2177 25.6361 49.076C25.3165 49.6271 25.1299 50.2028 25.1299 50.7987V55.9538C25.1299 59.9345 32.7122 63.1615 42.0606 63.1615C51.4148 63.1615 59 59.9359 59 55.9538V50.7987C59 50.2028 58.8105 49.6271 58.488 49.0774C56.6698 52.2177 50.0161 54.5551 42.0606 54.5551ZM58.5371 28.1313C58.2045 31.0474 50.9693 33.3805 42.0606 33.3805C33.1562 33.3805 25.9211 31.0474 25.5899 28.1328C25.2991 28.6622 25.1299 29.2147 25.1299 29.7832V34.934C25.1299 38.9146 32.7122 42.1417 42.0606 42.1417C51.4148 42.1417 59 38.9161 59 34.934V29.7832C59 29.2147 58.8279 28.6622 58.5371 28.1313Z" fill="white"/>
+                                                    <path d="M42.0606 31.7461C51.1776 31.7461 58.5646 29.3059 58.5646 26.2915C58.5646 23.28 51.1776 20.8384 42.0606 20.8384C32.9494 20.8398 25.5594 23.2814 25.5594 26.2929C25.5594 29.3059 32.9494 31.7461 42.0606 31.7461Z" fill="white"/>
+                                                </svg>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Storage</div>
+                                                <div class="card-amount">SSD for lightning-fast performance</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card border-0">
+                                    <div class="card-body bg-ini-6">
+                                        <div class="d-flex align-items-center">
+                                            <div class="card-icon me-3">
+                                                <svg width="65" height="65" viewBox="0 0 84 85" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                    <circle cx="41.8273" cy="42.3572" r="41.7713" fill="#D1D500"/>
+                                                    <path d="M33.9972 38.5308H32.2625V39.6872H33.9972C34.1505 39.6872 34.2976 39.6263 34.406 39.5179C34.5145 39.4094 34.5754 39.2624 34.5754 39.109C34.5754 38.9556 34.5145 38.8086 34.406 38.7001C34.2976 38.5917 34.1505 38.5308 33.9972 38.5308Z" fill="white"/>
+                                                    <path d="M65.8003 29.2788H58.1792C57.245 29.2983 56.3321 29.5614 55.5308 30.0421C54.5941 30.6319 53.8308 31.6612 52.6049 31.5918H30.4237C29.6878 31.5783 28.9846 31.2847 28.4577 30.7707C27.9841 30.2967 27.4216 29.9209 26.8024 29.6649C26.1832 29.4089 25.5195 29.2777 24.8495 29.2788H17.2283C16.9216 29.2788 16.6274 29.4007 16.4106 29.6175C16.1937 29.8344 16.0718 30.1286 16.0718 30.4353C16.0718 30.6897 15.9446 36.7034 16.1991 36.7381L18.3038 40.9592C17.8413 42.7518 16.4766 47.0307 16.0718 48.9389C16.0718 49.2456 16.1937 49.5398 16.4106 49.7567C16.6274 49.9736 16.9216 50.0954 17.2283 50.0954H65.8003C65.9825 50.1022 66.1636 50.0659 66.329 49.9894C66.4944 49.9129 66.6394 49.7984 66.7521 49.6552C66.8649 49.512 66.9422 49.3442 66.9778 49.1655C67.0133 48.9867 67.0062 48.8021 66.9568 48.6267L64.7248 40.9592C65.2568 39.9531 66.3208 37.7327 66.8412 36.7034C66.9146 36.5518 66.9541 36.3861 66.9568 36.2177V30.4353C66.9568 30.1286 66.835 29.8344 66.6181 29.6175C66.4012 29.4007 66.1071 29.2788 65.8003 29.2788ZM36.553 43.4919C36.7708 43.7097 36.8932 44.005 36.8932 44.313C36.8932 44.621 36.7708 44.9163 36.553 45.1341C36.3353 45.3519 36.0399 45.4742 35.7319 45.4742C35.424 45.4742 35.1286 45.3519 34.9109 45.1341L32.2625 42.4742V44.313C32.2625 44.6197 32.1407 44.9139 31.9238 45.1308C31.7069 45.3477 31.4128 45.4695 31.106 45.4695C30.7993 45.4695 30.5052 45.3477 30.2883 45.1308C30.0714 44.9139 29.9496 44.6197 29.9496 44.313V37.3742C29.9496 37.0674 30.0714 36.7733 30.2883 36.5564C30.5052 36.3395 30.7993 36.2177 31.106 36.2177H33.9972C34.6827 36.2192 35.3452 36.4642 35.8668 36.909C36.3883 37.3538 36.7348 37.9693 36.8446 38.6459C36.9543 39.3225 36.8201 40.016 36.466 40.6029C36.1118 41.1897 35.5606 41.6316 34.9109 41.8497L36.553 43.4919ZM44.1974 45.4695C44.0194 45.5103 43.8346 45.5116 43.6561 45.4732C43.4776 45.4349 43.3096 45.3579 43.1641 45.2476C43.0186 45.1374 42.899 44.9965 42.8137 44.8351C42.7285 44.6736 42.6797 44.4954 42.6708 44.313H40.4735L40.3579 44.6831C40.3093 44.8274 40.2327 44.9607 40.1326 45.0754C40.0325 45.1901 39.9108 45.2839 39.7744 45.3516C39.638 45.4192 39.4896 45.4593 39.3377 45.4697C39.1858 45.48 39.0334 45.4603 38.8891 45.4117C38.7449 45.3631 38.6116 45.2865 38.4969 45.1864C38.3822 45.0863 38.2883 44.9646 38.2207 44.8282C38.153 44.6918 38.1129 44.5434 38.1026 44.3915C38.0922 44.2397 38.112 44.0872 38.1606 43.9429L40.4735 37.0041C40.5496 36.7727 40.6967 36.5712 40.894 36.4284C41.0913 36.2856 41.3286 36.2087 41.5722 36.2087C41.8157 36.2087 42.053 36.2856 42.2503 36.4284C42.4476 36.5712 42.5948 36.7727 42.6708 37.0041L44.9838 43.9429C45.0409 44.0944 45.0657 44.2561 45.0564 44.4177C45.0471 44.5793 45.004 44.7371 44.9299 44.881C44.8558 45.0249 44.7523 45.1516 44.6261 45.253C44.4999 45.3544 44.3538 45.4281 44.1974 45.4695ZM53.0791 44.313C53.0791 44.6197 52.9573 44.9139 52.7404 45.1308C52.5235 45.3477 52.2293 45.4695 51.9226 45.4695C51.6159 45.4695 51.3218 45.3477 51.1049 45.1308C50.888 44.9139 50.7661 44.6197 50.7661 44.313V42.2776C50.6819 42.5171 50.5255 42.7246 50.3183 42.8713C50.1112 43.0181 49.8635 43.0969 49.6097 43.0969C49.3558 43.0969 49.1082 43.0181 48.901 42.8713C48.6939 42.7246 48.5374 42.5171 48.4532 42.2776V44.313C48.4532 44.6197 48.3314 44.9139 48.1145 45.1308C47.8976 45.3477 47.6034 45.4695 47.2967 45.4695C46.99 45.4695 46.6958 45.3477 46.479 45.1308C46.2621 44.9139 46.1402 44.6197 46.1402 44.313V37.3742C46.1418 37.1152 46.2302 36.8642 46.3913 36.6615C46.5524 36.4588 46.7769 36.316 47.0288 36.256C47.2808 36.196 47.5455 36.2223 47.7807 36.3307C48.0159 36.4391 48.2079 36.6233 48.326 36.8537L49.6097 39.4096L50.8934 36.8537C51.0114 36.6233 51.2034 36.4391 51.4386 36.3307C51.6738 36.2223 51.9386 36.196 52.1905 36.256C52.4424 36.316 52.6669 36.4588 52.828 36.6615C52.9892 36.8642 53.0776 37.1152 53.0791 37.3742V44.313Z" fill="white"/>
+                                                    <path d="M41.1905 42H41.8381L41.5143 41.0286L41.1905 42ZM51.9226 54.7213V52.4083H17.2283V53.5648C17.2283 53.8715 17.3501 54.1656 17.567 54.3825C17.7839 54.5994 18.078 54.7213 18.3847 54.7213H51.9226ZM65.8003 53.5648V52.4083H54.2355V54.7213H64.6438C64.9505 54.7213 65.2447 54.5994 65.4616 54.3825C65.6785 54.1656 65.8003 53.8715 65.8003 53.5648Z" fill="white"/>
+                                                </svg>
+                                            </div>
+                                            <div class="card-content">
+                                                <div class="card-title">Memory</div>
+                                                <div class="card-amount">High-Speed RAM for seamless multitasking</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <label style="text-align: left;color: grey;font-size: 12px;">Last Updated: 21-Feb-2025 01:01:AM</label> -->
+            </section>
+            <section class="benefits my-5 px-lg-5 px-3">
+				<img src="https://cmlaptophed.punjab.gov.pk/landing/images/benefits_image.png" alt="" class="img-fluid benifits_right_image">
+					<div class="section_title">
+						Benefits
+					</div>
+					<ul class="list-unstyled benfits_list">
+						<li>
+							<img src="https://cmlaptophed.punjab.gov.pk/landing/images/icon_1.png" alt="" class="icon_image">
+							<span class="ms-3">Educational Growth</span>
+						</li>
+						<li>
+							<img src="https://cmlaptophed.punjab.gov.pk/landing/images/icon_2.png" alt="" class="icon_image">
+							<span class="ms-3">Digital Inclusion</span>
+						</li>
+						<li>
+							<img src="https://cmlaptophed.punjab.gov.pk/landing/images/icon_3.png" alt="" class="icon_image">
+							<span class="ms-3">Skill Development</span>
+						</li>
+						<li>
+							<img src="https://cmlaptophed.punjab.gov.pk/landing/images/icon_4.png" alt="" class="icon_image">
+							<span class="ms-3">Economic Empowerment</span>
+						</li>
+					</ul>
+			</section>
+
+			<section class="eligibility_criteria py-4" id="eligibility_criteria">
+						<div class="section_title">Eligibility Criteria</div>
+						<div class="row">
+							<div class="col-md-7">
+								<div class="custom_width">
+                                    <ul class="list-unstyled eligibility_list">
+                                        <li>Must have a domicile from any district of Punjab.</li>
+                                        <li>
+                                            Must be enrolled in:
+                                            <div class="ps-3 pt-2 enrolled_list">
+                                                <ul style="padding-top: 0px;list-style: none;padding-left: 0px;">
+                                                    <li class="custom_li">1st or 2nd semester of BS in any Public University / College or in the Chartered Federal / Private Universities  (<a style="color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1))" href="https://cmlaptophed.punjab.gov.pk/view-institutes" target="_blank">Click here to see the list of private universities included in CM Laptop Scheme</a>) admission year 2025</li>
+                                                    <li class="custom_li">Public Medical &amp; Dental College / Universities (1st professional - academic session 2025)</li>
+                                                    <li class="custom_li">1st or 2nd semester of BS Nursing in Public Sector Nursing Colleges (1st professional - academic session 2025) (<a style="color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1))" href="https://cmlaptophed.punjab.gov.pk/view-institutes" target="_blank">Click here to see the list of nursing colleges included in CM Laptop Scheme</a>)</li>
+                                                </ul>
+                                            </div>
+                                        </li>
+                                        <li>For BS programs in Public Sector Universities / Colleges and Chartered Federal / Private Universities (Minimum of 65% Marks in Intermediate)</li>
+                                        <li>For MBBS and BDS students in Public Sector Medical & Dental Colleges / University (Minimum of 80% Marks in Intermediate)</li>
+                                        <li>For DVM Students of Public Sector Universities / Colleges (Minimum of 75% Marks in Intermediate)</li>
+                                        <li>For BS Nursing students in Public Sector Nursing Colleges (Minimum of 65% Marks in Intermediate)</li>
+                                        <li>All blind students enrolled in various universities and colleges shall be awarded the CM Laptop, irrespective of the Intermediate mark’s requirement.</li>
+                                        <li>The Intermediate marks requirement for non-Muslim students has been set at 55% in BS Programs.</li>
+                                        <li>Student must not be a recipient of any laptop scheme</li>
+                                    </ul>
+									</div>
+								</div>
+								<div class="col-md-5">
+								<img src="https://cmlaptophed.punjab.gov.pk/landing/images/eligibility_image.png" alt="" class="img-fluid">
+							</div>
+						</div>
+
+			</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            <section class="faq py-4" id="faqs">
+                <div class="section_title mb-4">
+                    Frequently Asked Questions
+                </div>
+                <div class="accordion" id="accordionExample">
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                1. What are the minimum academic requirements for scholarship eligibility?
+                            </button>
+                        </h2>
+                        <div id="collapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                <a href="#eligibility_criteria">See Eligibility Criteria</a>.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                2. What is the procedure for submitting an application for laptop?
+                            </button>
+                        </h2>
+                        <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Applications must be submitted online through the official online portal. Manual applications are not accepted.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                3. Are students attending private colleges or universities eligible to apply for the laptop scheme?
+                            </button>
+                        </h2>
+                        <div id="collapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                1st or 2nd semester of BS in the Chartered Federal / Private Universities (<a style="color:rgba(var(--bs-link-color-rgb),var(--bs-link-opacity,1))" href="https://cmlaptophed.punjab.gov.pk/view-institutes" target="_blank">Click here to see the list of private universities included in CM Laptop Scheme</a>), Students from Private colleges are not eligible
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                4. Is a hard copy of the application required?
+                            </button>
+                        </h2>
+                        <div id="collapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                No, a hard copy of the application is not required. All applications must be submitted online.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                5. What is the application deadline?
+                            </button>
+                        </h2>
+                        <div id="collapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Please refer to the website for the application deadline.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                6. If an applicant has only applied for a domicile certificate but has not yet received it, can they still apply?
+                            </button>
+                        </h2>
+                        <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Yes, applicants can submit their application with proof of application for a domicile certificate, such as a receiving slip or official confirmation from the relevant issuing authority.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                7. Is this scholarship exclusively for students domiciled in Punjab?
+                            </button>
+                        </h2>
+                        <div id="collapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Yes, this scholarship is specifically for students who are domiciled in Punjab.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEight" aria-expanded="false" aria-controls="collapseEight">
+                                8. How should students apply if their program of study is not listed on the scholarship website?
+                            </button>
+                        </h2>
+                        <div id="collapseEight" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                If your specific program is not listed, select "Other" from the drop-down menu and specify your program name in the corresponding text box.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNine" aria-expanded="false" aria-controls="collapseNine">
+                                9. Can students use their roll number instead of a registration number when applying?
+                            </button>
+                        </h2>
+                        <div id="collapseNine" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Yes, students may use their roll number or any other official proof of enrollment in the 1st or 2nd semester (for BS program students) or the 1st Professional Year (for MBBS/BDS students).
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTen" aria-expanded="false" aria-controls="collapseTen">
+                                10. What is the process for correcting incorrect information after submitting the application?
+                            </button>
+                        </h2>
+                        <div id="collapseTen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Applications containing inaccurate information will be returned to the applicant with a detailed explanation of the discrepancy. Applicants are responsible for correcting the identified errors and resubmitting the application.Please ensure the information provided is accurate, as resubmitted applications will undergo final review and no further corrections will be permitted.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseEleven" aria-expanded="false" aria-controls="collapseEleven">
+                                11. Is there an application fee for the laptop scheme?
+                            </button>
+                        </h2>
+                        <div id="collapseEleven" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                No, there is no application fee for the laptop scheme.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwelve" aria-expanded="false" aria-controls="collapseTwelve">
+                                12. What documents are required for the laptop scheme application?
+                            </button>
+                        </h2>
+                        <div id="collapseTwelve" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                The following documents are required for the laptop scheme application
+                                <ul>
+                                    <li>CNIC (Front and Back copies)</li>
+                                    <li>Matriculation (Secondary School Certificate)</li>
+                                    <li>Intermediate (Higher Secondary School Certificate/equivalent)</li>
+                                    <li>Equivalence Certificate (if applicable)</li>
+                                    <li>Domicile Certificate</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThirteen" aria-expanded="false" aria-controls="collapseThirteen">
+                                13. How will applicants be notified of their application status?
+                            </button>
+                        </h2>
+                        <div id="collapseThirteen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                Applicants will be notified of their application status via email. They can also check the status of their application through the online portal.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFourteen" aria-expanded="false" aria-controls="collapseFourteen">
+                                14. Can a student who has previously received a laptop through another scholarship scheme apply for this scheme?
+                            </button>
+                        </h2>
+                        <div id="collapseFourteen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                No, students who have already received a laptop through another scholarship scheme are not eligible to apply.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFifteen" aria-expanded="false" aria-controls="collapseFifteen">
+                                15. Is a laptop guaranteed for every applicant?
+                            </button>
+                        </h2>
+                        <div id="collapseFifteen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                No, laptops will be awarded based on merit, considering the number of laptops available for distribution. Selection will be competitive.
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="accordion-item">
+                        <h2 class="accordion-header">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSixteen" aria-expanded="false" aria-controls="collapseSixteen">
+                                16. How will selected students be notified of their inclusion on the Merit List?
+                            </button>
+                        </h2>
+                        <div id="collapseSixteen" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                                The Merit List will be displayed on the official website. Students can also log into their individual accounts to check their application status and Merit List inclusion.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <footer class="footer py-4">
+				<div class="row mb-4">
+					<div class="col-md-6">
+						<div class="logo mb-3 mb-lg-5 mt-3">
+							<img src="https://cmlaptophed.punjab.gov.pk/landing/images/logo_main.png" class="img-fluid" alt="">
+						</div>
+						<ul class="list-unstyled contact_info mb-3 mb-lg-5">
+                            <li class="mb-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" viewBox="0 0 448 512" class="me-2"><path d="M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7 .9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" fill="#219356"/></svg>
+                                +92 347 7473138
+							</li>
+							<li>
+								<svg width="20" height="13" class="me-2" viewBox="0 0 30 23" fill="none" xmlns="http://www.w3.org/2000/svg">
+									<path d="M29 3.94701V19.1695C29 20.0346 28.6563 20.8643 28.0446 21.476C27.4329 22.0877 26.6032 22.4314 25.738 22.4314H3.99169C3.12657 22.4314 2.29688 22.0877 1.68514 21.476C1.07341 20.8643 0.729736 20.0346 0.729736 19.1695V3.94701M29 3.94701C29 3.08189 28.6563 2.2522 28.0446 1.64046C27.4329 1.02873 26.6032 0.685059 25.738 0.685059H3.99169C3.12657 0.685059 2.29688 1.02873 1.68514 1.64046C1.07341 2.2522 0.729736 3.08189 0.729736 3.94701M29 3.94701V4.2993C29.0001 4.85622 28.8575 5.40388 28.586 5.89012C28.3145 6.37635 27.9229 6.78497 27.4488 7.07704L16.5756 13.7677C16.0612 14.0845 15.469 14.2522 14.8649 14.2522C14.2608 14.2522 13.6685 14.0845 13.1542 13.7677L2.28098 7.07849C1.80679 6.78641 1.41528 6.3778 1.14374 5.89157C0.872202 5.40533 0.729675 4.85767 0.729736 4.30075V3.94701" fill="#219356"/>
+									<path d="M29 3.94701V19.1695C29 20.0346 28.6563 20.8643 28.0446 21.476C27.4329 22.0877 26.6032 22.4314 25.738 22.4314H3.99169C3.12657 22.4314 2.29688 22.0877 1.68514 21.476C1.07341 20.8643 0.729736 20.0346 0.729736 19.1695V3.94701M29 3.94701C29 3.08189 28.6563 2.2522 28.0446 1.64046C27.4329 1.02873 26.6032 0.685059 25.738 0.685059H3.99169C3.12657 0.685059 2.29688 1.02873 1.68514 1.64046C1.07341 2.2522 0.729736 3.08189 0.729736 3.94701M29 3.94701V4.2993C29.0001 4.85622 28.8575 5.40388 28.586 5.89012C28.3145 6.37635 27.9229 6.78497 27.4488 7.07704L16.5756 13.7677C16.0612 14.0845 15.469 14.2522 14.8649 14.2522C14.2608 14.2522 13.6685 14.0845 13.1542 13.7677L2.28098 7.07849C1.80679 6.78641 1.41528 6.3778 1.14374 5.89157C0.872202 5.40533 0.729675 4.85767 0.729736 4.30075V3.94701" stroke="white" stroke-width="0.682239" stroke-linecap="round" stroke-linejoin="round"/>
+								</svg>
+
+								cmlaptop@hed.punjab.gov.pk
+							</li>
+						</ul>
+					</div>
+                    <div class="col-md-6" id="contact_us">
+                        <div class="contact_form p-4 text-white bg-success rounded">
+                            <form id="contactForm">
+                                <input type="hidden" name="_token" value="zWlFYdxpK4Sk1AjMWYiwxCkrdLG1AKnj6q7x9duX">                                <div class="row">
+                                    <div class="col-md-12 mb-3">For complaints and
+                                        information, please fill out the form below!</div>
+                                    <div class="col-md-6 mb-2 position-relative">
+                                        <input type="text" class="form-control only-alphabets length-99" name="first_name" placeholder="First Name*">
+                                        <div class="input_icon">
+                                            <img class="img-fluid" src="https://cmlaptophed.punjab.gov.pk/landing/images/input_icon_1.png" alt="">
+                                        </div>
+                                        <span class="text-customcolor field-errors" id="first_name_error"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2 position-relative">
+                                        <input type="text" class="form-control only-alphabets length-99" name="last_name" placeholder="Last Name*">
+                                        <div class="input_icon">
+                                            <img class="img-fluid" src="https://cmlaptophed.punjab.gov.pk/landing/images/input_icon_1.png" alt="">
+                                        </div>
+                                        <span class="text-customcolor field-errors" id="last_name_error"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2 position-relative">
+                                        <input type="email" class="form-control email-format" id="email" name="email" placeholder="Email*">
+                                        <div class="input_icon">
+                                            <img class="img-fluid" src="https://cmlaptophed.punjab.gov.pk/landing/images/input_icon_3.png" alt="">
+                                        </div>
+                                        <span class="text-customcolor field-errors" id="email_error"></span>
+                                    </div>
+                                    <div class="col-md-6 mb-2 position-relative">
+                                        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Phone no*">
+                                        <div class="input_icon">
+                                            <img class="img-fluid" src="https://cmlaptophed.punjab.gov.pk/landing/images/input_icon_4.png" alt="">
+                                        </div>
+                                        <span class="text-customcolor field-errors" id="phone_error"></span>
+                                    </div>
+                                    <div class="col-md-12 mb-2 position-relative">
+                                        <textarea class="form-control only-alphanumeric-hyphen length-300" name="message" placeholder="Message*" rows="3"></textarea>
+                                        <div class="input_icon">
+                                            <img class="img-fluid" src="https://cmlaptophed.punjab.gov.pk/landing/images/input_icon_5.png" alt="">
+                                        </div>
+                                        <span class="text-customcolor field-errors" id="message_error"></span>
+                                    </div>
+                                    <div class="captcha_question col-md-4 mb-2 position-relative">
+                                        What is 5 + 9 = 
+                                    </div>
+                                    <div class="col-md-5 mb-2 position-relative">
+                                        <input type="text" class="form-control only-numeric" name="confirmCaptcha" placeholder="Enter Captcha">
+                                        <span class="text-customcolor field-errors" id="captcha_error"></span>
+                                    </div>
+                                    <div class="col-md-3 mb-2 position-relative">
+                                        <button type="submit" class="btn btn-light color-green bg-light-green">Submit</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+				<div class="row">
+					<div class="col-md-6 mb-5 mb-md-0">
+						<ul class="list-unstyled list-inline menu-list mb-5">
+
+
+
+							<li class="list-inline-item">
+								<a href="https://cmlaptophed.punjab.gov.pk/view-institutes">Institutes</a>
+							</li>
+                                                                                    <li class="list-inline-item">
+                                <a target="_blank" class="" href="https://www.youtube.com/@DPICPunjab">Videos</a>
+                            </li>
+                            						</ul>
+						<div>
+                            <ul class="list-unstyled list-inline">
+                                <li class="list-inline-item" style="border-right: 1px solid #000;padding-inline: 8px 11px;line-height: 15px;">© 2026 All rights reserved</li>
+                                <li class="list-inline-item">Powered by Punjab IT Board</li>
+                            </ul>
+
+                        </div>
+					</div>
+					<div class="col-md-6 text-md-end">
+						<ul class="list-unstyled list-inline social_icons mb-5">
+                            							<li class="list-inline-item">
+								<a target="_blank" href="https://www.facebook.com/people/DPI-Colleges-Punjab-Lahore/61557045387974/">
+									<svg width="30" height="26" viewBox="0 0 30 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+										<path d="M15.75 25.8767H2.04514C1.17265 25.8767 0.46582 25.2402 0.46582 24.4552V1.54467C0.46582 0.759535 1.17276 0.123291 2.04514 0.123291H27.5015C28.3737 0.123291 29.0807 0.759535 29.0807 1.54467V24.4552C29.0807 25.2403 28.3736 25.8767 27.5015 25.8767H20.2097V15.9036H23.9292L24.4861 12.0169H20.2097V9.53544C20.2097 8.41015 20.5569 7.6433 22.3498 7.6433L24.6367 7.6424V4.16609C24.2412 4.11872 22.8837 4.0129 21.3044 4.0129C18.0073 4.0129 15.75 5.8242 15.75 9.15052V12.0169H12.021V15.9036H15.75V25.8767Z" fill="#0A142F"/>
+									</svg>
+								</a>
+							</li>
+                                                                                    <li class="list-inline-item">
+                                <a target="_blank" href="https://www.youtube.com/@DPICPunjab">
+                                    <svg width="29" height="19" viewBox="0 0 29 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path fill-rule="evenodd" clip-rule="evenodd" d="M27.5763 1.77636C28.4339 2.56336 28.7138 4.35052 28.7138 4.35052C28.7138 4.35052 28.9999 6.44973 28.9999 8.54812V10.516C28.9999 12.6152 28.7138 14.7136 28.7138 14.7136C28.7138 14.7136 28.4339 16.5008 27.5763 17.2878C26.5959 18.2188 25.5088 18.315 24.8943 18.3694C24.8267 18.3753 24.7649 18.3808 24.7095 18.3868C20.7052 18.6494 14.6925 18.6575 14.6925 18.6575C14.6925 18.6575 7.25259 18.5959 4.9634 18.3966C4.85493 18.3782 4.72346 18.3639 4.57456 18.3477C3.84944 18.2689 2.71132 18.1451 1.80771 17.2878C0.950154 16.5008 0.671159 14.7136 0.671159 14.7136C0.671159 14.7136 0.38501 12.6152 0.38501 10.516V8.54812C0.38501 6.44973 0.671159 4.35052 0.671159 4.35052C0.671159 4.35052 0.950154 2.56336 1.80771 1.77636C2.79033 0.844052 3.87848 0.7489 4.49302 0.695163C4.55964 0.689337 4.6207 0.683997 4.67546 0.678131C8.67976 0.415527 14.6862 0.415527 14.6862 0.415527H14.6987C14.6987 0.415527 20.7052 0.415527 24.7095 0.678131C24.7642 0.684006 24.8253 0.689353 24.892 0.695189C25.5061 0.748931 26.5947 0.844204 27.5763 1.77636ZM11.737 5.61329L11.7379 12.9005L19.4684 9.26947L11.737 5.61329Z" fill="#0A142F"/>
+                                    </svg>
+                                </a>
+                            </li>
+                             						</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        
+                        <div class="d-flex justify-content-end">
+                            <div style="font-size:14px; text-align:right;">
+                                <div class="d-flex justify-content-end">
+                                    <div>
+                                        <strong>Total Visitors:</strong> 11,240,275
+                                    </div>
+
+                                    <div class="mx-2">|</div>
+
+                                    <div>
+                                        <strong>Total Visitors:</strong> 5,595,101
+                                        <div style="font-size:12px;" class="text-muted">
+                                            (Since Jan 25, 2026)
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+				</div>
+
+			</footer>
+		</div>
+	</div>
+<div class="progress-wrap">
+    <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+        <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+              stroke="#1f2029"
+              stroke-width="4"
+              fill="none" />
+    </svg>
+</div>
+<!-- Modal -->
+
+<script src="https://cmlaptophed.punjab.gov.pk/landing/js/jquery.min.js"></script>
+<script src="https://cmlaptophed.punjab.gov.pk/landing/js/bootstrap.bundle.min.js"></script>
+<script src="https://cmlaptophed.punjab.gov.pk/assets/js/loadingoverlay.min.js"></script>
+<script src="https://cmlaptophed.punjab.gov.pk/assets/js/validation-masking.js"></script>
+<script src="https://cmlaptophed.punjab.gov.pk/assets/js/toastr.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.1.4/toastr.min.css"></head>
+<style>
+    .text-customcolor{
+        color: #ccc;
+        font-size: 14px;
+    }
+</style>
+<script>
+    $(document).ready(function(){
+         if($('#phone').length){
+             $('#phone').inputmask('0999-9999999');
+         }
+        if($('#contactForm').length)
+        {
+            $('#contactForm').on('submit', function(e) {
+                e.preventDefault();
+                _element=$(this);
+                _element.LoadingOverlay("show");
+                $.ajax({
+                    url: 'https://cmlaptophed.punjab.gov.pk/contact/submit',
+                    method: 'POST',
+                    data: $(this).serialize(),
+                    success: function(response) {
+                        _element.LoadingOverlay("hide");
+                        if (response.success) {
+                            toastr.success('We will get back to you soon', 'Thanks for Contacting Us', {
+                                closeButton: true,
+                                timeOut: 4000,
+                                progressBar: true,
+                                newestOnTop: true
+                            });
+                            $('.field-errors').empty();
+                            $('#contactForm')[0].reset();
+                            refreshCaptcha();
+                        }
+                    },
+                    error: function(response) {
+                        _element.LoadingOverlay("hide");
+                        $('.field-errors').empty();
+                        var errors = response.responseJSON.errors;
+                        $('#first_name_error').text(errors.first_name);
+                        $('#last_name_error').text(errors.last_name);
+                        $('#email_error').text(errors.email);
+                        $('#phone_error').text(errors.phone);
+                        $('#message_error').text(errors.message);
+                        $('#captcha_error').text(errors.confirmCaptcha);
+                        refreshCaptcha();
+                    }
+                });
+            });
+            const refreshCaptcha = () => {
+                $.ajax({
+                    url: 'https://cmlaptophed.punjab.gov.pk/refresh/captcha',
+                    method: 'GET',
+                    success: function(response) {
+                        $('.captcha_question').html(response);
+                    }
+                });
+            }
+        }
+    });
+</script>
+    <script>
+        function startCountdown(targetDate) {
+            function updateCountdown() {
+                let now = new Date().getTime();
+                let timeLeft = targetDate - now;
+
+                if (timeLeft <= 0) {
+                    clearInterval(interval);
+                    window.location.href="";
+                    $("#days, #hours, #minutes, #seconds").text("00");
+                    return;
+                }
+
+                let days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                let hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                let minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                let seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+                $("#days").text(days.toString().padStart(2, '0'));
+                $("#hours").text(hours.toString().padStart(2, '0'));
+                $("#minutes").text(minutes.toString().padStart(2, '0'));
+                $("#seconds").text(seconds.toString().padStart(2, '0'));
+            }
+
+            updateCountdown();
+            let interval = setInterval(updateCountdown, 1000);
+        }
+
+        $(document).ready(function() {
+                        $('#wildlifeModal').modal('show');
+            $.ajax({
+                url: "https://cmlaptophed.punjab.gov.pk/update-visitors",
+                type: "POST",
+                data: {
+                    _token: "zWlFYdxpK4Sk1AjMWYiwxCkrdLG1AKnj6q7x9duX"
+                },
+                success: function(response) {
+                    if (response.status === 'success') {
+                        console.log(response.message);
+                    }
+                },
+                error: function(xhr) {
+                    console.error('Error updating stats:', xhr.responseText);
+                }
+            });
+        });
+        document.addEventListener("DOMContentLoaded", function() {
+            "use strict";
+
+            var progressPath = document.querySelector(".progress-wrap path");
+            var pathLength = progressPath.getTotalLength();
+
+            progressPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
+            progressPath.style.strokeDashoffset = pathLength;
+
+            var updateProgress = function() {
+                var scroll = window.scrollY;
+                var height = document.documentElement.scrollHeight - window.innerHeight;
+                var progress = pathLength - (scroll * pathLength / height);
+                progressPath.style.strokeDashoffset = progress;
+            };
+
+            updateProgress();
+            window.addEventListener("scroll", updateProgress);
+
+            var offset = 50;
+            var duration = 500;
+
+            window.addEventListener("scroll", function() {
+                if (window.scrollY > offset) {
+                    document.querySelector(".progress-wrap").classList.add("active-progress");
+                } else {
+                    document.querySelector(".progress-wrap").classList.remove("active-progress");
+                }
+            });
+
+            document.querySelector(".progress-wrap").addEventListener("click", function(event) {
+                event.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: "smooth"
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ export function Spinner({ className = "h-4 w-4" }) {
 }
 
 export function Skeleton({ className = "" }) {
-  return <div className={`animate-pulse rounded-xl bg-slate-200/70 ${className}`} aria-hidden />;
+  return <div className={`shimmer rounded-xl ${className}`} aria-hidden />;
 }
 
 export function CardSkeleton({ lines = 3 }) {

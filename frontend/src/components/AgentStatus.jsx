@@ -45,7 +45,7 @@ export default function AgentStatus() {
     : [];
 
   return (
-    <div className="rounded-2xl border border-navy-700/70 p-3 text-xs text-navy-200">
+    <div className="rounded-2xl bg-white/[0.03] p-3 ring-1 ring-white/10 text-xs text-navy-200">
       <div className="flex items-center justify-between">
         <span className="font-semibold text-white">Agent status</span>
         <span className="inline-flex items-center gap-1.5">

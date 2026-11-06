@@ -1,11 +1,19 @@
 [
  {
+  "url": "https://acag.punjab.gov.pk/index.aspx",
+  "source_id": null,
+  "title": "Apni Chhat Apna Ghar گھر کی تعمیر و تکمیل کا سفر",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\abc8d0d0e51a9f14.html",
+  "fetched_at": "2026-11-06T20:24:29+00:00"
+ },
+ {
   "url": "https://bisp.gov.pk/",
   "source_id": "bisp",
   "title": "Benazir Income Support Programme",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\2ca5480ec8b2d7fa.html",
-  "fetched_at": "2026-11-02T14:39:45+00:00"
+  "fetched_at": "2026-11-06T20:23:08+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/N2MxMWNkNDMtNmMwYS00N2MwLWI1ZjgtZWFkZDJmZDMwM2Jh",
@@ -86,6 +94,22 @@
   "content_type": "pdf",
   "snapshot_path": "snapshots\\bisp\\38d185d5d585e682.pdf",
   "fetched_at": "2026-11-02T14:41:01+00:00"
+ },
+ {
+  "url": "https://cmlaptophed.punjab.gov.pk/",
+  "source_id": null,
+  "title": "CM Punjab Laptop Program",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\b89436c41f3df9dc.html",
+  "fetched_at": "2026-11-06T20:24:49+00:00"
+ },
+ {
+  "url": "https://honhaarscholarship.punjabhec.gov.pk/",
+  "source_id": null,
+  "title": "CM PUNJAB HONHAAR SCHOLARSHIP",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\3f734ad5b79aeed7.html",
+  "fetched_at": "2026-11-06T20:22:22+00:00"
  },
  {
   "url": "https://pessi.punjab.gov.pk/cash_benefits",

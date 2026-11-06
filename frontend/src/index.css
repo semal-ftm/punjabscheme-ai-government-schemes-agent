@@ -63,6 +63,57 @@
   }
 }
 
+@layer base {
+  h1,
+  h2 {
+    @apply font-display;
+  }
+}
+
+/* Phulkari-inspired embroidery motif (Punjab folk textile): an 8-point star lattice. */
+.phulkari {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.16' stroke-width='1.2'%3E%3Cpath d='M28 8l6 14 14 6-14 6-6 14-6-14-14-6 14-6z'/%3E%3Cpath d='M28 18l3 7 7 3-7 3-3 7-3-7-7-3 7-3z'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+.phulkari-dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23141d36' stroke-opacity='.06' stroke-width='1.2'%3E%3Cpath d='M28 8l6 14 14 6-14 6-6 14-6-14-14-6 14-6z'/%3E%3Cpath d='M28 18l3 7 7 3-7 3-3 7-3-7-7-3 7-3z'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 56px 56px;
+}
+
+/* Loading skeleton with a moving sheen */
+.shimmer {
+  @apply relative overflow-hidden bg-slate-200/70;
+}
+.shimmer::after {
+  content: "";
+  @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/60 to-transparent;
+}
+
+/* Dashboard decoration */
+.hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 32px 32px;
+  mask-image: radial-gradient(ellipse at 70% 30%, black 20%, transparent 75%);
+}
+.glass {
+  @apply bg-white/10 ring-1 ring-white/15 backdrop-blur-md;
+}
+.tilt {
+  @apply transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lift;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-fade-up,
+  .animate-float,
+  .animate-blob,
+  .animate-flow,
+  .animate-text-swap {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
 /* Markdown rendered inside chat bubbles (no typography plugin needed) */
 .md {
   @apply text-[0.95rem] leading-relaxed text-navy-900;

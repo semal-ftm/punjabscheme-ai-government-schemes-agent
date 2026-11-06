@@ -57,7 +57,7 @@ function Field({ name, value, onChange, highlighted }) {
           {[["yes", "Yes"], ["no", "No"], ["", "Not sure"]].map(([v, label]) => (
             <label
               key={label}
-              className={`cursor-pointer rounded-lg px-3 py-1.5 text-sm font-medium transition-colors focus-within:ring-2 focus-within:ring-emerald-500 ${
+              className={`relative cursor-pointer rounded-lg px-3 py-1.5 text-sm font-medium transition-colors focus-within:ring-2 focus-within:ring-emerald-500 ${
                 (value || "") === v ? "bg-navy-900 text-white" : "text-navy-700 hover:bg-slate-100"
               }`}
             >

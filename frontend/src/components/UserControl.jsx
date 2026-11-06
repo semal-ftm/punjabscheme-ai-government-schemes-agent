@@ -22,7 +22,7 @@ export default function UserControl() {
   if (!userId) {
     return (
       <form
-        className="rounded-2xl bg-navy-800/60 p-3"
+        className="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur p-3"
         onSubmit={(e) => {
           e.preventDefault();
           if (valid) setUserId(draft.trim());
@@ -86,7 +86,7 @@ export default function UserControl() {
   };
 
   return (
-    <div className="rounded-2xl bg-navy-800/60 p-3 text-white">
+    <div className="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur p-3 text-white">
       <div className="flex items-center gap-2">
         <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-sm font-bold uppercase text-emerald-300">
           {userId.slice(0, 1)}

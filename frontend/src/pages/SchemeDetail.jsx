@@ -8,6 +8,7 @@ import { CategoryBadge, LevelBadge, ReviewBadge, RulesBadge, SeverityBadge } fro
 import { EventIcon, EVENT_TYPES } from "../components/ChangeMeta.jsx";
 import DiffView from "../components/DiffView.jsx";
 import { SaveButton } from "../components/SchemeCard.jsx";
+import SchemeArt from "../components/art/SchemeArt.jsx";
 import { CardSkeleton, EmptyState, ErrorState } from "../components/States.jsx";
 import StatusBadge from "../components/StatusBadge.jsx";
 import { NOT_CONFIRMED, fieldLabel } from "../lib/constants.js";
@@ -193,11 +194,15 @@ export default function SchemeDetail() {
     status: (
       <div className="space-y-4">
         <div className="flex flex-wrap items-center gap-3">
-          <StatusBadge status={s.status} />
-          {s.status === "Unverified" && (
-            <span className="text-sm text-slate-600">No officially confirmed application window. Do not assume it is open.</span>
-          )}
+          <StatusBadge status={s.status} deadline={s.deadline} />
+          {s.status_checked && <span className="text-xs text-slate-500">Checked on the official site: {formatDate(s.status_checked)}</span>}
         </div>
+        <p className="text-sm text-navy-900">
+          {s.status_note ||
+            (s.status === "Unverified"
+              ? "No official page states the current application window, so we don't guess. Check the official link below."
+              : "")}
+        </p>
         <dl className="grid gap-3 sm:grid-cols-2">
           <div className="rounded-xl bg-slate-50 p-3">
             <dt className="text-xs font-semibold uppercase tracking-wide text-slate-500">Opening date</dt>
@@ -223,7 +228,13 @@ export default function SchemeDetail() {
             <blockquote dir="auto" className="mt-1 border-l-2 border-emerald-300 pl-2.5 text-sm italic text-slate-700">
               “{s.status_quote}”
             </blockquote>
+            <SourceLink url={s.status_source_url || s.source_url} />
           </div>
+        )}
+        {(s.application_url || s.status_source_url) && (
+          <a href={s.application_url || s.status_source_url} target="_blank" rel="noopener noreferrer" className="btn-primary">
+            Open the official portal <ExternalLink className="h-4 w-4" aria-hidden />
+          </a>
         )}
       </div>
     ),
@@ -274,14 +285,22 @@ export default function SchemeDetail() {
         <ArrowLeft className="h-4 w-4" aria-hidden /> All schemes
       </Link>
 
-      <header className="card p-5 sm:p-6">
+      <header className="card overflow-hidden rounded-3xl">
+        <SchemeArt scheme={s} size="banner">
+          {s.sector && (
+            <span className="absolute bottom-4 left-5 rounded-full bg-black/25 px-3 py-1 text-xs font-semibold uppercase tracking-[0.14em] text-white ring-1 ring-white/25 backdrop-blur-md sm:left-6">
+              {s.sector}
+            </span>
+          )}
+        </SchemeArt>
+        <div className="p-5 sm:p-6">
         <div className="flex flex-wrap gap-1.5">
           <CategoryBadge category={s.category} />
           <LevelBadge level={s.level} />
-          <StatusBadge status={s.status} />
+          <StatusBadge status={s.status} deadline={s.deadline} />
           <RulesBadge rulesStatus={s.rules_status} />
         </div>
-        <h1 className="mt-3 text-2xl font-bold tracking-tight text-navy-900 sm:text-3xl">{s.name}</h1>
+        <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-navy-900 sm:text-4xl">{s.name}</h1>
         {s.name_ur && (
           <p dir="rtl" className={`mt-1 text-lg text-slate-600 ${urduClass(s.name_ur)}`}>
             {s.name_ur}
@@ -306,6 +325,7 @@ export default function SchemeDetail() {
           <Link to={`/chat?q=${encodeURIComponent(askText)}`} className="btn-secondary">
             <MessagesSquare className="h-4 w-4" aria-hidden /> Ask AI about this scheme
           </Link>
+        </div>
         </div>
       </header>
 

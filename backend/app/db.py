@@ -55,8 +55,11 @@ CREATE TABLE IF NOT EXISTS schemes (
     application_url TEXT,
     origin          TEXT NOT NULL,          -- curated | discovered
     rules_status    TEXT NOT NULL,          -- verified | needs_reverification | not_curated
-    status          TEXT DEFAULT 'Unverified', -- Open | Closed | Upcoming | Suspended | Unverified
-    status_quote    TEXT,
+    status          TEXT DEFAULT 'Unverified', -- Open | Ongoing | Closed | Upcoming | Suspended | Unverified
+    status_quote    TEXT,                   -- verbatim official sentence that backs the status
+    status_source_url TEXT,                 -- official page the status quote comes from
+    status_note     TEXT,                   -- plain-language summary of what the official page says
+    status_checked  TEXT,                   -- date a person last checked the status evidence
     opening_date    TEXT,
     deadline        TEXT,
     last_verified   TEXT,
@@ -165,9 +168,20 @@ def session(db_path: Path | None = None) -> Iterator[sqlite3.Connection]:
         conn.close()
 
 
+MIGRATIONS = {  # columns added after the first release: (table, column, type)
+    ("schemes", "status_source_url", "TEXT"),
+    ("schemes", "status_note", "TEXT"),
+    ("schemes", "status_checked", "TEXT"),
+}
+
+
 def init_db(db_path: Path | None = None) -> None:
     with session(db_path) as conn:
         conn.executescript(SCHEMA)
+        for table, column, ctype in MIGRATIONS:
+            existing = {r["name"] for r in conn.execute(f"PRAGMA table_info({table})")}
+            if column not in existing:
+                conn.execute(f"ALTER TABLE {table} ADD COLUMN {column} {ctype}")
 
 
 def rows(cursor: sqlite3.Cursor) -> list[dict[str, Any]]:

@@ -533,7 +533,9 @@ def _summarize(tool: str, data: Any) -> str:
         return "Compared: " + ", ".join(s["name"] for s in data.get("schemes", []))
     name = data.get("name", "")
     if tool == "get_scheme_deadline":
-        return f"{name}: status {data.get('status')}, deadline {data.get('deadline')}"
+        days = data.get("days_left")
+        return (f"{name}: status {data.get('status')}, deadline {data.get('deadline')}"
+                + (f" ({days} day(s) left)" if isinstance(days, int) and days >= 0 else ""))
     if tool == "get_required_documents":
         docs = data.get("documents")
         return f"{name}: " + (f"{len(docs)} document(s)" if isinstance(docs, list) else str(docs))
@@ -601,7 +603,8 @@ def _build_evidence(state: AgentState) -> list[dict]:
             for s in data.get("results", [])[:6]:
                 add("scheme record", s["name"], s.get("source_url"), s.get("last_verified"),
                     f"{s['category_label']} | {s['level']} | status: {s['status']} | rules: {s['rules_status']}\n"
-                    f"{s.get('summary') or ''}")
+                    + (f"Official status: {s['status_note']}\n" if s.get("status_note") else "")
+                    + f"{s.get('summary') or ''}")
         elif r["tool"] == "get_required_documents":
             docs = data.get("documents")
             body = "\n".join(f"- {d['text']}" for d in docs) if isinstance(docs, list) else f"{docs}. {data.get('note')}"

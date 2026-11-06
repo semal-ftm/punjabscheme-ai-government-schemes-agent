@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>
+	Apni Chhat Apna Ghar
+</title><meta name="description" content="Apni Chhat Apna Ghar" /><meta name="keywords" content="Apni Chhat Apna Ghar" /><meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" /><link href="favicon.ico" rel="shortcut icon" type="image/x-icon" /><script src="/Scripts/modernizr-2.8.3.js"></script>
+<link href="/Scripts/lib/jquery-ui/jquery-ui.min.css" rel="stylesheet" /><link href="/Content/bootstrap/bootstrap.css" rel="stylesheet" /><link href="/Content/font-awesome.css" rel="stylesheet" />
+    <link href="../Content/ACAGLanding.css" rel="stylesheet" />
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        /* =====================================================================
+           ACAG landing – final design.
+           Every rule is scoped to .ag-landing / .ag-* so nothing here clashes
+           with ACAGLanding.css or Bootstrap.
+           ===================================================================== */
+        .ACAG-System-Update { max-width: 100%; width: 100%; }
+
+        .ag-landing {
+            /* Heights of the Landing.Master header and the fixed .footer (from ACAGLanding.css).
+               Used so the stat tiles sit on the bottom of the screen, just above the footer.
+               Adjust if either changes. */
+            --ag-header-h: 100px;
+            --ag-footer-h: 60px;   /* footer pill + its margins */
+            --ag-ink: #111;
+            --ag-green: #3a9a3e;
+            --ag-green-dark: #0b2f2c;
+            --ag-orange: #f26a1b;
+            --ag-radius: 14px;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', sans-serif;
+            color: var(--ag-ink);
+            overflow-x: clip;
+            -webkit-font-smoothing: antialiased;
+        }
+        .ACMC-Landing.ag-landing { padding: 0 clamp(16px, 2.4vw, 35px); }
+        .ag-landing *, .ag-landing *::before, .ag-landing *::after { box-sizing: border-box; }
+        .ag-landing a, .ag-landing a:hover, .ag-landing a:focus { text-decoration: none; }
+
+        /* ---------------- Layout ---------------- */
+        .ag-top {
+            --sgap: clamp(16px, 3.3vw, 64px);            /* gap between stat tiles */
+            --col: calc((100% - 3 * var(--sgap)) / 4);  /* width of one stat tile  */
+            position: relative;
+            display: grid;
+            grid-template-columns: minmax(0, 1fr);
+            grid-template-areas: "hero" "helpline" "actions" "stats";
+            align-items: start;
+        }
+        .ag-hero     { grid-area: hero; padding-top: clamp(8px, 1vw, 16px); }
+        .ag-helpline { grid-area: helpline; }
+        .ag-actions  { grid-area: actions; width: min(calc(100% - var(--col) - var(--sgap)), max(62%, 960px)); }   /* cards end ~60% across, like the final design */
+        .ag-stats    { grid-area: stats; }
+        .ag-hero, .ag-helpline, .ag-actions, .ag-stats { position: relative; z-index: 1; }
+
+        /* Portrait sits over the last stat tile, from the cards row down past the tiles */
+        .ag-portrait {
+            grid-row: 3 / 5; grid-column: 1;
+            position: absolute; right: 0; bottom: 0;
+            top: calc(-1 * clamp(40px, 4.2vw, 90px));
+            width: var(--col);
+            z-index: 0; pointer-events: none;
+        }
+        .ag-portrait img {
+            position: absolute; bottom: 0; left: 50%; transform: translateX(-50%);
+            height: 100%; width: auto; max-width: none;
+            filter: drop-shadow(0 18px 30px rgba(0,0,0,.18));
+            -webkit-mask-image: linear-gradient(to bottom, #000 93%, transparent);
+                    mask-image: linear-gradient(to bottom, #000 93%, transparent);
+        }
+
+        /* ---------------- Hero ---------------- */
+        .ag-landing .ag-h1 {
+            display: flex; flex-wrap: wrap; align-items: center; gap: 0 14px;
+            margin: 0; font-family: inherit;
+            font-size: clamp(30px, 2.6vw + 10px, 58px); font-weight: 500; line-height: 1.25;
+            letter-spacing: -.5px; color: var(--ag-ink);
+        }
+        .ag-h1 .ag-green { color: var(--ag-green); }
+        /* Nastaliq has very tall ascenders/descenders: give it its own box that is
+           tall enough to contain them, so it never runs into the lines around it */
+        .ag-landing .ag-urdu {
+            display: inline-block; vertical-align: middle;
+            font-family: 'Noto Nastaliq Urdu', 'Jameel Noori Nastaleeq', 'Urdu Typesetting', serif;  /* Noto is self-hosted in ACAGLanding.css */
+            font-size: clamp(20px, 1.6vw + 6px, 38px); font-weight: 700;
+            line-height: 2.5; direction: rtl; color: var(--ag-ink);
+        }
+        .ag-landing .ag-h2 {
+            margin: 4px 0 0; font-family: inherit; color: var(--ag-orange);
+            font-size: clamp(21px, 1.4vw + 8px, 36px); font-weight: 500; line-height: 1.25;
+        }
+        .ag-landing .ag-intro {
+            margin: 14px 0 0; font-size: clamp(15px, .45vw + 11px, 19px); line-height: 1.6; color: var(--ag-ink);
+            max-width: min(1050px, calc(100% - var(--col) - var(--sgap)));
+        }
+        .ag-intro b { font-weight: 600; }
+        .ag-landing .ag-intro a { color: var(--ag-green); font-weight: 500; }
+        .ag-landing .ag-intro a:hover { color: #2c7d30; }
+
+        /* ---------------- Helpline ---------------- */
+        .ag-landing .ag-helpline {
+            justify-self: start;
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-top: clamp(16px, 1.4vw, 24px);
+            padding: 6px 20px 6px 6px; border-radius: 999px;
+            background: rgba(255,255,255,.9);
+            border: 1px solid rgba(58,154,62,.28);
+            box-shadow: 0 4px 14px rgba(11,47,44,.08);
+            color: var(--ag-green-dark); white-space: nowrap;
+            transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+        }
+        .ag-landing .ag-helpline:hover, .ag-landing .ag-helpline:focus-visible {
+            transform: translateY(-2px); border-color: var(--ag-green);
+            box-shadow: 0 8px 20px rgba(11,47,44,.14); color: var(--ag-green-dark);
+        }
+        .ag-ring {
+            position: relative; flex: none; width: 44px; height: 44px; border-radius: 50%;
+            background: linear-gradient(135deg, #43ac47, #2c7d30); color: #fff;
+            display: grid; place-items: center;
+        }
+        .ag-ring::after {
+            content: ""; position: absolute; inset: 0; border-radius: 50%;
+            border: 2px solid var(--ag-green); opacity: 0;
+            animation: ag-ring-pulse 2.4s ease-out infinite;
+        }
+        @keyframes ag-ring-pulse { 0% { transform: scale(1); opacity: .55; } 100% { transform: scale(1.55); opacity: 0; } }
+        .ag-ring svg { width: 20px; height: 20px; }
+        .ag-help-txt { display: flex; flex-direction: column; line-height: 1.15; }
+        .ag-help-lbl { font-size: 11px; font-weight: 600; letter-spacing: .8px; text-transform: uppercase; color: var(--ag-green); }
+        .ag-help-num { font-size: clamp(17px, .5vw + 11px, 21px); font-weight: 600; letter-spacing: .3px; }
+
+        /* ---------------- Action cards ---------------- */
+        .ag-actions {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 490px));
+            gap: clamp(14px, 1.3vw, 25px) clamp(14px, 1vw, 20px);
+            margin-top: clamp(20px, 1.8vw, 32px); align-items: stretch;
+        }
+        .ag-landing .ag-card {
+            position: relative; overflow: hidden; isolation: isolate;
+            display: grid; grid-template-columns: auto minmax(0, 1fr) auto; align-items: center;
+            gap: clamp(12px, 1.1vw, 20px);
+            min-height: clamp(92px, 5.6vw, 108px);
+            padding: clamp(14px, 1vw, 18px) clamp(16px, 1.4vw, 24px);
+            border-radius: 18px;
+            transition: transform .2s ease, box-shadow .2s ease;
+        }
+        .ag-card::before {        /* soft glow in the corner */
+            content: ""; position: absolute; z-index: -1; right: -40px; top: -60px;
+            width: 180px; height: 180px; border-radius: 50%;
+            background: radial-gradient(circle, var(--glow) 0%, transparent 70%);
+        }
+        .ag-ico {
+            width: clamp(46px, 3.2vw, 58px); height: clamp(46px, 3.2vw, 58px); border-radius: 14px;
+            display: grid; place-items: center; background: var(--ico-bg); color: var(--ico-fg);
+        }
+        .ag-ico svg { width: 52%; height: 52%; }
+        .ag-txt { display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+        .ag-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: .9px; text-transform: uppercase; color: var(--eyebrow); }
+        .ag-title { font-size: clamp(17px, .45vw + 12px, 20px); font-weight: 600; letter-spacing: -.2px; line-height: 1.25; }
+        .ag-card small { font-size: clamp(13px, .2vw + 10.5px, 14.5px); color: var(--sub); line-height: 1.35; }
+        .ag-arrow {
+            width: clamp(44px, 3vw, 54px); height: clamp(44px, 3vw, 54px); border-radius: 50%;
+            display: grid; place-items: center; background: var(--arr-bg); color: var(--arr-fg);
+            transition: transform .2s ease;
+        }
+        .ag-arrow svg { width: 46%; height: 46%; }
+
+        /* Same hover on every card: whole card lifts, arrow nudges right */
+        .ag-landing .ag-card:hover, .ag-landing .ag-card:focus-visible { transform: translateY(-6px); box-shadow: var(--shadow-h); }
+        .ag-card:hover .ag-arrow, .ag-card:focus-visible .ag-arrow { transform: translateX(6px); }
+        .ag-card:focus-visible { outline: 3px solid #f7c21a; outline-offset: 3px; }
+
+        /* New applications */
+        .ag-landing .ag-card.ag-blue, .ag-landing .ag-card.ag-blue:hover {
+            color: #fff;
+            background: linear-gradient(135deg, #2f6fe4 0%, #1d3f9e 100%);
+            --glow: rgba(147,197,253,.35);
+            --ico-bg: rgba(255,255,255,.16); --ico-fg: #bfdbfe;
+            --eyebrow: #bfdbfe; --sub: rgba(255,255,255,.82);
+            --arr-bg: #fff; --arr-fg: #1d3f9e;
+            --shadow-h: 0 18px 34px rgba(29,63,158,.36);
+        }
+        .ag-card.ag-blue { box-shadow: 0 10px 24px rgba(29,63,158,.25); }
+        .ag-landing .ag-card.ag-teal, .ag-landing .ag-card.ag-teal:hover {
+            color: #fff;
+            background: linear-gradient(135deg, #14a39a 0%, #0b6b6f 100%);
+            --glow: rgba(153,246,228,.32);
+            --ico-bg: rgba(255,255,255,.16); --ico-fg: #ccfbf1;
+            --eyebrow: #ccfbf1; --sub: rgba(255,255,255,.85);
+            --arr-bg: #fff; --arr-fg: #0b6b6f;
+            --shadow-h: 0 18px 34px rgba(11,107,111,.36);
+        }
+        .ag-card.ag-teal { box-shadow: 0 10px 24px rgba(11,107,111,.25); }
+        /* Existing applicants */
+        .ag-landing .ag-card.ag-light, .ag-landing .ag-card.ag-light:hover {
+            color: #16302b;
+            background: rgba(255,255,255,.88);
+            -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+            border: 1px solid rgba(11,47,44,.08);
+            --glow: var(--accent-soft);
+            --ico-bg: var(--accent-soft); --ico-fg: var(--accent);
+            --eyebrow: var(--accent); --sub: #5b6b67;
+            --arr-bg: var(--accent); --arr-fg: #fff;
+            --shadow-h: 0 18px 32px rgba(15,23,42,.14);
+        }
+        .ag-card.ag-light { box-shadow: 0 8px 22px rgba(15,23,42,.08); }
+        .ag-card.ag-amber { --accent: #d97706; --accent-soft: rgba(245,158,11,.16); }
+        .ag-card.ag-coral { --accent: #e2551f; --accent-soft: rgba(242,106,27,.14); }
+
+        /* ---------------- Stat tiles ---------------- */
+        .ag-stats {
+            display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--sgap);
+            margin: clamp(28px, 4vw, 70px) 0 clamp(24px, 2vw, 40px);
+        }
+        .ag-stat {
+            position: relative; border-radius: var(--ag-radius); border: 1px solid;
+            padding: clamp(18px, 1.3vw, 24px); min-height: clamp(170px, 10.5vw, 200px);
+            display: flex; flex-direction: column; justify-content: space-between;
+        }
+        .ag-stat-icon {
+            width: clamp(54px, 3.6vw, 68px); height: clamp(54px, 3.6vw, 68px); border-radius: 50%;
+            display: grid; place-items: center;
+        }
+        .ag-stat-icon svg { width: 50%; height: 50%; }
+        .ag-spark { position: absolute; top: 22px; right: clamp(16px, 1.6vw, 30px); width: clamp(100px, 8vw, 126px); }
+        .ag-spark svg { display: block; width: 100%; height: auto; }
+        .ag-stat-body { margin-top: 20px; }
+        .ag-landing .ag-value, .ag-landing .ag-value .value {
+            font-size: clamp(22px, .7vw + 14px, 28px); font-weight: 500; letter-spacing: -.5px;
+            color: #1f2937; white-space: nowrap; line-height: 1.2;
+        }
+        .ag-landing .ag-value small { font-size: .6em; font-weight: 400; color: #777; margin-left: 4px; }
+        .ag-landing .ag-value .ag-cur { font-size: .55em; font-weight: 500; margin-right: 4px; }
+        .ag-stat-label { font-size: clamp(15px, .3vw + 12px, 18px); font-weight: 500; color: #333; margin-top: 2px; }
+        .ag-stat.ag-s-blue   { background: rgba(243,247,255,.95); border-color: #4f7df0; }
+        .ag-stat.ag-s-yellow { background: rgba(255,251,236,.95); border-color: #f2c544; }
+        .ag-stat.ag-s-green  { background: rgba(240,251,244,.95); border-color: #7fd6a0; }
+        .ag-stat.ag-s-orange { background: rgba(255,245,238,.95); border-color: #f58a52; }
+        .ag-s-blue   .ag-stat-icon { background: #3b82f6; }
+        .ag-s-yellow .ag-stat-icon { background: #f5b82e; }
+        .ag-s-green  .ag-stat-icon { background: #3fa55a; }
+        .ag-s-orange .ag-stat-icon { background: #f25c1f; }
+
+        /* ---------------- Footer (replaces the master page's blue .footer on this page) ---------------- */
+        .footer { display: none !important; }
+        .ag-footer { padding: 0 0 14px; position: relative; z-index: 2; }
+        .ag-footer-bar {
+            display: flex; align-items: center; justify-content: center; gap: 6px 14px; flex-wrap: wrap; text-align: center;
+            min-height: 44px; padding: 6px 18px;
+            border-radius: 14px;
+            background: rgba(255,255,255,.62);
+            -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,.75);
+            box-shadow: 0 1px 2px rgba(15,23,42,.04), 0 6px 18px rgba(15,23,42,.05);
+            font-size: 13.5px; font-weight: 400; color: #5b6472; line-height: 1.4; letter-spacing: .1px;
+        }
+        .ag-footer-copy b { font-weight: 500; color: #374151; }
+        .ag-footer-by { display: inline-flex; align-items: center; gap: 8px; }
+        .ag-footer-dot { width: 4px; height: 4px; border-radius: 50%; background: #c4c9cf; flex: none; }
+        .ag-footer-by img { height: 26px; width: auto; display: block; }
+        .ag-footer-by .ag-pitb { color: #1b843e; font-weight: 600; letter-spacing: .4px; }
+
+        @media (prefers-reduced-motion: reduce) {
+            .ag-card, .ag-arrow, .ag-helpline { transition: none; }
+            .ag-ring::after { animation: none; }
+        }
+
+        /* ===== Desktop: fill the screen, helpline top-right, tiles + portrait on the bottom ===== */
+        @media (min-width: 1200px) {
+            .ag-top {
+                min-height: calc(100vh - var(--ag-header-h) - var(--ag-footer-h));
+                min-height: calc(100svh - var(--ag-header-h) - var(--ag-footer-h));
+                grid-template-rows: auto auto auto 1fr;
+            }
+            /* grid-area:auto so the absolute helpline is positioned against the whole grid (top-right) */
+            .ag-landing .ag-helpline { grid-area: auto; position: absolute; top: clamp(8px, 1vw, 16px); right: 0; margin-top: 0; }
+            .ag-landing .ag-h1 { padding-right: 270px; }   /* keep the heading clear of the helpline */
+            .ag-stats { align-self: end; margin-top: clamp(28px, 3vw, 56px); margin-bottom: clamp(16px, 1.6vw, 28px); }
+            .ag-portrait img { max-height: 52vw; }
+        }
+
+        /* ===== Short desktop screens (laptops, 125% scaling): tighten vertical spacing
+                 so header + content + footer fit without a vertical scrollbar ===== */
+        @media (min-width: 1200px) and (max-height: 920px) {
+            .ag-hero { padding-top: 2px; }
+            .ag-landing .ag-h1 { font-size: clamp(30px, 5.4vh, 50px); }
+            .ag-landing .ag-urdu { font-size: clamp(20px, 3.6vh, 34px); line-height: 2.2; }
+            .ag-landing .ag-h2 { font-size: clamp(20px, 3.3vh, 30px); margin-top: 0; }
+            .ag-landing .ag-intro { font-size: clamp(14px, 2vh, 17px); line-height: 1.5; margin-top: 6px; }
+            .ag-landing .ag-helpline { top: 4px; }
+            .ag-actions { margin-top: clamp(10px, 1.8vh, 18px); gap: clamp(10px, 1.5vh, 14px) 14px; }
+            .ag-landing .ag-card { min-height: clamp(72px, 10vh, 92px); padding: 10px 18px; }
+            .ag-ico { width: 44px; height: 44px; border-radius: 12px; }
+            .ag-arrow { width: 42px; height: 42px; }
+            .ag-stats { margin-top: clamp(14px, 2.4vh, 28px); margin-bottom: clamp(8px, 1.4vh, 16px); }
+            .ag-stat { min-height: clamp(124px, 18vh, 170px); padding: 14px 18px; }
+            .ag-stat-icon { width: 48px; height: 48px; }
+            .ag-spark { top: 16px; width: clamp(90px, 7vw, 116px); }
+            .ag-stat-body { margin-top: 8px; }
+            .ag-landing .ag-value, .ag-landing .ag-value .value { font-size: clamp(20px, 3vh, 26px); }
+            .ag-stat-label { font-size: clamp(14px, 1.9vh, 16px); }
+        }
+
+        /* ================= Breakpoints ================= */
+        @media (max-width: 1599px) {
+            .ag-actions { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+
+        /* Small laptops / landscape tablets: tiles 2-per-row, portrait beside the text & cards */
+        @media (max-width: 1199px) {
+            .ag-top {
+                grid-template-columns: minmax(0, 1fr) clamp(220px, 30vw, 360px);
+                grid-template-areas: "hero portrait" "helpline portrait" "actions portrait" "stats stats";
+                column-gap: clamp(16px, 2vw, 32px);
+            }
+            .ag-actions { width: auto; }
+            .ag-landing .ag-intro { max-width: none; }
+            .ag-portrait { grid-area: 1 / 2 / 4 / 3; position: relative; top: auto; right: auto; bottom: auto; width: auto; align-self: stretch; }
+            .ag-portrait img {
+                left: auto; right: 0; transform: none; max-height: 50vw;
+                -webkit-mask-image: linear-gradient(to bottom, #000 88%, transparent);
+                        mask-image: linear-gradient(to bottom, #000 88%, transparent);
+            }
+            .ag-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); margin-top: clamp(28px, 4vw, 48px); }
+        }
+
+        /* Portrait tablets / phones: everything stacks */
+        @media (max-width: 860px) {
+            .ag-landing { background: linear-gradient(rgba(255,255,255,.85), rgba(255,255,255,.65)); }
+            .ag-top { grid-template-columns: minmax(0, 1fr); grid-template-areas: "hero" "helpline" "portrait" "actions" "stats"; }
+            .ag-portrait { grid-area: portrait; justify-self: center; align-self: start; margin-top: 12px; }
+            .ag-portrait img {
+                position: static; transform: none; display: block; max-height: none;
+                height: clamp(240px, 60vw, 380px); filter: none;
+                -webkit-mask-image: radial-gradient(ellipse 60% 70% at 50% 40%, #000 60%, transparent 100%);
+                        mask-image: radial-gradient(ellipse 60% 70% at 50% 40%, #000 60%, transparent 100%);
+            }
+            .ag-landing .ag-helpline { justify-self: stretch; justify-content: center; }
+            .ag-actions { grid-template-columns: minmax(0, 1fr); margin-top: 0; }
+        }
+
+        @media (max-width: 540px) {
+            .ag-h1 { gap: 0 8px; }
+            .ag-landing .ag-helpline { padding: 5px 16px 5px 5px; gap: 10px; }
+            .ag-ring { width: 34px; height: 34px; }
+            .ag-ring svg { width: 17px; height: 17px; }
+            .ag-help-txt { flex-direction: row; align-items: baseline; gap: 8px; flex-wrap: wrap; justify-content: center; }
+            .ag-help-lbl { font-size: 10.5px; }
+            .ag-help-num { font-size: 17px; }
+            .ag-stats { grid-template-columns: minmax(0, 1fr); }
+            .ag-stat { min-height: 150px; }
+            .ag-footer-bar { padding: 10px 14px; font-size: 12.5px; gap: 6px 16px; }
+            .ag-footer-dot { display: none; }
+        }
+    </style>
+</head>
+<body>
+    
+    <form method="post" action="./index.aspx" id="BodyForm" class="position-relative form-min-height">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="D1zC6plvO195sKbZ0SgHpeHDDxbzCVFwR6R9SKjwrCFThDjhlEafI1eDkuFotxfNK/4xZh9brZm1a4SRFlQIPdubAy6jixEtRrxyMxUaar1fIyi5/86MWZklF4BsyhpnBn/LisCe7POCD3/MsTiAtA8Yi0pF9e4fWACOw2uOmxXjawiwtlD9lmrn8dHcd8uWVZ2m65Ae+OpYSRmmnjKseng4ea7gLOM1UgwcyzknwtW2KZHS6JQ3jhiI9mdB1r7PfcaZuM2XM5mqLqAIhTrW8zMA2kDEtXzdkdQqJ4v+yjd0cZMaa3dJPgqbp9e7fxTe" />
+
+
+<script src="/bundles/MsAjaxJs?v=D6VN0fHlwFSIWjbVzi6mZyE9Ls-4LNrSSYVGRU46XF81" type="text/javascript"></script>
+<script type="text/javascript">
+//<![CDATA[
+if (typeof(Sys) === 'undefined') throw new Error('ASP.NET Ajax client-side framework failed to load.');
+//]]>
+</script>
+
+<script src="Scripts/jquery-3.5.1.js" type="text/javascript"></script>
+<script src="Scripts/lib/bootstrap/bootstrap.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+<script src="/bundles/WebFormsJs?v=N8tymL9KraMLGAMFuPycfH3pXe6uUlRXdhtYv8A_jUU1" type="text/javascript"></script>
+<script src="Scripts/lib/validationEngine/languages/jquery.validationEngine-en.js" type="text/javascript"></script>
+<script src="Scripts/lib/validationEngine/jquery.validationEngine.js" type="text/javascript"></script>
+<script src="Scripts/lib/validationEngine/validations-rules.js" type="text/javascript"></script>
+<script src="Scripts/lib/toastr/toastr.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/momentjs/moment.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/momentjs/moment-with-locales.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/angular/angular.js" type="text/javascript"></script>
+<script src="Scripts/lib/angular/angular-sanitize.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/angular-moment/angular-moment.min.js" type="text/javascript"></script>
+<script src="Scripts/lib/angular-ui-date/date.js" type="text/javascript"></script>
+<script src="Scripts/js/common.js" type="text/javascript"></script>
+<input type="hidden" name="__VIEWSTATEGENERATOR" id="__VIEWSTATEGENERATOR" value="90059987" />
+<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="A6/niEDn9iuS83/C6CPw7Q64M/y77hAqLqrF0SVjASd0RUZPtObpqqmC7r3YGawBAohjc+Z3aadA78W5hWPEF39/t6ygBv8ip6fzsIGHC9zFW989F0IrpMmXZrgAjraz" />
+        <script type="text/javascript"> var bform = document.getElementById('BodyForm'); if (bform.length > 0) { bform.setAttribute('name', 'aspnetForm'); } </script>
+        <input type="hidden" name="ctl00$WebAPIPath" id="WebAPIPath" value="http://localhost:57980" />
+        <div class="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="leftLogo">
+                            <img src="/images/ACAGLogoUrdu.png" alt="Right Logo" />
+                            <img src="/images/logo-phata.png" alt="Left Logo" />
+                            <img src="/images/ACMCLogo.png" alt="Right Logo" />
+                        </div>
+                        <div class="rightContent">
+                            <button type="button" class="navbar-toggle collapsed open" data-toggle="collapse" data-target="#landingMenu">
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                            <div class="landingMenu collapse" id="landingMenu">
+                                <button type="button" class="navbar-toggle close" data-toggle="collapse" data-target="#landingMenu">
+                                    <span class="fa fa-remove"></span>
+                                </button>
+                                <ul>
+                                    
+                                    <li><a href="/Layouts/AboutProgramme">About Program</a></li>
+                                    <li><a href="/Layouts/EligibilityCriteria">Eligibility Criteria</a></li>
+                                    
+                                    <li><a href="/Layouts/contact">Contact Us</a></li>
+                                </ul>
+                                
+                                <a href="Login.aspx" class="btn btn-login">Login</a>
+                                <a href="AdminLogin.aspx" class="btn btn-adminLogin">Admin</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        
+        <div class="container-fluid">
+            <div id="overlay" class="preloader" style="background-color: rgba(255, 255, 255, 0.6); display: none;">
+                <div class="cssload-speeding-wheel"></div>
+            </div>
+            
+    <div class="ACMC-Landing ag-landing">
+    <div class="ag-top">
+
+        <!-- Heading + CM message -->
+        <section class="ag-hero">
+            <h1 class="ag-h1">
+                <span>Apni Chhat <span class="ag-green">Apna Ghar</span></span>
+                <span class="ag-urdu" lang="ur">گھر کی تعمیر و تکمیل کا سفر</span>
+            </h1>
+            <h2 class="ag-h2">A Message from Chief Minister Punjab</h2>
+            <p class="ag-intro">It gives me immense pleasure and satisfaction to welcome you to <b>“Apni Chhat Apna Ghar Program”</b> an initiative close to my heart. Our mission is simple yet profound: to provide affordable... <a href="/Layouts/CMMessageDetail">Read More</a></p>
+        </section>
+
+        <!-- Toll-free helpline -->
+        <a class="ag-helpline" href="tel:080009100" aria-label="Toll-free helpline 0800-09100">
+            <span class="ag-ring" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25 11.4 11.4 0 0 0 3.6.57 1 1 0 0 1 1 1V20a1 1 0 0 1-1 1A17 17 0 0 1 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1z"/></svg></span>
+            <span class="ag-help-txt"><span class="ag-help-lbl">Toll-Free Helpline</span><span class="ag-help-num">0800-09100</span></span>
+        </a>
+
+        <!-- CM portrait (sits behind the last stat tile on desktop) -->
+        <div class="ag-portrait">
+            <img src="/images/CM.png" alt="Chief Minister Punjab" />
+        </div>
+
+        <!-- Action cards -->
+        <section class="ag-actions">
+            <a class="ag-card ag-blue" href="Layouts/Registration.aspx?LoanCategoryID=0" aria-label="Apni Chhat Apna Ghar - Apply for Construction of New House">
+                <span class="ag-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-6h4v6"/></svg></span>
+                <span class="ag-txt">
+                    <span class="ag-eyebrow">New Application</span>
+                    <span class="ag-title">Apni Chhat Apna Ghar</span>
+                    <small>Apply for Construction of New House</small>
+                </span>
+                <span class="ag-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+            </a>
+
+            <a class="ag-card ag-teal" href="Layouts/LoanCategory.aspx" aria-label="Apni Chhat Mehfooz Chhat - Apply for Addition of New Floor/Room">
+                <span class="ag-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21V10l8-6 8 6v11z"/><path d="M4 15h16"/><path d="M12 6.5v5M9.5 9h5"/></svg></span>
+                <span class="ag-txt">
+                    <span class="ag-eyebrow">New Application</span>
+                    <span class="ag-title">Apni Chhat Mehfooz Chhat</span>
+                    <small>Apply for Addition of New Floor/Room</small>
+                </span>
+                <span class="ag-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+            </a>
+
+            <a class="ag-card ag-light ag-amber" href="/Login.aspx" aria-label="Request for Release of 2nd Installment">
+                <span class="ag-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="6" width="19" height="12" rx="2"/><circle cx="12" cy="12" r="2.6"/><path d="M6 9.5v5M18 9.5v5"/></svg></span>
+                <span class="ag-txt">
+                    <span class="ag-eyebrow">Existing Applicants</span>
+                    <span class="ag-title">Request for Release of 2nd Installment</span>
+                </span>
+                <span class="ag-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+            </a>
+
+            <a class="ag-card ag-light ag-coral" href="/Login.aspx" aria-label="Request for Change of Loan Category">
+                <span class="ag-ico" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 4L3 8l4 4"/><path d="M3 8h13a4 4 0 0 1 4 4"/><path d="M17 20l4-4-4-4"/><path d="M21 16H8a4 4 0 0 1-4-4"/></svg></span>
+                <span class="ag-txt">
+                    <span class="ag-eyebrow">Existing Applicants</span>
+                    <span class="ag-title">Request for Change of Loan Category</span>
+                </span>
+                <span class="ag-arrow" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></span>
+            </a>
+        </section>
+
+        <!-- Housing stats -->
+        <section class="ag-stats">
+            <!-- Loans Disbursed -->
+            <div class="ag-stat ag-s-blue">
+                <span class="ag-stat-icon" aria-hidden="true">
+                    <svg width="35" height="35" viewBox="0 0 35 35" fill="none">
+                        <g clip-path="url(#clip0_638_2446)">
+                            <path
+                                d="M23.1637 2.89453C19.1683 2.89453 15.9256 6.13723 15.9256 10.1327C15.9256 14.1282 19.1683 17.3709 23.1637 17.3709C27.1592 17.3709 30.4019 14.1282 30.4019 10.1327C30.4019 6.13723 27.1592 2.89453 23.1637 2.89453ZM23.1637 14.4756C20.7607 14.4756 18.8208 12.5358 18.8208 10.1327C18.8208 7.72963 20.7607 5.7898 23.1637 5.7898C25.5668 5.7898 27.5066 7.72963 27.5066 10.1327C27.5066 12.5358 25.5668 14.4756 23.1637 14.4756ZM27.5066 23.1614H24.6114C24.6114 21.4243 23.5256 19.8608 21.9043 19.2528L12.9869 15.9232H1.44922V31.8472H10.135V29.7626L20.2685 32.571L31.8495 28.952V27.5043C31.8495 25.1012 29.9097 23.1614 27.5066 23.1614ZM7.23976 28.952H4.34449V18.8185H7.23976V28.952ZM20.225 29.5455L10.135 26.7805V18.8185H12.4657L20.891 21.9599C21.3831 22.1481 21.7161 22.6258 21.7161 23.1614C21.7161 23.1614 18.8208 23.089 18.3865 22.9443L14.9412 21.8006L14.0292 24.5511L17.4745 25.6948C18.2128 25.9409 18.9801 26.0567 19.7618 26.0567H27.5066C28.0712 26.0567 28.5779 26.4041 28.8095 26.8818L20.225 29.5455Z"
+                                fill="white" />
+                        </g>
+                        <defs>
+                            <clipPath id="clip0_638_2446">
+                                <rect width="34.7432" height="34.7432" fill="white" />
+                            </clipPath>
+                        </defs>
+                    </svg>
+                </span>
+                <span class="ag-spark" aria-hidden="true">
+                    <svg width="126" height="62" viewBox="0 0 126 62" fill="none">
+                        <path
+                            d="M1.25407 58.1864L2.38419e-07 59.0094L1.64597 61.5175L2.90004 60.6946L2.07706 59.4405L1.25407 58.1864ZM29.1937 41.6452L29.7204 40.2407L29.0074 39.9733L28.3707 40.3911L29.1937 41.6452ZM49.5312 49.2717L49.0045 50.6762L49.9089 51.0154L50.5919 50.3324L49.5312 49.2717ZM72.4109 26.392L73.2995 25.1836L72.2614 24.4203L71.3503 25.3314L72.4109 26.392ZM86.8166 36.9845L85.9281 38.193L86.9417 38.9383L87.8521 38.0698L86.8166 36.9845ZM125.178 1.85285C125.197 1.02465 124.542 0.337468 123.714 0.317981L110.217 0.000421762C109.389 -0.0190653 108.702 0.636525 108.683 1.46472C108.663 2.29292 109.319 2.9801 110.147 2.99959L122.143 3.28187L121.861 15.2785C121.842 16.1067 122.497 16.7939 123.326 16.8134C124.154 16.8329 124.841 16.1773 124.86 15.3491L125.178 1.85285ZM2.07706 59.4405L2.90004 60.6946L30.0167 42.8992L29.1937 41.6452L28.3707 40.3911L1.25407 58.1864L2.07706 59.4405ZM29.1937 41.6452L28.667 43.0497L49.0045 50.6762L49.5312 49.2717L50.0579 47.8672L29.7204 40.2407L29.1937 41.6452ZM49.5312 49.2717L50.5919 50.3324L73.4716 27.4527L72.4109 26.392L71.3503 25.3314L48.4706 48.2111L49.5312 49.2717ZM72.4109 26.392L71.5223 27.6005L85.9281 38.193L86.8166 36.9845L87.7052 35.776L73.2995 25.1836L72.4109 26.392ZM86.8166 36.9845L87.8521 38.0698L124.714 2.90288L123.678 1.81757L122.643 0.732249L85.7812 35.8992L86.8166 36.9845Z"
+                            fill="url(#paint0_linear_638_2442)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_638_2442" x1="125.797" y1="4.78345"
+                                x2="7.16144" y2="57.322" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#3B82F6" />
+                                <stop offset="0.817308" stop-color="#CFE5FE" />
+                                <stop offset="1" stop-color="#F4F9FD" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <div class="ag-stat-body">
+                    <div class="ag-value"><span id="MainContent_lblLoansDisbursed" class="value">230,044 <small>No.</small></span></div>
+                    <div class="ag-stat-label">Loans Disbursed</div>
+                </div>
+            </div>
+
+            <!-- Amount Disbursed -->
+            <div class="ag-stat ag-s-yellow disabled-card">
+                <span class="ag-stat-icon" aria-hidden="true">
+                    <svg width="31" height="31" viewBox="0 0 31 31" fill="none">
+                        <path
+                            d="M28.9062 13.8691H20.8125C18.2757 13.8691 16.1875 15.9573 16.1875 18.4941C16.1875 21.031 18.2757 23.1191 20.8125 23.1191H25.4375V26.5879C25.4375 27.2227 24.916 27.7441 24.2812 27.7441H5.78125C3.87806 27.7441 2.3125 26.1786 2.3125 24.2754V6.93164C2.3125 5.02845 3.87806 3.46289 5.78125 3.46289H8.09375C8.72853 3.46289 9.25 2.94142 9.25 2.30664C9.25 1.67186 8.72853 1.15039 8.09375 1.15039H5.78125C2.60966 1.15039 0 3.76005 0 6.93164V24.2754C0 27.447 2.60966 30.0566 5.78125 30.0566H24.2812C26.1844 30.0566 27.75 28.4911 27.75 26.5879V23.1191H28.9062C29.541 23.1191 30.0625 22.5977 30.0625 21.9629V15.0254C30.0625 14.3906 29.541 13.8691 28.9062 13.8691ZM27.75 20.8066H20.8125C19.5441 20.8066 18.5 19.7625 18.5 18.4941C18.5 17.2257 19.5441 16.1816 20.8125 16.1816H27.75V20.8066Z"
+                            fill="white" />
+                        <path
+                            d="M5.3652 5.85795C4.07482 6.42104 4.50148 8.08951 5.78145 8.08951H24.2814C24.9162 8.08951 25.4377 8.61098 25.4377 9.24576V10.402C25.4377 11.0368 25.9592 11.5583 26.5939 11.5583C27.2287 11.5583 27.7502 11.0368 27.7502 10.402V9.24576C27.7502 8.32579 27.3847 7.4435 26.7342 6.79298C26.0837 6.14247 25.2014 5.77701 24.2814 5.77701H23.9114L21.888 0.724198C21.7735 0.442629 21.5532 0.217148 21.2743 0.0961048C20.9955 -0.0249382 20.6804 -0.0319054 20.3964 0.0766975L5.3652 5.85795ZM21.4139 5.77701H12.0136L20.1652 2.64357L21.4139 5.77701Z"
+                            fill="white" />
+                    </svg>
+                </span>
+                <span class="ag-spark" aria-hidden="true">
+                    <svg width="126" height="62" viewBox="0 0 126 62" fill="none">
+                        <path
+                            d="M1.25404 58.1864L-3.02792e-05 59.0094L1.64594 61.5175L2.90001 60.6946L2.07703 59.4405L1.25404 58.1864ZM29.1937 41.6452L29.7204 40.2407L29.0074 39.9733L28.3707 40.3911L29.1937 41.6452ZM49.5312 49.2717L49.0045 50.6762L49.9089 51.0154L50.5919 50.3324L49.5312 49.2717ZM72.4109 26.392L73.2995 25.1836L72.2614 24.4203L71.3502 25.3314L72.4109 26.392ZM86.8166 36.9845L85.928 38.193L86.9417 38.9383L87.852 38.0698L86.8166 36.9845ZM125.178 1.85285C125.197 1.02465 124.542 0.337468 123.714 0.317981L110.217 0.000421762C109.389 -0.0190653 108.702 0.636525 108.682 1.46472C108.663 2.29292 109.319 2.9801 110.147 2.99959L122.143 3.28187L121.861 15.2785C121.842 16.1067 122.497 16.7939 123.325 16.8134C124.154 16.8329 124.841 16.1773 124.86 15.3491L125.178 1.85285ZM2.07703 59.4405L2.90001 60.6946L30.0167 42.8992L29.1937 41.6452L28.3707 40.3911L1.25404 58.1864L2.07703 59.4405ZM29.1937 41.6452L28.667 43.0497L49.0045 50.6762L49.5312 49.2717L50.0579 47.8672L29.7204 40.2407L29.1937 41.6452ZM49.5312 49.2717L50.5919 50.3324L73.4715 27.4527L72.4109 26.392L71.3502 25.3314L48.4705 48.2111L49.5312 49.2717ZM72.4109 26.392L71.5223 27.6005L85.928 38.193L86.8166 36.9845L87.7052 35.776L73.2995 25.1836L72.4109 26.392ZM86.8166 36.9845L87.852 38.0698L124.714 2.90288L123.678 1.81757L122.643 0.732249L85.7812 35.8992L86.8166 36.9845Z"
+                            fill="url(#paint0_linear_638_2452)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_638_2452" x1="125.797" y1="4.78345"
+                                x2="7.16141" y2="57.322" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#F5B51F" />
+                                <stop offset="0.817308" stop-color="#F5B51F" stop-opacity="0.42" />
+                                <stop offset="1" stop-color="#F5B51F" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <div class="ag-stat-body">
+                    <div class="ag-value">
+                        <span class="ag-cur">PKR</span><span id="MainContent_lblAmountDisbursed" class="value">301,431.0</span><small>M</small>
+                    </div>
+                    <div class="ag-stat-label">Amount Disbursed</div>
+                </div>
+            </div>
+
+            <!-- Houses Completed -->
+            <div class="ag-stat ag-s-green">
+                <span class="ag-stat-icon" aria-hidden="true">
+                    <svg width="32" height="35" viewBox="0 0 32 35" fill="none">
+                        <path
+                            d="M24.4531 32.6162C25.864 32.6161 27.0635 32.1215 28.04 31.1357C29.0165 30.1499 29.5058 28.9394 29.5059 27.5166V27.5146L29.4082 14.4834C29.4082 13.2114 29.1264 12.0354 28.5605 10.96C27.9926 9.88072 27.1727 9.03632 26.1045 8.42969L18.3477 3.53516L18.3428 3.53125C17.5343 3.05509 16.6413 2.81838 15.6689 2.81836C14.6966 2.81836 13.8036 3.0551 12.9951 3.53125L12.9902 3.53516L5.22559 8.43457C4.16327 9.1049 3.34567 9.96238 2.77832 11.0068C2.21118 12.051 1.92871 13.2114 1.92871 14.4834V14.4844L2.02637 27.5176C2.02665 28.9399 2.51502 30.1501 3.49121 31.1357C4.46563 32.1195 5.63235 32.6161 6.98145 32.6162H24.4531ZM6.98145 30.2559C6.26238 30.2557 5.63332 29.9862 5.08594 29.4336C4.53845 28.8808 4.27057 28.2446 4.27051 27.5166V14.4834C4.27051 13.6659 4.45657 12.8966 4.83008 12.1738C5.20164 11.4549 5.72654 10.8775 6.40723 10.4395H6.4082L14.2705 5.54004C14.6883 5.30045 15.169 5.17773 15.7178 5.17773C16.1976 5.17781 16.6463 5.29835 17.0674 5.54004L24.9297 10.4395C25.6142 10.8798 26.1576 11.4447 26.5615 12.1348C26.9623 12.8197 27.165 13.6009 27.165 14.4834V27.5166C27.165 28.2482 26.9098 28.8856 26.3936 29.4375C25.8833 29.983 25.2416 30.2558 24.4531 30.2559H6.98145ZM19.5947 26.7363C19.8127 26.7684 20.0197 26.7453 20.208 26.6553C20.4031 26.5619 20.5631 26.4058 20.6914 26.2021C20.821 25.9965 20.8916 25.7803 20.8916 25.5566C20.8916 25.333 20.8209 25.1167 20.6914 24.9111C20.563 24.7074 20.4032 24.5504 20.208 24.457C20.0172 24.3658 19.8071 24.343 19.5859 24.377H11.835C11.5177 24.377 11.2504 24.5002 11.0498 24.7432C10.8576 24.9761 10.7617 25.2503 10.7617 25.5566C10.7618 25.8629 10.8576 26.1373 11.0498 26.3701C11.2504 26.613 11.5178 26.7363 11.835 26.7363H19.5947Z"
+                            fill="white" stroke="white" stroke-width="0.4" />
+                    </svg>
+                </span>
+                <span class="ag-spark" aria-hidden="true">
+                    <svg width="126" height="62" viewBox="0 0 126 62" fill="none">
+                        <path
+                            d="M1.25404 58.1864L-3.02792e-05 59.0094L1.64594 61.5175L2.90001 60.6946L2.07703 59.4405L1.25404 58.1864ZM29.1937 41.6452L29.7204 40.2407L29.0074 39.9733L28.3707 40.3911L29.1937 41.6452ZM49.5312 49.2717L49.0045 50.6762L49.9089 51.0154L50.5919 50.3324L49.5312 49.2717ZM72.4109 26.392L73.2995 25.1836L72.2614 24.4203L71.3502 25.3314L72.4109 26.392ZM86.8166 36.9845L85.928 38.193L86.9417 38.9383L87.852 38.0698L86.8166 36.9845ZM125.178 1.85285C125.197 1.02465 124.542 0.337468 123.714 0.317981L110.217 0.000421762C109.389 -0.0190653 108.702 0.636525 108.682 1.46472C108.663 2.29292 109.319 2.9801 110.147 2.99959L122.143 3.28187L121.861 15.2785C121.842 16.1067 122.497 16.7939 123.325 16.8134C124.154 16.8329 124.841 16.1773 124.86 15.3491L125.178 1.85285ZM2.07703 59.4405L2.90001 60.6946L30.0167 42.8992L29.1937 41.6452L28.3707 40.3911L1.25404 58.1864L2.07703 59.4405ZM29.1937 41.6452L28.667 43.0497L49.0045 50.6762L49.5312 49.2717L50.0579 47.8672L29.7204 40.2407L29.1937 41.6452ZM49.5312 49.2717L50.5919 50.3324L73.4715 27.4527L72.4109 26.392L71.3502 25.3314L48.4705 48.2111L49.5312 49.2717ZM72.4109 26.392L71.5223 27.6005L85.928 38.193L86.8166 36.9845L87.7052 35.776L73.2995 25.1836L72.4109 26.392ZM86.8166 36.9845L87.852 38.0698L124.714 2.90288L123.678 1.81757L122.643 0.732249L85.7812 35.8992L86.8166 36.9845Z"
+                            fill="url(#paint0_linear_638_2462)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_638_2462" x1="125.797" y1="4.78345"
+                                x2="7.16141" y2="57.322" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#4DB066" />
+                                <stop offset="0.817308" stop-color="#4DB066" stop-opacity="0.4" />
+                                <stop offset="1" stop-color="#4DB066" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <div class="ag-stat-body">
+                    <div class="ag-value"><span id="MainContent_lblHouseCompleted" class="value">128,845 <small>No.</small></span></div>
+                    <div class="ag-stat-label">Houses Completed</div>
+                </div>
+            </div>
+
+            <!-- Under Construction -->
+            <div class="ag-stat ag-s-orange">
+                <span class="ag-stat-icon" aria-hidden="true">
+                    <svg width="34" height="29" viewBox="0 0 34 29" fill="none">
+                        <path
+                            d="M30.1483 12.8883C30.3731 12.8883 30.5853 12.9786 30.7499 13.1464L32.7703 15.1668C32.8512 15.2463 32.9154 15.3412 32.9593 15.4459C33.0031 15.5505 33.0257 15.6629 33.0257 15.7763C33.0257 15.8898 33.0031 16.0022 32.9593 16.1068C32.9154 16.2115 32.8512 16.3063 32.7703 16.3859L31.1869 17.9692L27.9474 14.7298L29.5307 13.1464C29.6959 12.9844 29.9169 12.892 30.1483 12.8883ZM27.0164 15.6433L30.2559 18.8923L20.6831 28.5H17.4167V25.2336L27.0164 15.6433ZM15.8333 4.256L7.91667 11.381V23.75H14.25V26.9167H4.75V14.25H0L15.8333 0L27.6434 10.6289L23.75 14.5223V11.381L15.8333 4.256Z"
+                            fill="white" />
+                    </svg>
+                </span>
+                <span class="ag-spark" aria-hidden="true">
+                    <svg width="126" height="62" viewBox="0 0 126 62" fill="none">
+                        <path
+                            d="M1.25404 58.1864L-3.02792e-05 59.0094L1.64594 61.5175L2.90001 60.6946L2.07703 59.4405L1.25404 58.1864ZM29.1937 41.6452L29.7204 40.2407L29.0074 39.9733L28.3707 40.3911L29.1937 41.6452ZM49.5312 49.2717L49.0045 50.6762L49.9089 51.0154L50.5919 50.3324L49.5312 49.2717ZM72.4109 26.392L73.2995 25.1836L72.2614 24.4203L71.3502 25.3314L72.4109 26.392ZM86.8166 36.9845L85.928 38.193L86.9417 38.9383L87.852 38.0698L86.8166 36.9845ZM125.178 1.85285C125.197 1.02465 124.542 0.337468 123.714 0.317981L110.217 0.000421762C109.389 -0.0190653 108.702 0.636525 108.682 1.46472C108.663 2.29292 109.319 2.9801 110.147 2.99959L122.143 3.28187L121.861 15.2785C121.842 16.1067 122.497 16.7939 123.325 16.8134C124.154 16.8329 124.841 16.1773 124.86 15.3491L125.178 1.85285ZM2.07703 59.4405L2.90001 60.6946L30.0167 42.8992L29.1937 41.6452L28.3707 40.3911L1.25404 58.1864L2.07703 59.4405ZM29.1937 41.6452L28.667 43.0497L49.0045 50.6762L49.5312 49.2717L50.0579 47.8672L29.7204 40.2407L29.1937 41.6452ZM49.5312 49.2717L50.5919 50.3324L73.4715 27.4527L72.4109 26.392L71.3502 25.3314L48.4705 48.2111L49.5312 49.2717ZM72.4109 26.392L71.5223 27.6005L85.928 38.193L86.8166 36.9845L87.7052 35.776L73.2995 25.1836L72.4109 26.392ZM86.8166 36.9845L87.852 38.0698L124.714 2.90288L123.678 1.81757L122.643 0.732249L85.7812 35.8992L86.8166 36.9845Z"
+                            fill="url(#paint0_linear_638_2472)" />
+                        <defs>
+                            <linearGradient id="paint0_linear_638_2472" x1="125.797" y1="4.78345"
+                                x2="7.16141" y2="57.322" gradientUnits="userSpaceOnUse">
+                                <stop stop-color="#FE902C" />
+                                <stop offset="0.817308" stop-color="#FE902C" stop-opacity="0.2" />
+                                <stop offset="1" stop-color="#FE902C" stop-opacity="0" />
+                            </linearGradient>
+                        </defs>
+                    </svg>
+                </span>
+                <div class="ag-stat-body">
+                    <div class="ag-value"><span id="MainContent_lblUnderConstruction" class="value">64,280 <small>No.</small></span></div>
+                    <div class="ag-stat-label">Under Construction</div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="ag-footer">
+        <div class="ag-footer-bar">
+            <span class="ag-footer-copy">&copy; 2026 <b>Apni Chhat Apna Ghar</b>. All rights reserved.</span>
+            <span class="ag-footer-dot" aria-hidden="true"></span>
+            <span class="ag-footer-by">Powered by <img src="/images/pitb-logo.png" alt="" /> <span class="ag-pitb">PITB</span></span>
+        </div>
+    </footer>
+
+    <div class="modal modal-dialog-centered" id="announcement-popup">
+        <div class="modal-dialog modal-xs">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <span class="popup-icon"><svg viewBox="0 0 512 512" width="18" height="18">
+                                <path
+                                    d="M224 0c-35.3 0-64 28.7-64 64V288c0 35.3 28.7 64 64 64H448c35.3 0 64-28.7 64-64V64c0-35.3-28.7-64-64-64H224zM64 160c-35.3 0-64 28.7-64 64V448c0 35.3 28.7 64 64 64H288c35.3 0 64-28.7 64-64V384H288v64H64V224h64V160H64z"
+                                    fill="#ffffff" class="color000 svgShape"></path>
+                            </svg></span>
+                        &nbsp;Important News
+                    </h5>
+                    <button type="button" class="close" data-dismiss="modal" title="Close" aria-label="Close"><i
+                            class="fa fa-times" aria-hidden="true"></i></button>
+                </div>
+                <div class="modal-body">
+                    <div class="popup-wrapper">
+                        <div class="popup-content">
+                            
+                            
+                            <h4 class="card-title">Early Payment Rebate</h4>
+                            <div class="english-announcement">
+                                <div class="mt-20">In case of full and final pre-payment of the outstanding loan amount,
+                                    the borrower will be entitled to the following rebate on their outstanding
+                                    principal:</div>
+                            </div>
+                            <div class="col-md-12 p-0">
+                    <table class="table table-bordered members-table mt-10">
+                        <thead>
+                            <tr>
+                                <th>Repayment Period</th>
+                                <th>Rebate</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1 to 3 years</td>
+                                <td>✅ 20% rebate</td>
+                                
+                            </tr>
+                            <tr>
+                                <td>4 to 6 years</td>
+                                <td>✅ 10% rebate</td>
+                                
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                </div>
+                            <div class="italic-font">
+                                💡 Repay early, save more!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-min-width btn-danger" data-dismiss="modal" title="Close" aria-label="Close">Close</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#announcement-popup').modal('show');
+            $(".close").click(function () {
+                $("#announcement-popup").modal("hide");
+            });
+
+            window.setInterval(function () {
+                $(".blinkListbtn").toggleClass("blinkyellow");
+            }, 500);
+        });
+
+    </script>
+    
+
+        </div>
+        <div class="clearfix pad"></div>
+
+        
+        <script type="text/javascript" src="/Scripts/js/app/init.js"></script>
+        
+        <script type="text/javascript">
+            $(function () {
+                try {
+                    angular.bootstrap(document.body, ['fcportal']);
+                } catch (e) {
+                    console.error(e);
+                }
+            });
+        </script>
+    </form>
+</body>
+</html>

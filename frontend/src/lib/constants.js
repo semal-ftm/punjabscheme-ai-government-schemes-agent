@@ -26,7 +26,7 @@ export const LEVELS = [
   { value: "federal", label: "Federal" },
 ];
 
-export const STATUSES = ["Open", "Closed", "Upcoming", "Suspended", "Unverified"];
+export const STATUSES = ["Open", "Ongoing", "Upcoming", "Closed", "Suspended", "Unverified"];
 
 export const EDUCATION_LEVELS = [
   "none", "primary", "middle", "matric", "intermediate", "undergraduate", "graduate", "postgraduate",

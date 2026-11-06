@@ -57,7 +57,8 @@ def test_every_quote_appears_verbatim_in_official_snapshot(snapshot_texts, schem
 
 def test_all_links_are_official_domains():
     for s in RULES:
-        urls = [s["source_url"], s.get("application_url")] + [i.get("source_url") for _, _, i in _quoted_items()]
+        urls = [s["source_url"], s.get("application_url"), s.get("status_source_url")]
+        urls += [i.get("source_url") for _, _, i in _quoted_items()]
         for u in filter(None, urls):
             assert OFFICIAL.search(urlparse(u).netloc), f"{s['id']}: non-official link {u}"
 
@@ -66,6 +67,20 @@ def test_no_status_or_date_without_evidence():
     for s in RULES:
         if s.get("deadline") or s.get("opening_date") or s.get("status", "Unverified") != "Unverified":
             assert s.get("status_quote"), f"{s['id']}: status/date asserted without an official quote"
+            assert s.get("status_source_url"), f"{s['id']}: status quote has no official source page"
+            assert s.get("status_checked"), f"{s['id']}: status evidence has no check date"
+
+
+@pytest.mark.parametrize("scheme", [s for s in RULES if s.get("status_quote")], ids=lambda s: s["id"])
+def test_status_quote_appears_verbatim_in_official_snapshot(snapshot_texts, scheme):
+    url = normalize_url(scheme.get("status_source_url") or scheme["source_url"])
+    assert url in snapshot_texts, f"no saved snapshot for {url}"
+    assert _norm(scheme["status_quote"]) in snapshot_texts[url], f"{scheme['id']}: status quote not found in {url}"
+
+
+def test_most_verified_schemes_have_official_status_evidence():
+    with_evidence = [s["id"] for s in RULES if s.get("status", "Unverified") != "Unverified"]
+    assert len(with_evidence) >= len(RULES) * 0.75, with_evidence
 
 
 def test_federal_and_provincial_are_labelled_consistently():

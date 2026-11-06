@@ -25,7 +25,7 @@ which tools ran, which official links were checked, which document excerpts were
 | **MCP** | `mcp_server/server.py`: a real MCP server (official Python SDK, stdio, separate process) with 7 tools. `agent/mcp_client.py` is the client | `tool_call` / `tool_result` events; `tests/test_mcp.py` |
 | **Prompt engineering** | `agent/prompts.py`: system prompt (role, scope, source rules, eligibility rules, memory, privacy, uncertainty, language) + stage prompts | See section 6 |
 | Crawler + updates | `crawler/` (Requests, BeautifulSoup, PyPDF), `updates.py` (APScheduler), hash comparison, diffs, re-indexing | Recent Updates page |
-| Verified rules (no LLM guessing) | `data/rules.yaml` → `eligibility.py` deterministic engine; 14 schemes, **111 verbatim official quotes** | `python -m app.cli verify-quotes` |
+| Verified rules (no LLM guessing) | `data/rules.yaml` → `eligibility.py` deterministic engine; 14 schemes, **124 verbatim official quotes** (111 rules + 13 application statuses) | `python -m app.cli verify-quotes` |
 | Tests | `backend/tests/`: 9 files covering RAG, MCP, both memories, rules, deadlines, updates, inaccessible sites, source accuracy, replanning, API | `pytest` |
 
 ## 2. Architecture
@@ -178,8 +178,11 @@ The tests use synthetic personas and a scripted fake LLM (no API key or network 
 
 - Only 14 schemes have human-verified rules. The other auto-discovered schemes are searchable and cited but
   show *"rules not verified"* and never get an eligibility verdict.
-- No official page states a current application window for the verified schemes, so their status is
-  **Unverified** and deadlines show *"Not Officially Confirmed"*. This is intentional.
+- Application status is shown only with an official quote (checked 2026-11-07): 3 schemes **Open** (Honhaar
+  until 9 Nov 2026, Apni Chhat Apna Ghar, Apni Chhat Mehfooz Chhat), 8 **Ongoing**, 1 **Closed** (CM Laptop).
+  e-Bikes Phase 2 and Khud Mukhtar stay unconfirmed because no official page states their current window, and
+  auto-discovered schemes link to their official page instead of guessing. Statuses must be re-checked over time
+  (`python -m app.cli verify-quotes`; a passed deadline closes a scheme automatically).
 - Some official PDFs are scanned images (no extractable text) and are reported and skipped. OCR is not included.
 - Short-term memory lives in process memory (one session) and resets when the API restarts. Long-term memory persists.
 - Raw Roman-Urdu text retrieves less well than English; the agent translates queries to English before searching.

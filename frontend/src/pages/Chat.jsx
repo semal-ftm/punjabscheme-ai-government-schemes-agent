@@ -349,6 +349,21 @@ export default function Chat() {
     [streaming, sessionId, userId, patch]
   );
 
+  // ?ask= sends the question immediately (dashboard quick-start chips and search bar).
+  // Deferred with a timer so React StrictMode's mount/unmount/mount cycle cannot fire it twice or abort it.
+  const askedRef = useRef(false);
+  useEffect(() => {
+    const ask = params.get("ask");
+    if (!ask || askedRef.current) return undefined;
+    const t = setTimeout(() => {
+      askedRef.current = true;
+      params.delete("ask");
+      setParams(params, { replace: true });
+      send(ask);
+    }, 0);
+    return () => clearTimeout(t);
+  }, [params, setParams, send]);
+
   const newChat = () => {
     abortRef.current?.abort();
     setMessages([]);

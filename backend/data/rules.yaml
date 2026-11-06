@@ -7,7 +7,9 @@
 # Operators: eq | in | not_in | between | lt | gt | lte | gte | is_true | is_false | manual
 #   manual = a condition only the scheme authority can confirm (PMT score, criminal record, merit...).
 #   when   = the criterion only applies if the condition holds (e.g. plot limit for urban areas).
-# status stays "Unverified" unless an official page states the application window (status_quote + dates).
+# Status: Open (applications accepted now) | Ongoing (programme running now) | Closed | Upcoming | Suspended need
+# status_quote (verbatim) + status_source_url (official page, saved as a snapshot); deadline closes Open
+# automatically. Anything else stays "Unverified". status_note is a plain-language summary; status_checked the date.
 #
 # Re-verification workflow: when the crawler flags a changed source, read the diff on the Updates page,
 # edit the affected entry, set last_verified to today (or a date-time like 2026-11-02T10:00 for a
@@ -28,7 +30,12 @@ schemes:
     source_url: https://punjab.gov.pk/node/6433
     application_url: https://honhaarscholarship.punjabhec.gov.pk/
     last_verified: 2026-11-01
-    status: Unverified
+    status: Open
+    deadline: 2026-11-09
+    status_quote: "The last date for submission of online applications is November 09, 2026"
+    status_source_url: "https://honhaarscholarship.punjabhec.gov.pk/"
+    status_note: "Phase-IV applications are open online until 9 November 2026."
+    status_checked: 2026-11-07
     criteria:
       - id: domicile
         field: province
@@ -93,7 +100,11 @@ schemes:
     source_url: https://punjab.gov.pk/cm-laptop
     application_url: https://cmlaptophed.punjab.gov.pk/
     last_verified: 2026-11-01
-    status: Unverified
+    status: Closed
+    status_quote: "Application Submission is Closed!"
+    status_source_url: "https://cmlaptophed.punjab.gov.pk/"
+    status_note: "Phase-II applications have closed; laptop distribution ceremonies are under way."
+    status_checked: 2026-11-07
     criteria:
       - id: domicile
         field: province
@@ -151,6 +162,10 @@ schemes:
     source_url: https://punjab.gov.pk/cm-ebikes-scheme
     last_verified: 2026-11-01
     status: Unverified
+    status_quote: "The Chief Minister has directed the relevant authorities to open the e-bike portal in the second week of September 2026"
+    status_source_url: "https://punjab.gov.pk/cm-ebikes-scheme"
+    status_note: "Phase 2 (2026) announced, with the portal due to open in September 2026. No official page confirms it opened yet."
+    status_checked: 2026-11-07
     criteria:
       - id: age
         field: age
@@ -198,7 +213,11 @@ schemes:
     source_url: https://punjab.gov.pk/apni-chhat-apna-ghar
     application_url: https://acag.punjab.gov.pk/index.aspx
     last_verified: 2026-11-01
-    status: Unverified
+    status: Open
+    status_quote: "Apply for Construction of New House"
+    status_source_url: "https://acag.punjab.gov.pk/index.aspx"
+    status_note: "New applications are accepted online on the official ACAG portal (no closing date published)."
+    status_checked: 2026-11-07
     criteria:
       - id: residency
         field: province
@@ -260,7 +279,11 @@ schemes:
     source_url: https://punjab.gov.pk/apni-chat-mehfoz-chat-project
     application_url: https://acag.punjab.gov.pk/index.aspx
     last_verified: 2026-11-01
-    status: Unverified
+    status: Open
+    status_quote: "Apply for Addition of New Floor/Room"
+    status_source_url: "https://acag.punjab.gov.pk/index.aspx"
+    status_note: "New applications are accepted online on the official ACAG portal (no closing date published)."
+    status_checked: 2026-11-07
     criteria:
       - id: residency
         field: province
@@ -326,7 +349,11 @@ schemes:
     summary: Interest-free loans for small farmers to buy agricultural inputs such as seed and fertilizer.
     source_url: https://punjab.gov.pk/cm-kissan-card-scheme
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "For registration, write pkc<space>CNIC number and send SMS to 8070"
+    status_source_url: "https://punjab.gov.pk/cm-kissan-card-scheme"
+    status_note: "Running programme with a published registration route: SMS 'pkc <CNIC>' to 8070."
+    status_checked: 2026-11-07
     criteria:
       - id: farmer
         field: employment_type
@@ -367,7 +394,11 @@ schemes:
     summary: Monthly financial assistance for kitchen essentials for low-income households in Punjab.
     source_url: https://punjab.gov.pk/ration-card
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "Apply online by registering through Punjab Socio-Economic Registry portal"
+    status_source_url: "https://punjab.gov.pk/ration-card"
+    status_note: "Running programme; register through the Punjab Socio-Economic Registry (PSER) or an e-Khidmat Markaz."
+    status_checked: 2026-11-07
     criteria:
       - id: residency
         field: province
@@ -418,7 +449,11 @@ schemes:
     summary: Quarterly cash stipend through ATM cards for persons with disabilities (PWDs).
     source_url: https://punjab.gov.pk/cm-himmat-card-program
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "Batch III ATM Cards Distribution and Cash Transaction to 20,000 eligible individuals (Underway)"
+    status_source_url: "https://punjab.gov.pk/cm-himmat-card-program"
+    status_note: "Batch III card distribution to 20,000 people is under way."
+    status_checked: 2026-11-07
     criteria:
       - id: disability
         field: has_disability
@@ -447,7 +482,11 @@ schemes:
     source_url: https://punjab.gov.pk/punjab-dhee-rani-program
     application_url: https://cmp.punjab.gov.pk
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "Collective Marriages of 5000 poor girls will be organized across Punjab"
+    status_source_url: "https://punjab.gov.pk/punjab-dhee-rani-program"
+    status_note: "2025-26 cycle: collective marriages for 5,000 girls across Punjab."
+    status_checked: 2026-11-07
     criteria:
       - id: domicile
         field: province
@@ -489,7 +528,11 @@ schemes:
       districts, linked to 80% attendance.
     source_url: https://pspa.punjab.gov.pk/zewar-e-taleem-program
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "are getting this stipend upon successful biometric verification"
+    status_source_url: "https://pspa.punjab.gov.pk/zewar-e-taleem-program"
+    status_note: "Quarterly stipends are being paid to enrolled girls (grades 6-10) in the selected districts."
+    status_checked: 2026-11-07
     criteria:
       - id: girl
         field: gender
@@ -539,6 +582,8 @@ schemes:
     source_url: https://pspa.punjab.gov.pk/khudmukhtar-program
     last_verified: 2026-11-01
     status: Unverified
+    status_note: "The official page describes the programme but does not say whether registration is open now."
+    status_checked: 2026-11-07
     criteria:
       - id: married
         field: marital_status
@@ -578,7 +623,11 @@ schemes:
       books, stationery and transport, for children of registered workers.
     source_url: https://pwwf.punjab.gov.pk/education
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "The Directorate of Education not only provides education free of cost to enrolled workers students"
+    status_source_url: "https://pwwf.punjab.gov.pk/education"
+    status_note: "Workers Welfare schools are operating and admitting workers' children."
+    status_checked: 2026-11-07
     criteria:
       - id: worker_family
         field: registered_industrial_worker
@@ -607,7 +656,11 @@ schemes:
       Socio-Economic Registry (NSER) survey.
     source_url: https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "BISP is currently providing cash assistance to around 9 million families under Benazir Kafaalat programme"
+    status_source_url: "https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5"
+    status_note: "Running nationwide; eligibility is through the NSER survey at Benazir Registration Centers."
+    status_checked: 2026-11-07
     criteria:
       - id: woman
         field: gender
@@ -654,7 +707,11 @@ schemes:
       up to higher secondary level.
     source_url: https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3
     last_verified: 2026-11-01
-    status: Unverified
+    status: Ongoing
+    status_quote: "in July 2020 programme has been expanded in all districts of Pakistan"
+    status_source_url: "https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3"
+    status_note: "Running in all districts; stipends are paid quarterly to enrolled children of Kafaalat families."
+    status_checked: 2026-11-07
     criteria:
       - id: kafaalat_family
         field: bisp_beneficiary
