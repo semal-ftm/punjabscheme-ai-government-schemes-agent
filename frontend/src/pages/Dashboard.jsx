@@ -10,7 +10,6 @@ import { useUser } from "../lib/UserContext.jsx";
 import QuickStart from "../components/dashboard/QuickStart.jsx";
 import OpenNow from "../components/dashboard/OpenNow.jsx";
 import LifeNeeds from "../components/dashboard/LifeNeeds.jsx";
-import AgentPulse from "../components/dashboard/AgentPulse.jsx";
 import { CountUp } from "../components/dashboard/Animated.jsx";
 import FeaturedSchemes from "../components/FeaturedSchemes.jsx";
 
@@ -219,7 +218,6 @@ export default function Dashboard() {
       <NumbersStrip data={data} loading={loading} />
       <LifeNeeds schemes={schemes.data} loading={schemes.loading} />
       {schemes.data && <FeaturedSchemes schemes={schemes.data} moreLink="/schemes?verified=1" />}
-      <AgentPulse />
       <div className="grid items-start gap-6 lg:grid-cols-2">
         <RecentChanges data={data} loading={loading} />
         <SourceHealth data={data} loading={loading} />

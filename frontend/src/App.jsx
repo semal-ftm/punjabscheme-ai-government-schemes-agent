@@ -11,6 +11,7 @@ import Explore from "./pages/Explore.jsx";
 import Saved from "./pages/Saved.jsx";
 import SchemeDetail from "./pages/SchemeDetail.jsx";
 import Updates from "./pages/Updates.jsx";
+import HowItWorks from "./pages/HowItWorks.jsx";
 
 function NotFound() {
   return (
@@ -33,6 +34,7 @@ export default function App() {
           <Route path="compare" element={<Compare />} />
           <Route path="saved" element={<Saved />} />
           <Route path="updates" element={<Updates />} />
+          <Route path="how-it-works" element={<HowItWorks />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

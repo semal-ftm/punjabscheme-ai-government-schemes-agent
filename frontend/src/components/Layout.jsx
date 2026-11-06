@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, Outlet, useLocation } from "react-router-dom";
 import {
-  Bookmark, ClipboardCheck, Columns3, History, LayoutDashboard, Menu, MessagesSquare, Search, X,
+  Bookmark, ClipboardCheck, Columns3, History, LayoutDashboard, Menu, MessagesSquare, Search, Workflow, X,
 } from "lucide-react";
 import AgentStatus from "./AgentStatus.jsx";
 import Disclaimer from "./Disclaimer.jsx";
@@ -28,6 +28,10 @@ export const NAV_GROUPS = [
   {
     title: "Stay informed",
     items: [{ to: "/updates", label: "Recent Updates", icon: History }],
+  },
+  {
+    title: "Learn",
+    items: [{ to: "/how-it-works", label: "How it works", icon: Workflow, badge: "new" }],
   },
 ];
 export const NAV = NAV_GROUPS.flatMap((g) => g.items);
@@ -60,6 +64,8 @@ function NavBadge({ kind, savedCount }) {
         AI
       </span>
     );
+  if (kind === "new")
+    return <span className="ml-auto rounded-full bg-gold-400/90 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy-950">Guide</span>;
   if (kind === "saved" && savedCount > 0)
     return <span className="ml-auto min-w-[1.25rem] rounded-full bg-white/10 px-1.5 py-0.5 text-center text-[10px] font-bold text-white">{savedCount}</span>;
   return null;
