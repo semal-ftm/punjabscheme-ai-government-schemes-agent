@@ -6,6 +6,7 @@ import { CategoryBadge, LevelBadge, VerifiedSeal } from "./Badges.jsx";
 import StatusBadge from "./StatusBadge.jsx";
 import { useUser } from "../lib/UserContext.jsx";
 import { formatDate, urduClass } from "../lib/format.js";
+import { Tilt } from "./fx.jsx";
 
 /** Save / unsave button. Shows an inline hint when no username is set. */
 export function SaveButton({ schemeId, compact = false }) {
@@ -63,7 +64,7 @@ export function SaveButton({ schemeId, compact = false }) {
 export default function SchemeCard({ scheme, compareChecked, onCompareToggle, compareDisabled }) {
   const s = scheme;
   return (
-    <article className="card card-hover flex h-full flex-col overflow-hidden">
+    <Tilt as="article" max={6} className="card flex h-full flex-col overflow-hidden">
       <Link to={`/schemes/${encodeURIComponent(s.id)}`} className="block h-32 overflow-hidden bg-cream-200" tabIndex={-1} aria-hidden>
         <img src={schemeImage(s)} alt="" loading="lazy" className="h-full w-full object-cover transition-transform duration-500 hover:scale-105" />
       </Link>
@@ -111,6 +112,6 @@ export default function SchemeCard({ scheme, compareChecked, onCompareToggle, co
         )}
       </div>
       </div>
-    </article>
+    </Tilt>
   );
 }

@@ -292,3 +292,414 @@
 .caret {
   animation: caret 1s step-end infinite;
 }
+
+/* ===================================================== Dashboard animations
+   All of these are switched off by the prefers-reduced-motion rule earlier in this file. */
+
+/* Truck-art border: the stripes and tassels slide slowly sideways */
+@keyframes truck-slide {
+  to {
+    background-position: 120px 4px, 120px 4px, 180px 0;
+  }
+}
+.folk-top::before {
+  animation: truck-slide 9s linear infinite;
+}
+
+/* Breathing jaali: the lattice drifts very slowly and a soft glow breathes behind the content */
+@keyframes jaali-drift {
+  to {
+    background-position: 56px 56px;
+  }
+}
+@keyframes jaali-breathe {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 0.9;
+  }
+}
+.jaali {
+  isolation: isolate;
+  animation: jaali-drift 60s linear infinite;
+}
+.jaali::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(circle at 70% 30%, rgba(212, 166, 74, 0.14), transparent 55%),
+    radial-gradient(circle at 20% 80%, rgba(118, 58, 82, 0.08), transparent 50%);
+  animation: jaali-breathe 9s ease-in-out infinite;
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal-in {
+  opacity: 1;
+  transform: none;
+}
+
+/* Stat cards pop in with a small bounce */
+@keyframes pop-in {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.92);
+  }
+  60% {
+    opacity: 1;
+    transform: translateY(-4px) scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+.pop-in {
+  animation: pop-in 0.65s cubic-bezier(0.2, 0.8, 0.3, 1.2) both;
+}
+
+/* Title written letter by letter like ink */
+@keyframes ink {
+  from {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translateY(10px) scale(1.1);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.ink-letter {
+  display: inline-block;
+  animation: ink 0.55s ease-out both;
+}
+/* "AI" keeps its gold shimmer on every letter */
+.shimmer-text .ink-letter {
+  background: linear-gradient(90deg, #763a52, #c08f2f, #36582b, #c08f2f, #763a52);
+  background-size: 400% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: ink 0.55s ease-out both, shimmer 6s linear 1.4s infinite;
+}
+
+/* Urdu greeting written right to left like a pen */
+@keyframes pen-rtl {
+  from {
+    clip-path: inset(-20% 0 -40% 100%);
+  }
+  to {
+    clip-path: inset(-20% 0 -40% 0);
+  }
+}
+.pen-rtl {
+  display: inline-block;
+  animation: pen-rtl 1.8s cubic-bezier(0.5, 0, 0.3, 1) 0.9s both;
+}
+
+/* Time-of-day greeting chip */
+@keyframes greet {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.greet-chip {
+  animation: greet 0.6s ease-out both;
+}
+
+/* ---- Hero drawing: sunrise, sun, birds, time-of-day tint, stars and lamps ---- */
+.hero-art {
+  container-type: inline-size;
+}
+@keyframes dawn-in {
+  from {
+    opacity: 0.25;
+    filter: sepia(0.7) hue-rotate(-25deg) saturate(0.7) brightness(0.72);
+    transform: scale(1.06);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.dawn-in {
+  animation: dawn-in 2.6s ease-out both;
+}
+@keyframes sun-rise {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 40px) scale(0.6);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+@keyframes sun-glow {
+  0%,
+  100% {
+    filter: blur(18px) brightness(1);
+  }
+  50% {
+    filter: blur(24px) brightness(1.15);
+  }
+}
+.hero-sun {
+  position: absolute;
+  left: 58%;
+  top: 14%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 214, 120, 0.85), rgba(240, 170, 70, 0.35) 45%, transparent 70%);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  animation: sun-rise 2.8s ease-out 0.3s both, sun-glow 6s ease-in-out 3s infinite;
+}
+.hero-tint {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  animation: fade-up 2s ease-out both;
+}
+.hero-art[data-phase="morning"] .hero-tint {
+  background: linear-gradient(180deg, rgba(255, 190, 170, 0.18), transparent 45%);
+}
+.hero-art[data-phase="afternoon"] .hero-tint {
+  background: linear-gradient(180deg, rgba(255, 205, 110, 0.14), transparent 50%);
+}
+.hero-art[data-phase="evening"] .hero-tint {
+  /* light dusk wash on the sky only, so the drawing itself stays clear */
+  background: linear-gradient(180deg, rgba(70, 45, 100, 0.32), rgba(118, 58, 82, 0.1) 40%, transparent 60%);
+}
+.hero-art[data-phase="evening"] .hero-sun {
+  left: 30%;
+  top: 6%;
+  width: 16%;
+  background: radial-gradient(circle, rgba(255, 250, 230, 0.95), rgba(255, 240, 200, 0.35) 40%, transparent 70%);
+}
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.25;
+    transform: scale(0.7);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.hero-star {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 9999px;
+  background: #fff8e0;
+  box-shadow: 0 0 6px 2px rgba(255, 240, 200, 0.7);
+  animation: twinkle 2.6s ease-in-out infinite;
+}
+@keyframes lamp {
+  0%,
+  100% {
+    opacity: 0.55;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+.hero-lamp {
+  position: absolute;
+  width: 7px;
+  height: 7px;
+  border-radius: 9999px;
+  background: #ffd27a;
+  box-shadow: 0 0 10px 4px rgba(255, 200, 100, 0.75);
+  mix-blend-mode: screen;
+  animation: lamp 3s ease-in-out infinite;
+}
+@keyframes bird-fly {
+  from {
+    transform: translateX(-30px);
+  }
+  to {
+    transform: translateX(calc(100cqw + 60px));
+  }
+}
+@keyframes flap {
+  0%,
+  100% {
+    transform: scaleY(1);
+  }
+  50% {
+    transform: scaleY(0.45);
+  }
+}
+.hero-bird {
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
+  animation: bird-fly 22s linear infinite;
+}
+.hero-bird path {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: flap 0.9s ease-in-out infinite;
+}
+
+/* Floating phulkari flowers */
+@keyframes phulkari {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(25deg);
+  }
+  100% {
+    transform: translateY(0) rotate(50deg);
+  }
+}
+.phulkari {
+  position: absolute;
+  opacity: 0.22;
+  animation: phulkari 12s ease-in-out infinite;
+}
+
+/* District map: hexagons pop in from north to south */
+@keyframes hex-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.2);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+.hex-pop {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: hex-pop 0.45s ease-out both;
+}
+
+/* Agent path: glowing dots travelling between the stages */
+@keyframes agent-dot {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  8% {
+    opacity: 1;
+  }
+  92% {
+    opacity: 1;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+.agent-dot {
+  position: absolute;
+  top: 50%;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 9999px;
+  background: #ffe3a3;
+  box-shadow: 0 0 10px 4px rgba(212, 166, 74, 0.9), 0 0 22px 8px rgba(212, 166, 74, 0.35);
+  animation: agent-dot 4.4s ease-in-out infinite;
+}
+.agent-dot-fast {
+  animation-duration: 1.4s;
+}
+
+/* 3D tilt cards with a light sheen */
+.tilt {
+  position: relative;
+  transform: perspective(900px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out, box-shadow 0.25s ease-out;
+  will-change: transform;
+}
+.tilt[data-tilting="true"] {
+  transition: transform 0.08s linear, box-shadow 0.25s ease-out;
+  box-shadow: 0 2px 4px rgba(60, 45, 25, 0.05), 0 18px 40px rgba(60, 45, 25, 0.16);
+}
+.tilt-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(255, 255, 255, 0.45), transparent 45%);
+  mix-blend-mode: soft-light;
+  transition: opacity 0.3s;
+}
+.tilt[data-tilting="true"] .tilt-shine {
+  opacity: 1;
+}
+
+/* Magnetic buttons + click ripple */
+.magnetic {
+  transition: transform 0.2s ease-out, background-color 0.2s;
+}
+@keyframes ripple {
+  from {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.45;
+  }
+  to {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+}
+.ripple {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 9999px;
+  background: currentColor;
+  pointer-events: none;
+  animation: ripple 0.65s ease-out forwards;
+}
+
+/* Quiz celebration: falling gold crescents and stars */
+@keyframes confetti-fall {
+  0% {
+    transform: translate(0, -20px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--drift), 520px) rotate(var(--spin));
+    opacity: 0;
+  }
+}
+.confetti {
+  position: absolute;
+  top: 0;
+  animation: confetti-fall 2.4s cubic-bezier(0.25, 0.6, 0.4, 1) both;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+}

@@ -5,8 +5,11 @@ import { api } from "../../api.js";
 import { VERDICTS } from "../../lib/constants.js";
 import { hexLayout, hexPoints } from "../../lib/districts.js";
 import { Spinner } from "../States.jsx";
+import { useInView } from "../fx.jsx";
 
 const LAYOUT = hexLayout(22, 48);
+// Order for the north-to-south wave (Attock first, Rahim Yar Khan last).
+const WAVE = Object.fromEntries([...LAYOUT.tiles].sort((a, b) => b.lat - a.lat).map((t, i) => [t.name, i]));
 // Forest-green scale from light to dark.
 const SCALE = ["#dfe9d6", "#c3d6b4", "#9fbd89", "#79a062", "#5a8546", "#36582b"];
 
@@ -74,11 +77,12 @@ export default function PunjabMap() {
   };
 
   const focus = hover || selected;
+  const [mapRef, mapIn] = useInView({ threshold: 0.25 });
   const list = data?.[focus] || [];
   const local = list.filter((s) => special.has(s.id));
 
   return (
-    <section className="card folk-top overflow-hidden" aria-labelledby="map-h">
+    <section ref={mapRef} className="card folk-top overflow-hidden" aria-labelledby="map-h">
       <div className="grid gap-0 md:grid-cols-[1.15fr_1fr]">
         <div className="relative min-w-0 bg-gradient-to-br from-cream-100 to-emerald-50/40 p-4 sm:p-5">
           <div className="mb-1 flex items-center justify-between gap-2">
@@ -112,6 +116,7 @@ export default function PunjabMap() {
                   className="cursor-pointer outline-none"
                   style={{ transformOrigin: `${t.cx}px ${t.cy}px`, transform: on ? "scale(1.18)" : "none", transition: "transform .2s" }}
                 >
+                  <g className={mapIn ? "hex-pop" : "opacity-0"} style={{ animationDelay: `${WAVE[t.name] * 45}ms` }}>
                   <polygon
                     points={hexPoints(t.cx, t.cy, LAYOUT.radius - 1.5)}
                     fill={on ? "#763a52" : colorFor(t.name)}
@@ -128,6 +133,7 @@ export default function PunjabMap() {
                   >
                     {t.abbr}
                   </text>
+                  </g>
                 </g>
               );
             })}

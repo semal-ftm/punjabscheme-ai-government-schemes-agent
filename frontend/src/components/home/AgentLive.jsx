@@ -129,6 +129,12 @@ export default function AgentLive() {
         </div>
 
         {/* Stage track */}
+        <div className="relative">
+        {/* Glowing "data" dot travelling between the first and last stage */}
+        <span className="pointer-events-none absolute left-[7.14%] right-[7.14%] top-[2.75rem] z-[5] h-0.5" aria-hidden>
+          <span className={`agent-dot ${running ? "agent-dot-fast" : ""}`} />
+          <span className={`agent-dot ${running ? "agent-dot-fast" : ""}`} style={{ animationDelay: running ? "-0.7s" : "-2.2s" }} />
+        </span>
         <ol className="mt-6 grid grid-cols-7 gap-1" aria-label="Agent stages">
           {STAGES.map((s, i) => {
             const Icon = s.icon;
@@ -161,6 +167,7 @@ export default function AgentLive() {
             );
           })}
         </ol>
+        </div>
 
         {/* Counters */}
         {started && (

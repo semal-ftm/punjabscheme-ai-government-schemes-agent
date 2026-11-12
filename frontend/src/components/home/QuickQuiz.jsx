@@ -8,6 +8,7 @@ import { VERDICTS, VERDICT_ORDER } from "../../lib/constants.js";
 import { DISTRICTS } from "../../lib/districts.js";
 import VerdictBadge, { VERDICT_STYLE } from "../VerdictBadge.jsx";
 import { Spinner } from "../States.jsx";
+import { Confetti } from "../fx.jsx";
 import { useCountUp } from "../../lib/motion.js";
 
 const ROLE = {
@@ -158,6 +159,7 @@ export default function QuickQuiz() {
         )}
         {state.error && <p className="mt-4 text-sm text-rose-700">{state.error.message}</p>}
 
+        {result && (result.results || []).some((r) => r.verdict === VERDICTS.ELIGIBLE) && <Confetti key={JSON.stringify(profile)} />}
         {result && (
           <div className="fade-up mt-4 space-y-4">
             <div className="grid grid-cols-3 gap-2">
