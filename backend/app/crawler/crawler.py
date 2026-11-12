@@ -217,35 +217,32 @@ def extract_html(html: bytes | str, url: str, source: Source | None = None) -> d
             continue
         links.append((a.get_text(" ", strip=True), normalize_url(urljoin(url, href))))
 
-    for tag in soup(["script", "style", "noscript", "nav", "header", "footer", "aside", "iframe", "svg"]):
+    for tag in soup(["script", "style", "noscript", "nav", "header", "footer", "form", "aside", "iframe", "svg"]):
         tag.decompose()
-    # Drop small forms (search boxes, newsletter sign-ups) but keep a form that wraps the page: ASP.NET
-    # WebForms sites (e.g. acag.punjab.gov.pk) put all of their content inside one <form>.
-    body_len = len((soup.body or soup).get_text(" ", strip=True)) or 1
-    for form in soup.find_all("form"):
-        if len(form.get_text(" ", strip=True)) < 0.5 * body_len:
-            form.decompose()
-    # Pick the main-content container, but only if it really holds the page's content: some portals have a
-    # tiny <article> card or an element id like "MainContent_lblX" that would otherwise swallow the page.
-    body = soup.body or soup
-    body_len = len(body.get_text(" ", strip=True)) or 1
-    candidates = [soup.find("main"), soup.find("article"), soup.find(id=re.compile("content", re.I)),
-                  soup.find(class_=re.compile(r"(region-content|entry-content|main-content|page-content)", re.I))]
-    main = next((c for c in candidates if c is not None and len(c.get_text(" ", strip=True)) >= 0.25 * body_len), body)
+    main = (soup.find("main") or soup.find("article") or soup.find(id=re.compile("content", re.I))
+            or soup.find(class_=re.compile(r"(region-content|entry-content|main-content|page-content)", re.I))
+            or soup.body or soup)
     h1 = main.find("h1") if hasattr(main, "find") else None
     if h1 and h1.get_text(strip=True):
         title = h1.get_text(" ", strip=True)
 
-    blocks = []
-    for el in main.find_all(["h1", "h2", "h3", "h4", "p", "li", "td", "th"]):
-        txt = el.get_text(" ", strip=True)
-        if txt and (not blocks or blocks[-1] != txt):
-            blocks.append(txt)
-    text = "\n".join(blocks)
-    # Portals built from <div>/<a> tiles (no <p>/<li>) would lose most of their content: fall back to all text.
-    full = main.get_text("\n", strip=True)
-    if len(text) < 0.5 * len(full):
-        text = full
+    def _text_of(root) -> str:
+        blocks = []
+        for el in root.find_all(["h1", "h2", "h3", "h4", "p", "li", "td", "th"]):
+            txt = el.get_text(" ", strip=True)
+            if txt and (not blocks or blocks[-1] != txt):
+                blocks.append(txt)
+        return "\n".join(blocks) if blocks else root.get_text("\n", strip=True)
+
+    text = _text_of(main)
+    body = soup.body or soup
+    # Custom-built portals sometimes mark only a hero banner as <main>, or have a tiny element whose id/class
+    # contains "content". When the chosen area holds almost nothing compared with the page, read the whole body
+    # (navigation, header and footer were already removed above) instead of storing a near-empty document.
+    if main is not body and len(text) < 500:
+        full = _text_of(body)
+        if len(text) < 200 or len(full) > 5 * len(text):
+            text = full
     return {"title": title[:200], "text": normalize_text(text), "links": links, "cards": cards}
 
 

@@ -21,7 +21,7 @@ from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from langgraph.graph.message import add_messages
 
-from app import db, rag
+from app import db, rag, studio
 from app.agent import prompts
 from app.agent.llm import LLM
 from app.agent.privacy import mask_sensitive
@@ -30,7 +30,7 @@ from app.eligibility import NEED_INFO, NOT_ELIGIBLE, POTENTIALLY_ELIGIBLE, PROFI
 log = logging.getLogger(__name__)
 
 ALLOWED_TOOLS = {"search_schemes", "check_eligibility", "get_required_documents", "get_scheme_deadline",
-                 "get_application_process", "compare_schemes", "check_latest_updates"}
+                 "get_application_process", "compare_schemes", "check_latest_updates", "live_web_search"}
 TOOL_PARAMS = {
     "search_schemes": {"query", "category", "level", "status", "limit"},
     "check_eligibility": {"scheme_ids"},
@@ -39,11 +39,25 @@ TOOL_PARAMS = {
     "get_application_process": {"scheme_id"},
     "compare_schemes": {"scheme_ids"},
     "check_latest_updates": {"days", "scheme_id"},
+    "live_web_search": {"query", "source_ids", "max_results"},
 }
+LIVE_INTENTS = {"updates", "deadline", "application", "scheme_info"}
+LIVE_SOURCE_IDS = {"punjab_gov", "pspa", "pessi", "pwwf", "bisp"}
 SINGLE_SCHEME_TOOL = {"documents": "get_required_documents", "deadline": "get_scheme_deadline",
                       "application": "get_application_process"}
 NO_TOOL_INTENTS = {"greeting", "out_of_scope"}
 MAX_REFLECTIONS = 2
+
+# Short-term memory: which scheme the conversation is currently about ("this scheme", "it", "is scheme").
+FOCUS_INTENTS = {"scheme_info", "documents", "deadline", "application", "eligibility", "compare", "updates"}
+NO_FOCUS_INTENTS = {"discover", "profile_update"}  # broad questions: no single scheme in focus
+REFERENCE_RE = re.compile(
+    r"\b(this|that|it|its|same|above|mentioned|these|those)\b"
+    r"|\b(is|iss|isi|us|uss|usi|ye|yeh|wo|woh)\s+(scheme|skeem|program|programme|yojna|wazifa)", re.IGNORECASE)
+# Words too common in scheme names to identify one ("Chief Minister ... Programme").
+GENERIC_NAME_WORDS = {"scheme", "schemes", "program", "programme", "programs", "punjab", "chief", "minister",
+                      "card", "fund", "welfare", "project", "initiative", "support", "pakistan", "government",
+                      "benazir", "income", "social", "with", "from", "under", "apni", "maryam", "nawaz"}
 
 
 class AgentState(TypedDict, total=False):
@@ -53,6 +67,7 @@ class AgentState(TypedDict, total=False):
     profile: dict
     profile_loaded: bool
     recent_schemes: list
+    focus_schemes: list   # the scheme(s) the last question was about, so "this scheme" resolves correctly
     last_verdicts: dict
     last_checked_at: str | None
     plan_version: int
@@ -103,6 +118,32 @@ def _history(messages: list, limit: int = 6) -> str:
 
 def _fmt(value: Any) -> str:
     return json.dumps(value, ensure_ascii=False, default=str)
+
+
+def _scheme_names() -> dict[str, str]:
+    """id -> official name for every scheme in the database."""
+    try:
+        with db.session() as conn:
+            return {r["id"]: r["name"] for r in db.rows(conn.execute("SELECT id, name FROM schemes"))}
+    except Exception as exc:  # noqa: BLE001 - memory resolution must never crash a turn
+        log.warning("could not load scheme names: %s", exc)
+        return {}
+
+
+def _words(text: str) -> set[str]:
+    return {w for w in re.findall(r"[a-z0-9]+", (text or "").lower()) if len(w) >= 4}
+
+
+def _names_other_scheme(message: str, focus_ids: list[str], names: dict[str, str]) -> bool:
+    """True when the message names a scheme other than the one in focus (then it is a new topic)."""
+    msg = _words(message)
+    for sid, name in names.items():
+        if sid in focus_ids:
+            continue
+        distinctive = (_words(name) | _words(sid.replace("-", " ").replace("_", " "))) - GENERIC_NAME_WORDS
+        if distinctive & msg:
+            return True
+    return False
 
 
 class SchemeAgent:
@@ -173,12 +214,14 @@ class SchemeAgent:
     def understand(self, state: AgentState) -> dict:
         t = Tracer(state["trace"])
         recent = state.get("recent_schemes") or []
-        prompt = prompts.UNDERSTAND_PROMPT.format(
+        focus = state.get("focus_schemes") or []
+        prompt = prompts.get("UNDERSTAND_PROMPT").format(
             profile=_fmt(state.get("profile") or {}),
             recent_schemes=_fmt([{"scheme_id": s["id"], "name": s["name"]} for s in recent]) if recent else "(none)",
+            focus=_fmt([{"scheme_id": s["id"], "name": s["name"]} for s in focus]) if focus else "(none)",
             history=_history(state["messages"][:-1]), message=state["user_message"])
         try:
-            u = self.llm.json(prompts.SYSTEM_PROMPT, prompt)
+            u = self.llm.json(prompts.get("SYSTEM_PROMPT"), prompt)
             source = self.llm.name
         except Exception as exc:  # noqa: BLE001 - degrade gracefully, never crash the turn
             log.warning("understand failed: %s", exc)
@@ -190,12 +233,34 @@ class SchemeAgent:
         u.setdefault("profile_updates", {})
         known = {s["id"] for s in recent}
         u["scheme_ids"] = [i for i in (u.get("scheme_ids") or []) if isinstance(i, str)]
+        self._resolve_focus_reference(u, state, focus, t)
         t("understand", "understanding", f"Understood request as '{u['intent']}'",
           u.get("reasoning", ""), {"language": u.get("language"), "intent": u["intent"],
                                    "facts_extracted": u["profile_updates"], "schemes_referenced": u["scheme_ids"],
                                    "search_query": u.get("search_query"), "by": source,
                                    "resolved_from_history": [i for i in u["scheme_ids"] if i in known]})
         return {"understanding": u, "trace": t.events}
+
+    @staticmethod
+    def _resolve_focus_reference(u: dict, state: AgentState, focus: list, t: Tracer) -> None:
+        """Deterministic short-term-memory fallback: "this scheme" / "it" / a bare "which documents?" means the
+        scheme the conversation is about, unless the user names a different scheme. Never left to the LLM alone."""
+        if not focus or u["scheme_ids"] or u["intent"] in NO_TOOL_INTENTS | NO_FOCUS_INTENTS:
+            return
+        message = state["user_message"]
+        if not (REFERENCE_RE.search(message) or u["intent"] in SINGLE_SCHEME_TOOL):
+            return
+        focus_ids = [s["id"] for s in focus]
+        if _names_other_scheme(message, focus_ids, _scheme_names()):
+            return
+        u["scheme_ids"] = focus_ids
+        names = [s.get("name") or s["id"] for s in focus]
+        query = u.get("search_query") or ""
+        if not any(_words(n) & _words(query) for n in names):
+            u["search_query"] = (" ".join(names) + " " + query).strip()
+        t("understand", "memory", "Short-term memory: reference resolved",
+          f"'{message[:80]}' refers to {', '.join(names)}, the scheme this conversation is about.",
+          {"resolved_to": focus_ids})
 
     def update_profile(self, state: AgentState) -> dict:
         t = Tracer(state["trace"])
@@ -251,6 +316,11 @@ class SchemeAgent:
             if s["tool"] in ("get_required_documents", "get_scheme_deadline", "get_application_process") \
                     and not args.get("scheme_id"):
                 continue
+            if s["tool"] == "live_web_search":
+                if not studio.live_search_active() or not str(args.get("query") or "").strip():
+                    continue
+                args["source_ids"] = [i for i in (args.get("source_ids") or []) if i in LIVE_SOURCE_IDS]
+                args["max_results"] = int(studio.get("tavily_max_results") or 4)
             valid.append({"tool": s["tool"], "args": args, "why": str(s.get("why", ""))[:200]})
         return valid[:5]
 
@@ -267,13 +337,15 @@ class SchemeAgent:
         replan_note = ("REPLANNING because: " + "; ".join(replan) +
                        ". Re-run check_eligibility with scheme_ids [] and search again for the new situation."
                        ) if replan else ""
-        prompt = prompts.PLAN_PROMPT.format(
+        live = studio.live_search_active()
+        prompt = prompts.get("PLAN_PROMPT").format(
             intent=u["intent"], query=u.get("search_query") or state["user_message"],
             profile=_fmt(state.get("profile") or {}), scheme_ids=_fmt(u.get("scheme_ids") or []),
-            known_ids=_fmt([s["id"] for s in recent]), replan_note=replan_note)
+            known_ids=_fmt([s["id"] for s in recent]), replan_note=replan_note,
+            live_tool=prompts.LIVE_TOOL_DOC if live else "", live_rule=prompts.LIVE_TOOL_RULE if live else "")
         planner = self.llm.name
         try:
-            raw = self.llm.json(prompts.SYSTEM_PROMPT, prompt)
+            raw = self.llm.json(prompts.get("SYSTEM_PROMPT"), prompt)
             steps, goal = self._validate_steps(raw.get("steps")), raw.get("goal", "")
         except Exception as exc:  # noqa: BLE001
             steps, goal = [], ""
@@ -339,6 +411,12 @@ class SchemeAgent:
                     if r["args"].get("category") or r["args"].get("level") or r["args"].get("status"):
                         extra.append({"tool": "search_schemes", "args": {"query": r["args"]["query"], "limit": 8},
                                       "why": "No results with filters: broadening the search"})
+            ran_live = any(r["tool"] == "live_web_search" for r in results)
+            if (not ran_live and reflections == 1 and u["intent"] in LIVE_INTENTS and studio.live_search_active()
+                    and studio.get("tavily_auto")):
+                extra.append({"tool": "live_web_search",
+                              "args": {"query": u.get("search_query") or state["user_message"]},
+                              "why": f"'{u['intent']}' questions change often: checking the official sites live (Tavily)"})
             ran_elig = any(r["tool"] == "check_eligibility" for r in results)
             if not ran_elig and u["intent"] in ("discover", "eligibility") and state.get("profile"):
                 found = [s["scheme_id"] for r in results if r["tool"] == "search_schemes"
@@ -375,19 +453,39 @@ class SchemeAgent:
             return {"evidence": [], "trace": t.events}
         query = u.get("search_query") or state["user_message"]
         ids = u.get("scheme_ids") or []
+        top_k = int(studio.get("rag_top_k") or 5)
+        min_score = float(studio.get("rag_min_score") or 0.2)
         try:
             chunks = self.retrieve_fn(query, k=4, scheme_id=ids[0]) if len(ids) == 1 else []
             if len(chunks) < 2:
-                chunks += [c for c in self.retrieve_fn(query, k=5) if c["chunk_id"] not in {x["chunk_id"] for x in chunks}]
+                chunks += [c for c in self.retrieve_fn(query, k=top_k)
+                           if c["chunk_id"] not in {x["chunk_id"] for x in chunks}]
         except Exception as exc:  # noqa: BLE001
             chunks = []
             t("retrieve", "warning", "Document search (RAG) failed", str(exc)[:200])
-        chunks = [c for c in chunks if c["score"] >= 0.2][:5]
+        chunks = [c for c in chunks if c["score"] >= min_score][:top_k]
         t("retrieve", "retrieval", f"RAG: {len(chunks)} official document excerpts retrieved from ChromaDB",
           f"Query: '{query}'" + (f" (focused on {ids[0]})" if len(ids) == 1 else ""),
           [{"title": c["title"], "url": c["url"], "page": c["page"], "score": c["score"],
             "source": c["source_name"], "excerpt": c["text"][:220]} for c in chunks])
-        return {"evidence": chunks, "trace": t.events}
+        results = list(state.get("tool_results") or [])
+        strong = [c for c in chunks if c["score"] >= 0.35]
+        ran_live = any(r["tool"] == "live_web_search" for r in results)
+        if len(strong) < 2 and not ran_live and studio.live_search_active() and studio.get("tavily_auto"):
+            args = {"query": query, "max_results": int(studio.get("tavily_max_results") or 4)}
+            t("retrieve", "tool_call", "MCP call: live_web_search",
+              f"Only {len(strong)} strong document match(es) in the saved index: checking the official sites live "
+              f"with Tavily", {"tool": "live_web_search", "args": args})
+            try:
+                out = self.call_tool("live_web_search", args)
+                data, ms = out["result"], out.get("elapsed_ms")
+            except Exception as exc:  # noqa: BLE001
+                data, ms = {"error": f"{type(exc).__name__}: {exc}"}, None
+            results.append({"tool": "live_web_search", "args": args, "result": data})
+            t("retrieve", "error" if isinstance(data, dict) and data.get("error") else "tool_result",
+              "Result: live_web_search" + (f" ({ms} ms)" if ms is not None else ""),
+              _summarize("live_web_search", data), _links(data))
+        return {"evidence": chunks, "tool_results": results, "trace": t.events}
 
     def answer(self, state: AgentState) -> dict:
         t = Tracer(state["trace"])
@@ -403,7 +501,10 @@ class SchemeAgent:
         if state.get("privacy_removed"):
             replan_note += (" Tell the user that sensitive identifiers (" + ", ".join(state["privacy_removed"]) +
                             ") were removed for privacy and are not needed.")
-        prompt = prompts.ANSWER_PROMPT.format(
+        focus = self._turn_focus(state, u)
+        prompt = prompts.get("ANSWER_PROMPT").format(
+            history=_history(state["messages"][:-1], limit=4),
+            focus=", ".join(f"{s['name']} ({s['id']})" for s in focus) if focus else "(none)",
             message=state["user_message"], language=lang, profile=_fmt(state.get("profile") or {}),
             memory_note=state.get("memory_note") or "", replan_note=replan_note,
             questions=_fmt([q["question"] for q in state.get("questions") or []]),
@@ -411,7 +512,7 @@ class SchemeAgent:
                                  f" | verified/fetched: {e['date']}\n{e['text']}" for e in evidence) or "(no evidence)")
         writer = self.llm.name
         try:
-            text = self.llm.text(prompts.SYSTEM_PROMPT, prompt)
+            text = self.llm.text(prompts.get("SYSTEM_PROMPT"), prompt)
         except Exception as exc:  # noqa: BLE001
             writer = "template (LLM unavailable)"
             t("answer", "warning", "LLM unavailable: answer built from a template", str(exc)[:200])
@@ -441,6 +542,11 @@ class SchemeAgent:
         for old in state.get("recent_schemes") or []:
             if old["id"] not in {x["id"] for x in recent}:
                 recent.append(old)
+        # The scheme(s) this turn was about go first, so the next "this scheme" means them, not whatever
+        # else a search or a full eligibility check happened to touch.
+        focus_ids = [s["id"] for s in focus]
+        recent = [next((x for x in recent if x["id"] == s["id"]), {**s, "verdict": None}) for s in focus] + \
+                 [x for x in recent if x["id"] not in focus_ids]
         last_verdicts = {**(state.get("last_verdicts") or {}), **{e["scheme_id"]: e["verdict"] for e in eligibility}}
 
         summary = _session_summary(state, eligibility)
@@ -450,8 +556,37 @@ class SchemeAgent:
                 db.record_message(conn, state["session_id"], state.get("user_id"), "assistant", text,
                                   trace=t.events, summary=summary)
         return {"answer": text, "citations": citations, "messages": [AIMessage(content=text)],
-                "recent_schemes": recent[:10], "last_verdicts": last_verdicts, "last_checked_at": db.now_iso(),
+                "recent_schemes": recent[:10], "focus_schemes": focus, "last_verdicts": last_verdicts, "last_checked_at": db.now_iso(),
                 "replan_reasons": [], "trace": t.events}
+
+    @staticmethod
+    def _turn_focus(state: AgentState, u: dict) -> list[dict]:
+        """The scheme(s) this question was about: [{'id', 'name'}]. Order of evidence:
+        1. schemes the user referred to (understand stage, incl. resolved "this scheme"),
+        2. schemes a single-scheme tool (documents / deadline / application) was called for,
+        3. for a question about one scheme ("tell me about BISP"), the best search match.
+        Broad questions ("which schemes suit me?") clear the focus; greetings etc. keep the previous one."""
+        names = _scheme_names()
+        ids = [i for i in u.get("scheme_ids") or [] if i in names]
+        results = state.get("tool_results") or []
+        if not ids:
+            for r in results:
+                res = r["result"] if isinstance(r["result"], dict) else {}
+                sid = r["args"].get("scheme_id") if r["tool"] in SINGLE_SCHEME_TOOL.values() else None
+                if sid in names and not res.get("error") and sid not in ids:
+                    ids.append(sid)
+        if not ids and u["intent"] in FOCUS_INTENTS - {"compare"}:
+            for r in results:
+                hits = (r["result"] or {}).get("results", []) if r["tool"] == "search_schemes" and \
+                    isinstance(r["result"], dict) else []
+                if hits and hits[0].get("match_score", 1) > 0 and hits[0].get("scheme_id") in names:
+                    ids = [hits[0]["scheme_id"]]
+                    break
+        if ids:
+            return [{"id": i, "name": names[i]} for i in ids[:4]]
+        if u["intent"] in NO_FOCUS_INTENTS:
+            return []
+        return list(state.get("focus_schemes") or [])
 
     # ================================================================ graph
     def _route_after_reflect(self, state: AgentState) -> str:
@@ -529,13 +664,14 @@ def _summarize(tool: str, data: Any) -> str:
         return "; ".join(f"{r['scheme_name']}: {r['verdict']}" for r in data.get("results", [])) or "no schemes checked"
     if tool == "check_latest_updates":
         return f"{len(data.get('events', []))} change event(s); {data.get('pending_review', 0)} pending review"
+    if tool == "live_web_search":
+        return (f"{data.get('count', 0)} live result(s) from official sites: "
+                + ", ".join(r["source_name"] for r in data.get("results", [])[:5]))
     if tool == "compare_schemes":
         return "Compared: " + ", ".join(s["name"] for s in data.get("schemes", []))
     name = data.get("name", "")
     if tool == "get_scheme_deadline":
-        days = data.get("days_left")
-        return (f"{name}: status {data.get('status')}, deadline {data.get('deadline')}"
-                + (f" ({days} day(s) left)" if isinstance(days, int) and days >= 0 else ""))
+        return f"{name}: status {data.get('status')}, deadline {data.get('deadline')}"
     if tool == "get_required_documents":
         docs = data.get("documents")
         return f"{name}: " + (f"{len(docs)} document(s)" if isinstance(docs, list) else str(docs))
@@ -553,6 +689,7 @@ def _links(data: Any) -> dict:
                 urls += [s["url"] for s in r.get("sources", [])] or ([r["source_url"]] if r.get("source_url") else [])
         urls += [s["url"] for s in data.get("sources", [])]
         urls += [e["document_url"] for e in data.get("events", []) if e.get("document_url")]
+        urls += [r["url"] for r in data.get("results", []) if isinstance(r, dict) and r.get("url") and "content" in r]
     return {"links_checked": list(dict.fromkeys(u for u in urls if u))[:12]}
 
 
@@ -603,8 +740,7 @@ def _build_evidence(state: AgentState) -> list[dict]:
             for s in data.get("results", [])[:6]:
                 add("scheme record", s["name"], s.get("source_url"), s.get("last_verified"),
                     f"{s['category_label']} | {s['level']} | status: {s['status']} | rules: {s['rules_status']}\n"
-                    + (f"Official status: {s['status_note']}\n" if s.get("status_note") else "")
-                    + f"{s.get('summary') or ''}")
+                    f"{s.get('summary') or ''}")
         elif r["tool"] == "get_required_documents":
             docs = data.get("documents")
             body = "\n".join(f"- {d['text']}" for d in docs) if isinstance(docs, list) else f"{docs}. {data.get('note')}"
@@ -624,6 +760,11 @@ def _build_evidence(state: AgentState) -> list[dict]:
                     f"{s['category_label']} | {s['level']} | status: {s['status']}\nBenefits: {'; '.join(s['benefits'])}\n"
                     f"Criteria: {'; '.join(s['key_criteria'])}\nDocuments: {'; '.join(s['documents'])}\n"
                     f"Apply: {s['application_url']}")
+        elif r["tool"] == "live_web_search":
+            for w in data.get("results", [])[:5]:
+                add("live official web result (Tavily, not verified rules)", w["title"], w["url"],
+                    (w.get("published_date") or data.get("retrieved_at") or "")[:10],
+                    f"Source: {w['source_name']} ({w['level']})\n{w['content'][:700]}")
         elif r["tool"] == "check_latest_updates":
             for e in data.get("events", [])[:6]:
                 add("change history", e["summary"], e.get("document_url"), e["detected_at"][:10],

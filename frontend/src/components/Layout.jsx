@@ -1,123 +1,98 @@
 import { useEffect, useRef, useState } from "react";
-import { NavLink, Outlet, useLocation } from "react-router-dom";
+import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import {
-  Bookmark, ClipboardCheck, Columns3, History, LayoutDashboard, Menu, MessagesSquare, Search, Workflow, X,
+  Bell, Bookmark, BrainCircuit, CheckCircle2, ChevronDown, Columns3, Database, FlaskConical, Globe, History, Home,
+  Menu, MessageCircle, Network, Search, TerminalSquare, Wrench, X,
 } from "lucide-react";
-import AgentStatus from "./AgentStatus.jsx";
-import Disclaimer from "./Disclaimer.jsx";
-import UserControl from "./UserControl.jsx";
+import { api } from "../api.js";
 import { useUser } from "../lib/UserContext.jsx";
+import Disclaimer from "./Disclaimer.jsx";
+import { Brand } from "./Logo.jsx";
+import UserControl from "./UserControl.jsx";
 
 export const NAV_GROUPS = [
   {
-    title: "Discover",
     items: [
-      { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
+      { to: "/", label: "Home", icon: Home, end: true },
       { to: "/schemes", label: "Explore Schemes", icon: Search },
-      { to: "/saved", label: "Saved", icon: Bookmark, badge: "saved" },
+      { to: "/eligibility", label: "Eligibility Checker", icon: CheckCircle2 },
+      { to: "/chat", label: "AI Assistant", icon: MessageCircle },
+      { to: "/studio", label: "Agent Studio", icon: BrainCircuit, end: true },
     ],
   },
   {
-    title: "AI tools",
+    title: "Agent internals",
     items: [
-      { to: "/chat", label: "AI Chat", icon: MessagesSquare, badge: "ai" },
-      { to: "/eligibility", label: "Eligibility Checker", icon: ClipboardCheck },
-      { to: "/compare", label: "Compare", icon: Columns3 },
+      { to: "/studio/rag", label: "RAG Documents", icon: Database },
+      { to: "/studio/live", label: "Tavily Live Search", icon: Globe },
+      { to: "/studio/mcp", label: "MCP Tools", icon: Wrench },
+      { to: "/studio/memory", label: "Memory", icon: Network },
+      { to: "/studio/prompts", label: "Prompt Studio", icon: TerminalSquare },
+      { to: "/studio/testing", label: "Simulation & Testing", icon: FlaskConical },
     ],
   },
   {
-    title: "Stay informed",
-    items: [{ to: "/updates", label: "Recent Updates", icon: History }],
-  },
-  {
-    title: "Learn",
-    items: [{ to: "/how-it-works", label: "How it works", icon: Workflow, badge: "new" }],
+    title: "More",
+    items: [
+      { to: "/compare", label: "Compare", icon: Columns3 },
+      { to: "/saved", label: "Saved", icon: Bookmark },
+      { to: "/updates", label: "Recent Updates", icon: History },
+    ],
   },
 ];
 export const NAV = NAV_GROUPS.flatMap((g) => g.items);
 
-function Brand() {
-  return (
-    <div className="flex items-center gap-3 px-1">
-      <img
-        src="/logo.png"
-        alt=""
-        width="48"
-        height="48"
-        className="h-12 w-12 shrink-0 drop-shadow-[0_4px_14px_rgba(251,180,36,0.35)]"
-      />
-      <div className="min-w-0">
-        <p className="font-display text-[1.05rem] font-extrabold leading-tight tracking-tight text-white">
-          PunjabScheme{" "}
-          <span className="bg-gradient-to-r from-gold-200 to-gold-400 bg-clip-text text-transparent">AI</span>
-        </p>
-        <p className="text-[11px] leading-snug text-navy-300">Government schemes discovery agent</p>
-      </div>
-    </div>
-  );
+function useHealth() {
+  const [health, setHealth] = useState(null);
+  const [down, setDown] = useState(false);
+  useEffect(() => {
+    let alive = true;
+    const load = async () => {
+      try {
+        const h = await api.health();
+        if (alive) {
+          setHealth(h);
+          setDown(false);
+        }
+      } catch {
+        if (alive) setDown(true);
+      }
+    };
+    load();
+    const t = setInterval(load, 30000);
+    return () => {
+      alive = false;
+      clearInterval(t);
+    };
+  }, []);
+  return { health, down };
 }
 
-function NavBadge({ kind, savedCount }) {
-  if (kind === "ai")
-    return (
-      <span className="ml-auto rounded-full bg-gradient-to-r from-emerald-400 to-gold-400 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy-950">
-        AI
-      </span>
-    );
-  if (kind === "new")
-    return <span className="ml-auto rounded-full bg-gold-400/90 px-1.5 py-0.5 text-[10px] font-bold uppercase tracking-wide text-navy-950">Guide</span>;
-  if (kind === "saved" && savedCount > 0)
-    return <span className="ml-auto min-w-[1.25rem] rounded-full bg-white/10 px-1.5 py-0.5 text-center text-[10px] font-bold text-white">{savedCount}</span>;
-  return null;
-}
-
-function SidebarContent({ onNavigate }) {
-  const { user } = useUser();
-  const savedCount = user?.saved?.length || 0;
+function SidebarNav({ onNavigate, health, down }) {
+  const state = down ? "offline" : health?.status === "ok" ? "online" : "starting";
   return (
-    <div className="relative flex h-full flex-col gap-6 overflow-y-auto p-4 scroll-thin">
-      <div className="phulkari pointer-events-none absolute inset-0 opacity-[0.35]" aria-hidden />
-      <div className="pointer-events-none absolute -left-20 -top-20 h-56 w-56 rounded-full bg-emerald-500/15 blur-3xl" aria-hidden />
-      <div className="relative pt-1">
-        <Brand />
-      </div>
-      <nav aria-label="Main" className="relative space-y-5">
-        {NAV_GROUPS.map((g) => (
-          <div key={g.title}>
-            <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-[0.16em] text-navy-400">{g.title}</p>
-            <ul className="space-y-1">
-              {g.items.map(({ to, label, icon: Icon, end, badge }) => (
+    <div className="flex h-full flex-col gap-4 overflow-y-auto px-3 py-4 scroll-thin">
+      <nav aria-label="Main" className="space-y-5">
+        {NAV_GROUPS.map((g, gi) => (
+          <div key={gi}>
+            {g.title && <p className="mb-1.5 px-3 text-[10px] font-semibold uppercase tracking-wider text-slate-400">{g.title}</p>}
+            <ul className="space-y-0.5">
+              {g.items.map(({ to, label, icon: Icon, end }) => (
                 <li key={to}>
                   <NavLink
                     to={to}
                     end={end}
                     onClick={onNavigate}
                     className={({ isActive }) =>
-                      `group relative flex items-center gap-3 rounded-xl px-2.5 py-2 text-sm font-medium transition-all duration-200 focus-visible:ring-offset-navy-950 ${
+                      `flex items-center gap-3 rounded-xl px-3 py-2 text-sm transition-colors ${
                         isActive
-                          ? "bg-gradient-to-r from-white/[0.14] to-white/[0.04] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                          : "text-navy-200 hover:bg-white/[0.06] hover:text-white"
+                          ? "bg-emerald-100 font-semibold text-emerald-900"
+                          : "font-medium text-navy-700 hover:bg-cream-300/70 hover:text-navy-900"
                       }`
                     }
                   >
-                    {({ isActive }) => (
-                      <>
-                        {isActive && (
-                          <span className="absolute -left-4 top-1/2 h-6 w-1 -translate-y-1/2 rounded-r-full bg-gradient-to-b from-gold-300 to-emerald-400 shadow-[0_0_12px_rgba(251,180,36,0.7)]" aria-hidden />
-                        )}
-                        <span
-                          className={`grid h-8 w-8 shrink-0 place-items-center rounded-lg transition-all duration-200 ${
-                            isActive
-                              ? "bg-gradient-to-br from-emerald-400 to-teal-600 text-white shadow-glow"
-                              : "bg-white/[0.05] text-navy-300 group-hover:bg-white/10 group-hover:text-white"
-                          }`}
-                        >
-                          <Icon className="h-4 w-4" aria-hidden />
-                        </span>
-                        {label}
-                        <NavBadge kind={badge} savedCount={savedCount} />
-                      </>
-                    )}
+                    <Icon className="h-4 w-4 shrink-0" aria-hidden />
+                    {label}
                   </NavLink>
                 </li>
               ))}
@@ -125,11 +100,94 @@ function SidebarContent({ onNavigate }) {
           </div>
         ))}
       </nav>
-      <div className="relative mt-auto space-y-3">
-        <UserControl />
-        <AgentStatus />
+
+      <div className="mt-auto rounded-2xl border border-slate-200 bg-cream-50 p-3 text-xs">
+        <div className="flex items-center justify-between">
+          <span className="font-semibold text-navy-800">Agent status</span>
+          <span className="inline-flex items-center gap-1.5 text-slate-600">
+            <span
+              className={`h-2 w-2 rounded-full ${
+                state === "online" ? "animate-pulse bg-emerald-500" : state === "offline" ? "bg-rose-500" : "bg-gold-400"
+              }`}
+            />
+            {state === "online" ? "Online" : state === "offline" ? "Offline" : "Starting"}
+          </span>
+        </div>
+        {health && (
+          <dl className="mt-2 space-y-1 text-slate-600">
+            <div className="flex justify-between gap-2">
+              <dt className="text-slate-400">LLM</dt>
+              <dd className="truncate" title={health.llm}>{health.llm === "unavailable" ? "fallback rules" : health.llm}</dd>
+            </div>
+            <div className="flex justify-between gap-2">
+              <dt className="text-slate-400">Tavily</dt>
+              <dd>{health.live_search ? "live" : health.tavily_configured ? "off" : "no key"}</dd>
+            </div>
+          </dl>
+        )}
+        {down && <p className="mt-2 text-slate-500">Start the API: <code className="kbd">uvicorn app.api:app</code></p>}
       </div>
     </div>
+  );
+}
+
+function UserMenu() {
+  const { userId } = useUser();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  useEffect(() => {
+    if (!open) return undefined;
+    const onDown = (e) => ref.current && !ref.current.contains(e.target) && setOpen(false);
+    const onKey = (e) => e.key === "Escape" && setOpen(false);
+    document.addEventListener("mousedown", onDown);
+    window.addEventListener("keydown", onKey);
+    return () => {
+      document.removeEventListener("mousedown", onDown);
+      window.removeEventListener("keydown", onKey);
+    };
+  }, [open]);
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        type="button"
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-haspopup="dialog"
+        className="flex items-center gap-1 rounded-full p-0.5 pr-1.5 hover:bg-cream-300/70"
+        aria-label="Account"
+      >
+        <span className="grid h-8 w-8 place-items-center rounded-full bg-plum-600 text-sm font-bold uppercase text-white">
+          {userId ? userId.slice(0, 1) : "P"}
+        </span>
+        <ChevronDown className={`h-4 w-4 text-slate-500 transition-transform ${open ? "rotate-180" : ""}`} aria-hidden />
+      </button>
+      {open && (
+        <div className="fade-up absolute right-0 top-11 z-40 w-80 rounded-2xl border border-slate-200 bg-cream-50 p-2 shadow-lift">
+          <UserControl />
+        </div>
+      )}
+    </div>
+  );
+}
+
+function Bellbutton() {
+  const [pending, setPending] = useState(0);
+  useEffect(() => {
+    api.stats().then((s) => setPending(s?.pending_review || 0)).catch(() => {});
+  }, []);
+  return (
+    <Link
+      to="/updates"
+      className="relative rounded-full p-2 text-navy-700 hover:bg-cream-300/70"
+      aria-label={`Recent updates${pending ? `, ${pending} pending review` : ""}`}
+    >
+      <Bell className="h-5 w-5" aria-hidden />
+      {pending > 0 && (
+        <span className="absolute right-1 top-1 grid h-4 min-w-4 place-items-center rounded-full bg-plum-600 px-1 text-[10px] font-bold text-white">
+          {pending > 9 ? "9+" : pending}
+        </span>
+      )}
+    </Link>
   );
 }
 
@@ -137,8 +195,8 @@ export default function Layout() {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
   const scroller = useRef(null);
+  const { health, down } = useHealth();
 
-  // Each page scrolls inside <main>; reset it on navigation.
   useEffect(() => {
     scroller.current?.scrollTo({ top: 0 });
     setMenuOpen(false);
@@ -154,67 +212,78 @@ export default function Layout() {
   const isChat = location.pathname.startsWith("/chat");
 
   return (
-    // `relative` keeps visually-hidden (absolute) inputs inside the app frame; otherwise focusing one can scroll
-    // the whole browser page past the app and reveal empty space below it.
-    <div className="relative flex h-dvh overflow-hidden">
+    <div className="jaali relative flex h-dvh flex-col overflow-clip bg-cream-200">
+      {/* overflow-clip (not overflow-hidden): a hidden box can still be scrolled by scrollIntoView(),
+          which shifted the whole shell up and left a blank strip below it. A clipped box can't be scrolled.
+          `relative` here and on <main> keeps absolutely positioned descendants (e.g. sr-only inputs)
+          inside the shell, so they can't stretch the document and make the window scroll. */}
       <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:left-2 focus:top-2 focus:z-50 focus:rounded-lg focus:bg-white focus:px-3 focus:py-2">
         Skip to content
       </a>
 
-      {/* Desktop sidebar */}
-      <aside className="hidden w-72 shrink-0 bg-gradient-to-b from-navy-950 via-navy-950 to-[#0d2a33] lg:block">
-        <SidebarContent />
-      </aside>
-
-      {/* Mobile drawer */}
-      {menuOpen && (
-        <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
-          <button type="button" className="absolute inset-0 bg-navy-950/60" aria-label="Close menu" onClick={() => setMenuOpen(false)} />
-          <aside className="absolute inset-y-0 left-0 w-[85%] max-w-xs bg-gradient-to-b from-navy-950 to-[#0d2a33] shadow-2xl">
-            <button
-              type="button"
-              onClick={() => setMenuOpen(false)}
-              className="absolute right-3 top-4 rounded-lg p-1.5 text-navy-200 hover:bg-navy-800"
-              aria-label="Close menu"
-            >
-              <X className="h-5 w-5" />
-            </button>
-            <SidebarContent onNavigate={() => setMenuOpen(false)} />
-          </aside>
-        </div>
-      )}
-
-      <div className="flex min-w-0 flex-1 flex-col">
-        {/* Mobile top bar */}
-        <header className="flex items-center justify-between gap-3 bg-navy-950 px-4 py-3 lg:hidden">
-          <div className="flex min-w-0 items-center gap-2">
-            <img src="/logo.png" alt="" width="28" height="28" className="h-7 w-7 shrink-0" />
-            <span className="truncate font-bold text-white">PunjabScheme AI</span>
-          </div>
+      {/* Top header */}
+      <header className="z-30 flex shrink-0 items-center justify-between gap-3 border-b border-slate-200/80 bg-cream-100/90 px-3 py-2.5 backdrop-blur sm:px-5">
+        <div className="flex min-w-0 items-center gap-2">
           <button
             type="button"
             onClick={() => setMenuOpen(true)}
-            className="rounded-lg p-2 text-white hover:bg-navy-800"
+            className="rounded-lg p-2 text-navy-800 hover:bg-cream-300 lg:hidden"
             aria-label="Open menu"
             aria-expanded={menuOpen}
           >
             <Menu className="h-5 w-5" />
           </button>
-        </header>
-        <Disclaimer />
-        <main
-          id="main"
-          ref={scroller}
-          className={`min-h-0 flex-1 ${isChat ? "overflow-hidden" : "overflow-y-auto"}`}
-        >
-          {isChat ? (
-            <Outlet />
-          ) : (
-            <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
-              <Outlet />
-            </div>
+          <Link to="/" className="min-w-0">
+            <Brand />
+          </Link>
+        </div>
+        <div className="flex items-center gap-1 sm:gap-2">
+          {health?.live_search && (
+            <span className="hidden items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1 text-[11px] font-medium text-emerald-800 md:inline-flex">
+              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" /> Live search on
+            </span>
           )}
-        </main>
+          <Bellbutton />
+          <UserMenu />
+        </div>
+      </header>
+
+      <div className="flex min-h-0 flex-1">
+        {/* Desktop sidebar */}
+        <aside className="hidden w-64 shrink-0 border-r border-slate-200/80 bg-cream-100 lg:block">
+          <SidebarNav health={health} down={down} />
+        </aside>
+
+        {/* Mobile drawer */}
+        {menuOpen && (
+          <div className="fixed inset-0 z-40 lg:hidden" role="dialog" aria-modal="true" aria-label="Menu">
+            <button type="button" className="absolute inset-0 bg-navy-950/40" aria-label="Close menu" onClick={() => setMenuOpen(false)} />
+            <aside className="absolute inset-y-0 left-0 flex w-[85%] max-w-xs flex-col bg-cream-100 shadow-2xl">
+              <div className="flex items-center justify-between border-b border-slate-200 px-4 py-3">
+                <Brand compact />
+                <button type="button" onClick={() => setMenuOpen(false)} className="rounded-lg p-1.5 text-navy-700 hover:bg-cream-300" aria-label="Close menu">
+                  <X className="h-5 w-5" />
+                </button>
+              </div>
+              <div className="min-h-0 flex-1">
+                <SidebarNav onNavigate={() => setMenuOpen(false)} health={health} down={down} />
+              </div>
+            </aside>
+          </div>
+        )}
+
+        <div className="flex min-w-0 flex-1 flex-col">
+          <Disclaimer />
+          <main id="main" ref={scroller} className={`relative min-h-0 flex-1 ${isChat ? "overflow-clip" : "overflow-y-auto"}`}>
+            {isChat ? (
+              <Outlet />
+            ) : (
+              <div className="mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8 lg:py-8">
+                <Outlet />
+              </div>
+            )}
+          </main>
+        </div>
       </div>
     </div>
   );

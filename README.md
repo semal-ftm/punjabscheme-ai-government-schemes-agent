@@ -25,8 +25,19 @@ which tools ran, which official links were checked, which document excerpts were
 | **MCP** | `mcp_server/server.py`: a real MCP server (official Python SDK, stdio, separate process) with 7 tools. `agent/mcp_client.py` is the client | `tool_call` / `tool_result` events; `tests/test_mcp.py` |
 | **Prompt engineering** | `agent/prompts.py`: system prompt (role, scope, source rules, eligibility rules, memory, privacy, uncertainty, language) + stage prompts | See section 6 |
 | Crawler + updates | `crawler/` (Requests, BeautifulSoup, PyPDF), `updates.py` (APScheduler), hash comparison, diffs, re-indexing | Recent Updates page |
-| Verified rules (no LLM guessing) | `data/rules.yaml` → `eligibility.py` deterministic engine; 14 schemes, **124 verbatim official quotes** (111 rules + 13 application statuses) | `python -m app.cli verify-quotes` |
+| Verified rules (no LLM guessing) | `data/rules.yaml` → `eligibility.py` deterministic engine; 17 schemes, **133 verbatim official quotes** (including the quotes behind Open statuses) | `python -m app.cli verify-quotes` |
 | Tests | `backend/tests/`: 9 files covering RAG, MCP, both memories, rules, deadlines, updates, inaccessible sites, source accuracy, replanning, API | `pytest` |
+
+### Tavily live search + Agent Studio
+
+- **Tavily live search** (`app/tavily.py`, MCP tool `live_web_search`): searches only `punjab.gov.pk`,
+  `pspa.punjab.gov.pk`, `pessi.punjab.gov.pk`, `pwwf.punjab.gov.pk` and `bisp.gov.pk`; any other domain is dropped.
+  The planner adds it for news/deadline questions, and the `retrieve` node falls back to it when RAG has fewer than
+  2 strong matches. Results are cited as "live official web result (not verified rules)" and never decide eligibility.
+  Set `TAVILY_API_KEY` in `backend/.env`.
+- **Agent Studio** (`/studio`, API `app/studio_api.py`): Overview + architecture + last execution trace, RAG document
+  library and retrieval playground, Tavily search and settings, memory inspector, MCP tool playground, Prompt Studio
+  (validated prompt overrides in `data/studio_settings.json`), and Simulation & Testing with automatic checks.
 
 ## 2. Architecture
 
@@ -111,12 +122,12 @@ Use a username such as `ayesha_demo` in the sidebar and switch on **"Remember my
 
 1. **Planning and asking only what's missing:** *"I am a matric student from Lahore. Which schemes can I apply for?"*
    The trace shows the facts it extracted (`education_level: matric`, `district: Lahore → province: punjab`),
-   **plan v1** (`search_schemes` → `check_eligibility` over all 14 verified schemes), the MCP results, the
+   **plan v1** (`search_schemes` → `check_eligibility` over all 17 verified schemes), the MCP results, the
    official links checked and the RAG excerpts. Taleemi Wazaif / Workers Welfare Schools show *More Information
    Needed*, and the agent asks only the missing questions (BISP beneficiary? age? worker family?).
 2. **Replanning:** *"Actually, I'm a university student."* The trace shows **"Earlier facts corrected"** →
    **plan v1 → v2** → eligibility re-run → **"Recommendations changed"** (school-level schemes become not
-   eligible; Honhaar, Laptop and e-Bikes become relevant and ask for semester, institution type and marks).
+   eligible; Honhaar becomes relevant and asks for semester, institution type and marks).
 3. **Income or location change:** *"Our family income is 40k and I live in Bahawalpur"*. Verdicts are recomputed.
 4. **Official rule change:** edit a criterion in `data/rules.yaml`, bump `last_verified`, run
    `python -m app.cli reload-rules`, then ask again. The trace shows *"Change detected in official rules"* → replan.
@@ -176,13 +187,10 @@ The tests use synthetic personas and a scripted fake LLM (no API key or network 
 
 ## 9. Known limitations
 
-- Only 14 schemes have human-verified rules. The other auto-discovered schemes are searchable and cited but
+- Only 17 schemes have human-verified rules. The other auto-discovered schemes are searchable and cited but
   show *"rules not verified"* and never get an eligibility verdict.
-- Application status is shown only with an official quote (checked 2026-11-07): 3 schemes **Open** (Honhaar
-  until 9 Nov 2026, Apni Chhat Apna Ghar, Apni Chhat Mehfooz Chhat), 8 **Ongoing**, 1 **Closed** (CM Laptop).
-  e-Bikes Phase 2 and Khud Mukhtar stay unconfirmed because no official page states their current window, and
-  auto-discovered schemes link to their official page instead of guessing. Statuses must be re-checked over time
-  (`python -m app.cli verify-quotes`; a passed deadline closes a scheme automatically).
+- No official page states a current application window for the verified schemes, so their status is
+  **Unverified** and deadlines show *"Not Officially Confirmed"*. This is intentional.
 - Some official PDFs are scanned images (no extractable text) and are reported and skipped. OCR is not included.
 - Short-term memory lives in process memory (one session) and resets when the API restarts. Long-term memory persists.
 - Raw Roman-Urdu text retrieves less well than English; the agent translates queries to English before searching.

@@ -4,7 +4,7 @@ import pytest
 from app.agent.mcp_client import MCPToolClient
 
 EXPECTED_TOOLS = {"search_schemes", "check_eligibility", "get_required_documents", "get_scheme_deadline",
-                  "compare_schemes", "check_latest_updates", "get_application_process"}
+                  "compare_schemes", "check_latest_updates", "get_application_process", "live_web_search"}
 
 
 @pytest.fixture()
@@ -18,7 +18,7 @@ def call(mcp, name, **args):
     return mcp.call(name, args)["result"]
 
 
-def test_server_exposes_all_seven_tools(mcp):
+def test_server_exposes_all_eight_tools(mcp):
     assert {t["name"] for t in mcp.tools} == EXPECTED_TOOLS
     assert mcp.server_info["name"] == "punjabscheme-tools"
 

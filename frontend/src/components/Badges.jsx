@@ -55,6 +55,34 @@ export function RulesBadge({ rulesStatus }) {
   );
 }
 
+/**
+ * Official-source seal: "Verified · punjab.gov.pk · 1 Nov 2026". Only shown for rules that a human checked
+ * against the official page (rules_status === "verified"); otherwise falls back to RulesBadge.
+ */
+export function VerifiedSeal({ rulesStatus, sourceUrl, date, className = "" }) {
+  if (rulesStatus !== "verified") return <RulesBadge rulesStatus={rulesStatus} />;
+  let host = "";
+  try {
+    host = new URL(sourceUrl).hostname.replace(/^www\./, "");
+  } catch {
+    /* no source link */
+  }
+  return (
+    <span
+      title="Eligibility rules were checked word-for-word against this official government page."
+      className={`inline-flex max-w-full items-center gap-1.5 rounded-full bg-gradient-to-r from-emerald-700 to-emerald-600 py-0.5 pl-1 pr-2.5 text-xs font-semibold text-white shadow-sm ${className}`}
+    >
+      <span className="grid h-4 w-4 shrink-0 place-items-center rounded-full bg-white/20">
+        <ShieldCheck className="h-3 w-3" aria-hidden />
+      </span>
+      <span className="truncate">
+        Verified{host && <span className="font-medium text-emerald-100"> · {host}</span>}
+        {date && <span className="font-medium text-emerald-100"> · {date}</span>}
+      </span>
+    </span>
+  );
+}
+
 export function SeverityBadge({ severity }) {
   return severity === "significant" ? <Badge tone="rose">Significant</Badge> : <Badge tone="slate">Info</Badge>;
 }

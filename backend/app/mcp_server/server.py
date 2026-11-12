@@ -18,14 +18,6 @@ from app.eligibility import check_scheme, normalize_profile
 from app.rules_loader import effective_status
 
 NOT_CONFIRMED = "Not Officially Confirmed"
-STATUS_MEANING = {
-    "Open": "Applications are being accepted now (official page).",
-    "Ongoing": "The programme is running now (official page); it is not a fixed application window.",
-    "Closed": "Applications are closed (official page or passed official deadline).",
-    "Upcoming": "Applications open on the official opening date.",
-    "Suspended": "Suspended according to the official page.",
-    "Unverified": "No official page states the current status.",
-}
 CATEGORY_LABELS = {"cm_punjab": "CM Punjab Initiative", "punjab_department": "Punjab Department",
                    "federal": "Federal Programme"}
 
@@ -60,7 +52,7 @@ mcp = MCPServer("punjabscheme-tools", version="1.0.0",
 
 
 def _sources(scheme: dict[str, Any]) -> list[dict[str, Any]]:
-    urls = [scheme.get("source_url"), scheme.get("status_source_url")]
+    urls = [scheme.get("source_url")]
     urls += [c.get("source_url") for c in scheme.get("criteria", [])]
     urls += [i.get("source_url") for key in ("benefits", "documents", "steps") for i in scheme.get(key, [])]
     return [{"url": u, "last_verified": scheme.get("last_verified") or NOT_CONFIRMED}
@@ -73,8 +65,7 @@ def _brief(scheme: dict[str, Any]) -> dict[str, Any]:
         "category_label": CATEGORY_LABELS.get(scheme["category"], scheme["category"]),
         "level": scheme["level"], "department": scheme.get("department"), "phase": scheme.get("phase"),
         "sector": scheme.get("sector"), "summary": scheme.get("summary"),
-        "status": effective_status(scheme), "status_note": scheme.get("status_note"),
-        "rules_status": scheme["rules_status"],
+        "status": effective_status(scheme), "rules_status": scheme["rules_status"],
         "origin": scheme["origin"], "source_url": scheme.get("source_url"),
         "last_verified": scheme.get("last_verified") or NOT_CONFIRMED,
     }
@@ -97,7 +88,7 @@ def search_schemes(query: str = "", category: str | None = None, level: str | No
     """Search official Punjab/federal schemes by keywords (English or Roman Urdu).
 
     category: cm_punjab | punjab_department | federal. level: provincial | federal.
-    status: Open | Ongoing | Closed | Upcoming | Suspended | Unverified.
+    status: Open | Closed | Upcoming | Suspended | Unverified.
     """
     terms = [t for t in re.findall(r"[a-z0-9\-]+", query.lower()) if len(t) > 2 and t not in STOPWORDS]
     expanded = set(terms)
@@ -191,11 +182,8 @@ def get_scheme_deadline(scheme_id: str) -> dict[str, Any]:
                 "opening_date": scheme.get("opening_date") or NOT_CONFIRMED,
                 "deadline": scheme.get("deadline") or NOT_CONFIRMED,
                 "days_left": days_left, "status_evidence": scheme.get("status_quote"),
-                "status_evidence_url": scheme.get("status_source_url"),
-                "status_checked": scheme.get("status_checked") or NOT_CONFIRMED,
-                "status_meaning": STATUS_MEANING.get(status),
-                "note": scheme.get("status_note") or (None if status != "Unverified" else
-                "No officially confirmed application window was found. Do not assume the scheme is currently open."),
+                "note": None if status != "Unverified" else
+                "No officially confirmed application window was found. Do not assume the scheme is currently open.",
                 "sources": _sources(scheme)}
 
 
@@ -247,6 +235,20 @@ def check_latest_updates(days: int = 30, scheme_id: str | None = None) -> dict[s
     for e in events:
         e["diff"] = (e["diff"] or "")[:600] or None
     return {"since": since, "events": events, "pending_review": pending, "source_status": sources}
+
+
+@mcp.tool()
+def live_web_search(query: str, source_ids: list[str] | None = None, max_results: int = 4) -> dict[str, Any]:
+    """Live Tavily web search restricted to official sites (punjab.gov.pk, PSPA, PESSI, PWWF, BISP).
+
+    source_ids: any of punjab_gov | pspa | pessi | pwwf | bisp (default: all five).
+    Results are newer than the crawled snapshots but are not human-verified rules.
+    """
+    from app import tavily
+    try:
+        return tavily.search(query, source_ids=source_ids, max_results=max_results)
+    except tavily.TavilyError as exc:
+        return {"error": str(exc), "query": query, "results": [], "count": 0}
 
 
 def main() -> None:

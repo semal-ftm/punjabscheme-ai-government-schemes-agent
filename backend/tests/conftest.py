@@ -105,6 +105,8 @@ def tmp_data(tmp_path, monkeypatch):
     monkeypatch.setattr(config, "CHROMA_DIR", tmp_path / "chroma")
     monkeypatch.setattr(config, "DB_PATH", tmp_path / "test.db")
     monkeypatch.setattr(config, "RULES_PATH", tmp_path / "rules.yaml")
+    monkeypatch.setattr(config, "STUDIO_SETTINGS_PATH", tmp_path / "studio_settings.json")
+    monkeypatch.setattr(config, "TAVILY_API_KEY", "")  # tests never call the live web
     (tmp_path / "snapshots").mkdir()
     (tmp_path / "rules.yaml").write_text(FIXTURE_RULES, encoding="utf-8")
     db.init_db()

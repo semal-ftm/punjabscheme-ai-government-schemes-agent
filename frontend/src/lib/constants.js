@@ -26,7 +26,7 @@ export const LEVELS = [
   { value: "federal", label: "Federal" },
 ];
 
-export const STATUSES = ["Open", "Ongoing", "Upcoming", "Closed", "Suspended", "Unverified"];
+export const STATUSES = ["Open", "Closed", "Upcoming", "Suspended", "Unverified"];
 
 export const EDUCATION_LEVELS = [
   "none", "primary", "middle", "matric", "intermediate", "undergraduate", "graduate", "postgraduate",
@@ -135,3 +135,33 @@ export const EXAMPLE_PROMPTS = [
   "What documents do I need for BISP Kafaalat?",
   "What changed recently?",
 ];
+
+// Topic chips (Home "Featured Categories" + Explore). Matched against scheme name/summary/sector/department.
+export const TOPICS = [
+  { value: "education", label: "Education", keywords: ["education", "scholar", "student", "school", "taleem", "wazaif", "honhaar", "university"] },
+  { value: "housing", label: "Housing", keywords: ["housing", "ghar", "chhat", "shelter", "apni chhat"] },
+  { value: "agriculture", label: "Agriculture", keywords: ["agri", "kissan", "kisan", "farmer", "tractor", "livestock", "crop"] },
+  { value: "women", label: "Women", keywords: ["women", "woman", "female", "dhee", "girl", "mother", "kafaalat", "zewar", "widow"] },
+  { value: "youth", label: "Youth", keywords: ["youth", "young", "skill", "internship", "employment", "sports", "games", "entrepreneur", "business", "karobar"] },
+  { value: "health", label: "Health", keywords: ["health", "medical", "hospital", "sehat", "cancer", "nashonuma", "disab", "himmat"] },
+  { value: "welfare", label: "Welfare", keywords: ["welfare", "ration", "relief", "poverty", "social protection", "khud mukhtar", "worker", "pessi", "bisp", "rahmat", "orphan", "zakat"] },
+];
+
+export const matchesTopic = (scheme, topicValue) => {
+  const t = TOPICS.find((x) => x.value === topicValue);
+  if (!t) return true;
+  const hay = `${scheme.name} ${scheme.summary || ""} ${scheme.sector || ""} ${scheme.department || ""}`.toLowerCase();
+  return t.keywords.some((k) => hay.includes(k));
+};
+
+// AI-generated illustrations in /public/img (one per topic).
+export const TOPIC_IMAGES = {
+  education: "/img/education.webp", housing: "/img/housing.webp", agriculture: "/img/agriculture.webp",
+  women: "/img/women.webp", youth: "/img/youth.webp", health: "/img/health.webp", welfare: "/img/welfare.webp",
+};
+export const schemeImage = (scheme) => {
+  // A scheme named for youth (e.g. Youth Games, PM Youth loans) gets the youth picture even if it also mentions students.
+  if (/youth|games/i.test(scheme.name)) return TOPIC_IMAGES.youth;
+  const t = TOPICS.find((x) => matchesTopic(scheme, x.value));
+  return TOPIC_IMAGES[t?.value] || TOPIC_IMAGES.welfare;
+};

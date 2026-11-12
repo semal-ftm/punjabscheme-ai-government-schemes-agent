@@ -7,29 +7,50 @@
     -webkit-text-size-adjust: 100%;
   }
   body {
-    @apply bg-slate-50 font-sans text-navy-900 antialiased;
+    @apply bg-cream-200 font-sans text-navy-900 antialiased;
   }
   /* Visible, consistent keyboard focus everywhere */
   :focus-visible {
-    @apply outline-none ring-2 ring-emerald-500 ring-offset-2 ring-offset-white;
+    @apply outline-none ring-2 ring-emerald-500 ring-offset-2 ring-offset-cream-50;
   }
 }
 
 @layer components {
   .card {
-    @apply rounded-2xl border border-slate-200/80 bg-white shadow-card;
+    @apply rounded-2xl border border-slate-200/80 bg-cream-50 shadow-card;
+  }
+  .card-hover {
+    @apply transition-all duration-200 hover:-translate-y-0.5 hover:border-emerald-200 hover:shadow-lift;
+  }
+  .font-display {
+    letter-spacing: -0.01em;
+  }
+  .btn-plum {
+    @apply btn bg-plum-600 text-white hover:bg-plum-700;
+  }
+  .pill {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-[11px] font-medium;
+  }
+  .tab-on {
+    @apply rounded-xl bg-emerald-700 px-3.5 py-2 text-sm font-semibold text-white shadow-sm;
+  }
+  .tab-off {
+    @apply rounded-xl border border-slate-200 bg-cream-50 px-3.5 py-2 text-sm font-medium text-navy-700 hover:border-emerald-300 hover:text-emerald-800;
+  }
+  .kbd {
+    @apply rounded border border-slate-300 bg-cream-100 px-1.5 py-0.5 font-mono text-[11px] text-navy-700;
   }
   .btn {
     @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
   }
   .btn-primary {
-    @apply btn bg-emerald-600 text-white hover:bg-emerald-700;
+    @apply btn bg-emerald-700 text-white hover:bg-emerald-800;
   }
   .btn-navy {
     @apply btn bg-navy-900 text-white hover:bg-navy-800;
   }
   .btn-secondary {
-    @apply btn border border-slate-300 bg-white text-navy-800 hover:bg-slate-50;
+    @apply btn border border-slate-300 bg-cream-50 text-navy-800 hover:border-emerald-300 hover:bg-emerald-50/60;
   }
   .btn-ghost {
     @apply btn text-navy-700 hover:bg-slate-100;
@@ -38,7 +59,7 @@
     @apply btn border border-rose-200 bg-white text-rose-700 hover:bg-rose-50;
   }
   .input {
-    @apply w-full rounded-xl border border-slate-300 bg-white px-3 py-2 text-sm text-navy-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30;
+    @apply w-full rounded-xl border border-slate-300 bg-cream-50 px-3 py-2 text-sm text-navy-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none focus:ring-2 focus:ring-emerald-500/30;
   }
   .label {
     @apply mb-1 block text-sm font-medium text-navy-800;
@@ -47,70 +68,19 @@
     @apply inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm font-medium transition-colors;
   }
   .chip-off {
-    @apply chip border-slate-300 bg-white text-navy-700 hover:border-navy-400;
+    @apply chip border-slate-200 bg-cream-50 text-navy-700 hover:border-emerald-300;
   }
   .chip-on {
-    @apply chip border-navy-900 bg-navy-900 text-white;
+    @apply chip border-emerald-700 bg-emerald-700 text-white;
   }
   .section-title {
-    @apply text-base font-semibold text-navy-900;
+    @apply font-display text-lg font-semibold text-navy-900;
   }
   .muted {
     @apply text-sm text-slate-500;
   }
   .link {
     @apply font-medium text-emerald-700 underline-offset-2 hover:underline;
-  }
-}
-
-@layer base {
-  h1,
-  h2 {
-    @apply font-display;
-  }
-}
-
-/* Phulkari-inspired embroidery motif (Punjab folk textile): an 8-point star lattice. */
-.phulkari {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23ffffff' stroke-opacity='.16' stroke-width='1.2'%3E%3Cpath d='M28 8l6 14 14 6-14 6-6 14-6-14-14-6 14-6z'/%3E%3Cpath d='M28 18l3 7 7 3-7 3-3 7-3-7-7-3 7-3z'/%3E%3Cpath d='M0 0l8 8M56 0l-8 8M0 56l8-8M56 56l-8-8'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 56px 56px;
-}
-.phulkari-dark {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23141d36' stroke-opacity='.06' stroke-width='1.2'%3E%3Cpath d='M28 8l6 14 14 6-14 6-6 14-6-14-14-6 14-6z'/%3E%3Cpath d='M28 18l3 7 7 3-7 3-3 7-3-7-7-3 7-3z'/%3E%3C/g%3E%3C/svg%3E");
-  background-size: 56px 56px;
-}
-
-/* Loading skeleton with a moving sheen */
-.shimmer {
-  @apply relative overflow-hidden bg-slate-200/70;
-}
-.shimmer::after {
-  content: "";
-  @apply absolute inset-0 -translate-x-full animate-shimmer bg-gradient-to-r from-transparent via-white/60 to-transparent;
-}
-
-/* Dashboard decoration */
-.hero-grid {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 32px 32px;
-  mask-image: radial-gradient(ellipse at 70% 30%, black 20%, transparent 75%);
-}
-.glass {
-  @apply bg-white/10 ring-1 ring-white/15 backdrop-blur-md;
-}
-.tilt {
-  @apply transition duration-300 ease-out hover:-translate-y-1 hover:shadow-lift;
-}
-@media (prefers-reduced-motion: reduce) {
-  .animate-fade-up,
-  .animate-float,
-  .animate-blob,
-  .animate-flow,
-  .animate-text-swap {
-    animation: none !important;
-    opacity: 1 !important;
-    transform: none !important;
   }
 }
 
@@ -206,4 +176,119 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
+}
+
+/* Soft paper texture for hero areas */
+.paper {
+  background-image: radial-gradient(circle at 85% 20%, rgba(212, 166, 74, 0.12), transparent 45%),
+    radial-gradient(circle at 10% 90%, rgba(90, 133, 70, 0.08), transparent 40%);
+}
+
+@keyframes flow {
+  to {
+    stroke-dashoffset: -20;
+  }
+}
+.flow-line {
+  stroke-dasharray: 5 5;
+  animation: flow 1.2s linear infinite;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.fade-up {
+  animation: fade-up 0.35s ease-out both;
+}
+
+/* ===================================================== Punjabi folk-art styling (Home dashboard) */
+
+/* Truck-art strip: a band of colours with a row of small triangles ("jhalar") hanging below it. */
+.folk-top {
+  position: relative;
+}
+.folk-top::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 10px;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, #c08f2f 33%, transparent 33%) 0 4px / 12px 6px repeat-x,
+    linear-gradient(225deg, #c08f2f 33%, transparent 33%) 0 4px / 12px 6px repeat-x,
+    repeating-linear-gradient(90deg, #b03a48 0 18px, #d4a64a 18px 36px, #36582b 36px 54px, #763a52 54px 72px, #2f6f8f 72px 90px)
+      0 0 / 100% 4px no-repeat;
+}
+
+/* Mughal jaali: faint eight-pointed-star lattice used as the app background. */
+.jaali {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c08f2f' stroke-opacity='0.13' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='6'/%3E%3Cpath d='M0 0L14 14M56 0L42 14M0 56L14 42M56 56L42 42'/%3E%3C/g%3E%3C/svg%3E");
+}
+/* Same lattice in gold on dark panels. */
+.jaali-dark {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23e2c27a' stroke-opacity='0.10' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='6'/%3E%3Cpath d='M0 0L14 14M56 0L42 14M0 56L14 42M56 56L42 42'/%3E%3C/g%3E%3C/svg%3E"),
+    linear-gradient(135deg, #17130f, #26211c 55%, #4d2838);
+}
+
+/* Big tappable answers in the quiz */
+.quiz-option {
+  @apply flex items-center gap-3 rounded-2xl border-2 border-slate-200 bg-cream-50 px-4 py-3 text-left text-[0.95rem] font-medium text-navy-900 shadow-sm transition-all duration-150 hover:-translate-y-0.5 hover:border-plum-300 hover:bg-plum-50 hover:shadow-lift active:scale-[0.98];
+}
+
+/* Flip cards */
+.flip {
+  perspective: 1200px;
+}
+.flip-inner {
+  position: relative;
+  height: 100%;
+  transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transform-style: preserve-3d;
+}
+.flip:hover .flip-inner,
+.flip:focus-within .flip-inner,
+.flip[data-flipped="true"] .flip-inner {
+  transform: rotateY(180deg);
+}
+.flip-face {
+  position: absolute;
+  inset: 0;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.flip-back {
+  transform: rotateY(180deg);
+}
+
+/* Shimmering gold underline for the hero title */
+@keyframes shimmer {
+  to {
+    background-position: 200% center;
+  }
+}
+.shimmer-text {
+  background: linear-gradient(90deg, #763a52, #c08f2f, #36582b, #c08f2f, #763a52);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
+
+/* Blinking caret for the typing animation */
+@keyframes caret {
+  50% {
+    opacity: 0;
+  }
+}
+.caret {
+  animation: caret 1s step-end infinite;
 }

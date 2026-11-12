@@ -5,7 +5,7 @@ export function Spinner({ className = "h-4 w-4" }) {
 }
 
 export function Skeleton({ className = "" }) {
-  return <div className={`shimmer rounded-xl ${className}`} aria-hidden />;
+  return <div className={`animate-pulse rounded-xl bg-slate-200/70 ${className}`} aria-hidden />;
 }
 
 export function CardSkeleton({ lines = 3 }) {
@@ -21,7 +21,7 @@ export function CardSkeleton({ lines = 3 }) {
 
 export function EmptyState({ icon: Icon = Inbox, title, children, action }) {
   return (
-    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 py-12 text-center">
+    <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-cream-50 px-6 py-12 text-center">
       <span className="mb-3 grid h-12 w-12 place-items-center rounded-2xl bg-slate-100 text-slate-500">
         <Icon className="h-6 w-6" aria-hidden />
       </span>
@@ -68,8 +68,8 @@ export function PageHeader({ title, subtitle, actions, icon: Icon }) {
   return (
     <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
       <div className="min-w-0">
-        <h1 className="flex items-center gap-2 text-2xl font-bold tracking-tight text-navy-900">
-          {Icon && <Icon className="h-6 w-6 shrink-0 text-emerald-600" aria-hidden />}
+        <h1 className="flex items-center gap-2.5 font-display text-2xl font-semibold text-navy-900 sm:text-3xl">
+          {Icon && <Icon className="h-6 w-6 shrink-0 text-gold-500" aria-hidden />}
           {title}
         </h1>
         {subtitle && <p className="mt-1 text-sm text-slate-500">{subtitle}</p>}

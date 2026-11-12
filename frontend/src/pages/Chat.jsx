@@ -121,7 +121,7 @@ function AssistantMessage({ m, selected, onSelect, onCite, activeCite, onQuickRe
 
   return (
     <div className="flex gap-3">
-      <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-navy-900 text-emerald-300" aria-hidden>
+      <span className="mt-1 grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-100 text-emerald-700" aria-hidden>
         <Bot className="h-4 w-4" />
       </span>
       <div
@@ -182,8 +182,8 @@ function AssistantMessage({ m, selected, onSelect, onCite, activeCite, onQuickRe
 
 function UserMessage({ m }) {
   return (
-    <div className="flex justify-end gap-3">
-      <div dir="auto" className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl rounded-tr-md bg-navy-900 px-4 py-2.5 text-[0.95rem] text-white ${urduClass(m.content)}`}>
+    <div data-msg-id={m.id} className="flex justify-end gap-3">
+      <div dir="auto" className={`max-w-[85%] whitespace-pre-wrap break-words rounded-2xl rounded-tr-md bg-plum-100 px-4 py-2.5 text-[0.95rem] text-plum-900 ${urduClass(m.content)}`}>
         {m.content}
       </div>
       <span className="mt-1 hidden h-8 w-8 shrink-0 place-items-center rounded-full bg-slate-200 text-navy-700 sm:grid" aria-hidden>
@@ -249,6 +249,9 @@ export default function Chat() {
   const listRef = useRef(null);
   const inputRef = useRef(null);
   const stickToBottom = useRef(true);
+  // Id of the question just sent: keep it pinned at the top so the answer is read from its start.
+  const anchorId = useRef(null);
+  const autoSend = useRef(null); // ?q=...&send=1 from the Home search box
 
   const streaming = messages.some((m) => m.status === "streaming");
   const selected = messages.find((m) => m.id === selectedId) || null;
@@ -265,9 +268,13 @@ export default function Chat() {
   useEffect(() => {
     const q = params.get("q");
     if (q) {
-      setInput(q);
-      inputRef.current?.focus();
+      if (params.get("send") === "1") autoSend.current = q;
+      else {
+        setInput(q);
+        inputRef.current?.focus();
+      }
       params.delete("q");
+      params.delete("send");
       setParams(params, { replace: true });
     }
   }, [params, setParams]);
@@ -298,11 +305,24 @@ export default function Chat() {
     return () => ctrl.abort();
   }, [params, setParams]);
 
-  // Keep the newest content in view unless the user scrolled up to read.
+  // After sending, pin the new question to the top of the list so the answer shows from its beginning
+  // (the browser clamps scrollTop, so a short answer simply stays fully visible). Re-applied while the
+  // answer grows until the user scrolls by hand. Without an anchor (e.g. a loaded conversation), show the end.
   useEffect(() => {
     const el = listRef.current;
-    if (el && stickToBottom.current) el.scrollTop = el.scrollHeight;
+    if (!el) return;
+    if (anchorId.current) {
+      const q = el.querySelector(`[data-msg-id="${anchorId.current}"]`);
+      if (q) el.scrollTop = q.getBoundingClientRect().top - el.getBoundingClientRect().top + el.scrollTop - 16;
+    } else if (stickToBottom.current) {
+      el.scrollTop = el.scrollHeight;
+    }
   }, [messages]);
+
+  const releaseAnchor = () => {
+    anchorId.current = null;
+    stickToBottom.current = false;
+  };
 
   const patch = useCallback((id, fn) => setMessages((ms) => ms.map((m) => (m.id === id ? { ...m, ...fn(m) } : m))), []);
 
@@ -316,7 +336,8 @@ export default function Chat() {
       setMessages((ms) => [...ms, userMsg, botMsg]);
       setSelectedId(botId);
       setInput("");
-      stickToBottom.current = true;
+      anchorId.current = userMsg.id;
+      stickToBottom.current = false;
 
       const ctrl = new AbortController();
       abortRef.current = ctrl;
@@ -349,20 +370,13 @@ export default function Chat() {
     [streaming, sessionId, userId, patch]
   );
 
-  // ?ask= sends the question immediately (dashboard quick-start chips and search bar).
-  // Deferred with a timer so React StrictMode's mount/unmount/mount cycle cannot fire it twice or abort it.
-  const askedRef = useRef(false);
   useEffect(() => {
-    const ask = params.get("ask");
-    if (!ask || askedRef.current) return undefined;
-    const t = setTimeout(() => {
-      askedRef.current = true;
-      params.delete("ask");
-      setParams(params, { replace: true });
-      send(ask);
-    }, 0);
-    return () => clearTimeout(t);
-  }, [params, setParams, send]);
+    if (autoSend.current && !streaming) {
+      const q = autoSend.current;
+      autoSend.current = null;
+      send(q);
+    }
+  }, [send, streaming]);
 
   const newChat = () => {
     abortRef.current?.abort();
@@ -396,10 +410,10 @@ export default function Chat() {
   return (
     <div className="flex h-full">
       <section className="flex min-w-0 flex-1 flex-col" aria-label="Conversation">
-        <div className="flex items-center justify-between gap-2 border-b border-slate-200 bg-white px-4 py-3 sm:px-6">
+        <div className="flex items-center justify-between gap-2 border-b border-slate-200 bg-cream-50 px-4 py-3 sm:px-6">
           <div className="min-w-0">
-            <h1 className="flex items-center gap-2 text-lg font-bold text-navy-900">
-              <Sparkles className="h-5 w-5 shrink-0 text-emerald-600" aria-hidden /> AI Chat
+            <h1 className="flex items-center gap-2 font-display text-xl font-semibold text-navy-900">
+              <Sparkles className="h-5 w-5 shrink-0 text-gold-500" aria-hidden /> AI Assistant
             </h1>
             <p className="truncate text-xs text-slate-500">
               English, اردو or Roman Urdu · {userId ? `signed in as ${userId}` : "anonymous (pick a username to remember you)"}
@@ -420,8 +434,18 @@ export default function Chat() {
         <div
           ref={listRef}
           onScroll={(e) => {
+            if (anchorId.current) return; // programmatic scroll while a question is pinned
             const el = e.currentTarget;
             stickToBottom.current = el.scrollHeight - el.scrollTop - el.clientHeight < 120;
+          }}
+          // Any manual scroll stops the pinning so the user can read freely.
+          onWheel={releaseAnchor}
+          onTouchMove={releaseAnchor}
+          onKeyDown={(e) => {
+            if (["ArrowUp", "ArrowDown", "PageUp", "PageDown", "Home", "End", " "].includes(e.key)) releaseAnchor();
+          }}
+          onMouseDown={(e) => {
+            if (e.target === e.currentTarget) releaseAnchor(); // dragging the scrollbar
           }}
           className="min-h-0 flex-1 overflow-y-auto px-4 py-6 sm:px-6"
         >
@@ -435,10 +459,8 @@ export default function Chat() {
 
             {messages.length === 0 && !historyState.loading && (
               <div className="py-6 text-center">
-                <span className="mx-auto grid h-14 w-14 place-items-center rounded-2xl bg-navy-900 text-emerald-300">
-                  <Bot className="h-7 w-7" aria-hidden />
-                </span>
-                <h2 className="mt-4 text-xl font-bold text-navy-900">Ask about government schemes in Punjab</h2>
+                <img src="/img/chat.webp" alt="" className="mx-auto h-28 w-28 rounded-3xl object-cover shadow-card ring-1 ring-slate-200" />
+                <h2 className="mt-4 font-display text-2xl font-semibold text-navy-900">Ask about government schemes in Punjab</h2>
                 <p className="mx-auto mt-2 max-w-lg text-sm text-slate-500">
                   Tell me about yourself (age, district, education, work) and I will find matching CM Punjab, Punjab
                   department and federal schemes, check eligibility against the official rules and cite every source.

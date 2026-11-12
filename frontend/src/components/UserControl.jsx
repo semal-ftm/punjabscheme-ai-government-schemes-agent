@@ -22,16 +22,16 @@ export default function UserControl() {
   if (!userId) {
     return (
       <form
-        className="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur p-3"
+        className="rounded-xl p-2"
         onSubmit={(e) => {
           e.preventDefault();
           if (valid) setUserId(draft.trim());
         }}
       >
-        <label htmlFor="username" className="flex items-center gap-1.5 text-xs font-semibold text-white">
+        <label htmlFor="username" className="flex items-center gap-1.5 text-xs font-semibold text-navy-900">
           <UserRound className="h-3.5 w-3.5" aria-hidden /> Pick a username
         </label>
-        <p className="mt-1 text-[11px] leading-snug text-navy-200">
+        <p className="mt-1 text-[11px] leading-snug text-slate-500">
           Any nickname works, e.g. <span className="font-mono">ayesha_demo</span>. No real name needed. Used to save
           schemes and remember you.
         </p>
@@ -43,16 +43,16 @@ export default function UserControl() {
             placeholder="ayesha_demo"
             maxLength={32}
             autoComplete="off"
-            className="min-w-0 flex-1 rounded-lg border border-navy-600 bg-navy-900 px-2 py-1.5 text-sm text-white placeholder:text-navy-400 focus:border-emerald-400 focus:outline-none"
+            className="min-w-0 flex-1 rounded-lg border border-slate-300 bg-white px-2 py-1.5 text-sm text-navy-900 placeholder:text-slate-400 focus:border-emerald-500 focus:outline-none"
           />
           <button type="submit" disabled={!valid} className="btn-primary !px-3 !py-1.5 text-xs">
             Use
           </button>
         </div>
         {draft && !valid && (
-          <p className="mt-1 text-[11px] text-amber-300">3-32 characters: letters, numbers, _ . -</p>
+          <p className="mt-1 text-[11px] text-amber-700">3-32 characters: letters, numbers, _ . -</p>
         )}
-        <button type="button" className="mt-2 text-[11px] text-emerald-300 hover:underline" onClick={() => setDraft(suggestName())}>
+        <button type="button" className="mt-2 text-[11px] font-medium text-emerald-700 hover:underline" onClick={() => setDraft(suggestName())}>
           Suggest one for me
         </button>
       </form>
@@ -86,21 +86,21 @@ export default function UserControl() {
   };
 
   return (
-    <div className="rounded-2xl bg-white/[0.05] ring-1 ring-white/10 backdrop-blur p-3 text-white">
+    <div className="rounded-xl p-2 text-navy-900">
       <div className="flex items-center gap-2">
-        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-emerald-500/20 text-sm font-bold uppercase text-emerald-300">
+        <span className="grid h-8 w-8 shrink-0 place-items-center rounded-full bg-plum-600 text-sm font-bold uppercase text-white">
           {userId.slice(0, 1)}
         </span>
         <div className="min-w-0 flex-1">
           <p className="truncate text-sm font-semibold">{userId}</p>
-          <p className="text-[11px] text-navy-300">
+          <p className="text-[11px] text-slate-500">
             {loading ? "Loading..." : user ? `${user.saved?.length || 0} saved scheme(s)` : error ? "Offline" : ""}
           </p>
         </div>
         <button
           type="button"
           onClick={() => setUserId(null)}
-          className="rounded-lg p-1.5 text-navy-300 hover:bg-navy-700 hover:text-white"
+          className="rounded-lg p-1.5 text-slate-500 hover:bg-cream-300 hover:text-navy-900"
           title="Switch user"
           aria-label="Switch user"
         >
@@ -120,24 +120,24 @@ export default function UserControl() {
           disabled={busy || !user}
           onClick={toggleConsent}
           className={`relative inline-flex h-5 w-9 shrink-0 items-center rounded-full transition-colors disabled:opacity-50 ${
-            consent ? "bg-emerald-500" : "bg-navy-600"
+            consent ? "bg-emerald-600" : "bg-slate-300"
           }`}
         >
           <span className={`inline-block h-4 w-4 rounded-full bg-white shadow transition-transform ${consent ? "translate-x-4" : "translate-x-0.5"}`} />
         </button>
       </div>
-      <p className="mt-1 text-[11px] leading-snug text-navy-300">
+      <p className="mt-1 text-[11px] leading-snug text-slate-500">
         {consent
           ? "Your eligibility facts are saved to your account so the assistant remembers them next time."
           : "Off: your profile only lives in the current session and is not stored."}
       </p>
-      {busy && !confirmOpen && <Spinner className="mt-1 h-3 w-3 text-navy-300" />}
-      {actionError && <p className="mt-1 text-[11px] text-rose-300">{actionError}</p>}
+      {busy && !confirmOpen && <Spinner className="mt-1 h-3 w-3 text-slate-400" />}
+      {actionError && <p className="mt-1 text-[11px] text-rose-600">{actionError}</p>}
 
       <button
         type="button"
         onClick={() => setConfirmOpen(true)}
-        className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-rose-300 hover:text-rose-200 hover:underline"
+        className="mt-2 inline-flex items-center gap-1 text-[11px] font-medium text-rose-600 hover:text-rose-700 hover:underline"
       >
         <Trash2 className="h-3 w-3" aria-hidden /> Delete my data
       </button>

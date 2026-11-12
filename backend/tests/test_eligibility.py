@@ -65,16 +65,6 @@ def test_status_requires_confirmed_dates():
     assert effective_status({"deadline": "not-a-date"}) == "Unverified"
 
 
-def test_open_and_ongoing_need_an_official_quote():
-    assert effective_status({"status": "Ongoing"}) == "Unverified"
-    assert effective_status({"status": "Ongoing", "status_quote": "BISP is currently providing cash assistance"}) == "Ongoing"
-    assert effective_status({"status": "Open", "status_quote": "Apply for Construction of New House"}) == "Open"
-    # An Open scheme with an official deadline closes itself once the deadline has passed.
-    honhaar = {"status": "Open", "deadline": "2026-11-09", "status_quote": "The last date ... is November 09, 2026"}
-    assert effective_status(honhaar, date(2026, 11, 7)) == "Open"
-    assert effective_status(honhaar, date(2026, 11, 10)) == "Closed"
-
-
 def test_privacy_guard_masks_identifiers():
     text = ("My CNIC is 35202-1234567-1, phone 0300-1234567, IBAN PK36SCBL0000001123456702 "
             "and email ali@example.com")

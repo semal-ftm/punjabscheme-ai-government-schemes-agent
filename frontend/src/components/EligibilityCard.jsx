@@ -88,7 +88,7 @@ export default function EligibilityCard({ result, defaultOpen = false, onMissing
           <div className="mt-1.5 flex flex-wrap gap-1.5">
             <LevelBadge level={result.level} />
             <CategoryBadge category={result.category} />
-            {result.status && <StatusBadge status={result.status} />}
+            {result.status && <StatusBadge status={result.status} applyUrl={result.application_url} pageUrl={result.source_url} />}
             {result.rules_status && result.rules_status !== "verified" && <RulesBadge rulesStatus={result.rules_status} />}
           </div>
         </div>

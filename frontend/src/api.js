@@ -106,6 +106,38 @@ export const api = {
     request(`/users/${enc(userId)}/saved/${enc(schemeId)}`, { method: "DELETE", ...o }),
 };
 
+/** Agent Studio endpoints (/api/studio/*). */
+export const studioApi = {
+  overview: (o) => request("/studio/overview", o),
+  settings: (o) => request("/studio/settings", o),
+  saveSettings: (changes, o) => request("/studio/settings", { method: "PUT", body: changes, ...o }),
+
+  documents: (o) => request("/studio/documents", o),
+  document: (id, o) => request(`/studio/documents/${enc(id)}`, o),
+  ragSearch: (body, o) => request("/studio/rag/search", { method: "POST", body, ...o }),
+  reindex: (o) => request("/studio/rag/reindex", { method: "POST", ...o }),
+
+  live: (o) => request("/studio/live", o),
+  liveSearch: (body, o) => request("/studio/live/search", { method: "POST", body, ...o }),
+
+  tools: (o) => request("/studio/mcp/tools", o),
+  callTool: (tool, args, o) => request("/studio/mcp/call", { method: "POST", body: { tool, args }, ...o }),
+
+  memory: (o) => request("/studio/memory", o),
+  memorySession: (id, o) => request(`/studio/memory/sessions/${enc(id)}`, o),
+  deleteSession: (id, o) => request(`/studio/memory/sessions/${enc(id)}`, { method: "DELETE", ...o }),
+
+  prompts: (o) => request("/studio/prompts", o),
+  validatePrompt: (name, text, o) => request(`/studio/prompts/${enc(name)}/validate`, { method: "POST", body: { text }, ...o }),
+  savePrompt: (name, text, o) => request(`/studio/prompts/${enc(name)}`, { method: "PUT", body: { text }, ...o }),
+  resetPrompt: (name, o) => request(`/studio/prompts/${enc(name)}`, { method: "DELETE", ...o }),
+
+  scenarios: (o) => request("/studio/scenarios", o),
+  simulate: (body, o) => request("/studio/simulate", { method: "POST", body, ...o }),
+  runs: (o) => request("/studio/runs", o),
+  run: (id, o) => request(`/studio/runs/${enc(id)}`, o),
+};
+
 /**
  * Parse one SSE block ("event: x\ndata: ...\ndata: ...") into {event, data}.
  * Comment lines (": ping") are ignored; multi-line data is joined with "\n".

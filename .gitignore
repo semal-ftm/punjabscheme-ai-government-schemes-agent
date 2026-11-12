@@ -9,3 +9,4 @@ backend/data/chroma/
 backend/data/test_*/
 frontend/node_modules/
 frontend/dist/
+backend/data/studio_settings.json

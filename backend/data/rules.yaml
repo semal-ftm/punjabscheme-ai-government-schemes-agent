@@ -7,9 +7,7 @@
 # Operators: eq | in | not_in | between | lt | gt | lte | gte | is_true | is_false | manual
 #   manual = a condition only the scheme authority can confirm (PMT score, criminal record, merit...).
 #   when   = the criterion only applies if the condition holds (e.g. plot limit for urban areas).
-# Status: Open (applications accepted now) | Ongoing (programme running now) | Closed | Upcoming | Suspended need
-# status_quote (verbatim) + status_source_url (official page, saved as a snapshot); deadline closes Open
-# automatically. Anything else stays "Unverified". status_note is a plain-language summary; status_checked the date.
+# status stays "Unverified" unless an official page states the application window (status_quote + dates).
 #
 # Re-verification workflow: when the crawler flags a changed source, read the diff on the Updates page,
 # edit the affected entry, set last_verified to today (or a date-time like 2026-11-02T10:00 for a
@@ -22,184 +20,201 @@ schemes:
     category: cm_punjab
     level: provincial
     department: Government of the Punjab / Punjab Higher Education Commission
-    phase: "2025 (Academic Session 2024-25)"
+    phase: "Phase-IV (Fall 2026)"
     sector: Education
     summary: >-
-      Full tuition-fee scholarships on merit for undergraduate students of selected disciplines at public
-      sector universities, colleges and medical/dental colleges in Punjab.
-    source_url: https://punjab.gov.pk/node/6433
+      Full tuition-fee scholarships on merit for undergraduate students of selected disciplines. Phase-IV
+      covers 1st-semester students (Fall 2026) at selected public, HED, federal and partner private
+      institutions, and 2nd-semester-onward students at public sector institutions. The portal banner gives
+      the deadline as 19 November 2026; its FAQ still says 9 November 2026, so confirm on the portal.
+    source_url: https://honhaarscholarship.punjabhec.gov.pk/
     application_url: https://honhaarscholarship.punjabhec.gov.pk/
-    last_verified: 2026-11-01
+    last_verified: 2026-11-12
     status: Open
-    deadline: 2026-11-09
-    status_quote: "The last date for submission of online applications is November 09, 2026"
-    status_source_url: "https://honhaarscholarship.punjabhec.gov.pk/"
-    status_note: "Phase-IV applications are open online until 9 November 2026."
-    status_checked: 2026-11-07
+    status_quote: New Registration is now open for Punjab students
+    status_source_url: https://honhaarscholarship.punjabhec.gov.pk/
+    deadline: 2026-11-19
     criteria:
       - id: domicile
         field: province
         op: eq
         value: punjab
         label: Punjab domicile
-        quote: Have domicile of respective province
-      - id: income
+        quote: Have domicile of Punjab province
+      - id: income_public
         field: monthly_household_income
         op: lt
-        value: 300000
-        label: Family monthly income less than Rs 300,000
-        quote: Family monthly income should be less than Rs 300,000
+        value: 350000
+        when: {field: institution_type, op: eq, value: public}
+        label: Family monthly income below Rs 350,000 (public sector institutions)
+        quote: Monthly Family income of the applicant must be less than Rs. 350,000/- for Public Sector HEIs and Rs. 500,000 for Federal / Private Sector HEIs
+      - id: income_private
+        field: monthly_household_income
+        op: lt
+        value: 500000
+        when: {field: institution_type, op: eq, value: private}
+        label: Family monthly income below Rs 500,000 (federal / private institutions)
+        quote: Monthly Family income of the applicant must be less than Rs. 350,000/- for Public Sector HEIs and Rs. 500,000 for Federal / Private Sector HEIs
       - id: level
         field: education_level
         op: eq
         value: undergraduate
-        label: Enrolled in an undergraduate programme
-        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
-      - id: semester
-        field: current_semester
-        op: between
-        value: [1, 2]
-        label: In 1st or 2nd semester
-        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
-      - id: public
+        label: Enrolled in an undergraduate programme (selected disciplines)
+        quote: The applicant must be enrolled in the 1st semester/year of Selected Disciplines in the Selected Universities / Colleges in 2026.
+      - id: enrolled
+        field: currently_enrolled
+        op: is_true
+        label: Currently enrolled
+        quote: The applicant must be enrolled in the 1st semester/year of Selected Disciplines in the Selected Universities / Colleges in 2026.
+      - id: senior_public_only
         field: institution_type
         op: eq
         value: public
-        label: Public sector university / college
-        quote: The Applicant must be enrolled in Selected Disciplines in any Public Universities / Colleges from 1st & 2nd Semester
+        when: {field: current_semester, op: gte, value: 2}
+        label: From 2nd semester onward, only public sector institutions
+        quote: The eligibility of students enrolled in the 2nd semester/year onward is limited to the public sector institutions specified under Phase-IV.
       - id: marks
         field: intermediate_marks_percent
         op: gte
-        value: 65
-        label: Intermediate marks at least 65% (Arts/Social Sciences); 70% for Sciences; 80% for medical/dental
-        quote: "≥ 65% for Arts and Social Sciences"
+        value: 60
+        label: Intermediate marks at least 60% (lowest bar, HED colleges Arts); most institutions need 65-80%
+        quote: "1st Semester / 1st Year: At least 65% marks in Sciences and 60% in Arts and Social Sciences."
       - id: merit
         op: manual
-        label: Selected discipline and merit-based selection (confirmed by the authority)
+        label: Selected discipline, institution-specific marks and merit-based selection (confirmed by the authority)
         quote: Scholarships will be awarded on merit basis.
     benefits:
       - text: 100% tuition fees covered
-        quote: 100% Tuition Fees
+        quote: 100% tuition fee coverage.
     documents:
       - text: Affidavit on e-stamp paper about family income
         quote: (Affidavit on E-Stamp Required)
     steps:
-      - text: Apply on the official Honhaar Scholarship website
-        quote: https://honhaarscholarship.punjabhec.gov.pk/
+      - text: Register online on the Honhaar portal before the deadline
+        quote: Application Deadline November 19, 2026
 
-  - id: cm-punjab-laptop-program
-    name: CM Punjab Laptop Program
-    category: cm_punjab
-    level: provincial
-    department: Government of the Punjab / Higher Education Department
-    phase: "2025"
-    sector: Education
-    summary: >-
-      Laptops for students in the 1st or 2nd semester of BS programmes at public sector universities,
-      colleges and medical/dental colleges in Punjab.
-    source_url: https://punjab.gov.pk/cm-laptop
-    application_url: https://cmlaptophed.punjab.gov.pk/
-    last_verified: 2026-11-01
-    status: Closed
-    status_quote: "Application Submission is Closed!"
-    status_source_url: "https://cmlaptophed.punjab.gov.pk/"
-    status_note: "Phase-II applications have closed; laptop distribution ceremonies are under way."
-    status_checked: 2026-11-07
-    criteria:
-      - id: domicile
-        field: province
-        op: eq
-        value: punjab
-        label: Domicile of any district of Punjab
-        quote: Must have a domicile from any district of Punjab.
-      - id: level
-        field: education_level
-        op: eq
-        value: undergraduate
-        label: Enrolled in a BS programme
-        quote: 1st or 2nd semester of BS in any Public University / College
-      - id: semester
-        field: current_semester
-        op: between
-        value: [1, 2]
-        label: In 1st or 2nd semester
-        quote: 1st or 2nd semester of BS in any Public University / College
-      - id: public
-        field: institution_type
-        op: eq
-        value: public
-        label: Public university / college
-        quote: 1st or 2nd semester of BS in any Public University / College
-      - id: marks
-        field: intermediate_marks_percent
-        op: gte
-        value: 65
-        label: At least 65% marks in Intermediate (80% for medical/dental)
-        quote: Minimum of 65% Marks in Intermediate
-      - id: no_previous_laptop
-        field: received_laptop_before
-        op: is_false
-        label: Has not received a laptop from any laptop scheme
-        quote: Student must not be a recipient of any laptop scheme
-    benefits:
-      - text: "Laptop with Core i7 (13th generation) processor and SSD storage"
-        quote: "Processor: Core i7, 13th Generation"
-    steps:
-      - text: Apply online on the official laptop portal
-        quote: https://cmlaptophed.punjab.gov.pk/
-
-  - id: cm-e-bikes-scheme
-    name: CM e-Bikes Scheme
+  - id: cm-punjab-youth-games
+    name: CM Punjab Youth Games 2026-2027
     category: cm_punjab
     level: provincial
     department: Government of the Punjab
-    phase: "Phase 2 (2026)"
-    sector: Youth / Transport
+    phase: "2026-2027"
+    sector: Youth / Sports
     summary: >-
-      Electric bikes for college and university students on monthly instalments with government-paid
-      interest and insurance. Phase 2 was announced for 2026; the application window must be confirmed on
-      the official portal.
-    source_url: https://punjab.gov.pk/cm-ebikes-scheme
-    last_verified: 2026-11-01
-    status: Unverified
-    status_quote: "The Chief Minister has directed the relevant authorities to open the e-bike portal in the second week of September 2026"
-    status_source_url: "https://punjab.gov.pk/cm-ebikes-scheme"
-    status_note: "Phase 2 (2026) announced, with the portal due to open in September 2026. No official page confirms it opened yet."
-    status_checked: 2026-11-07
+      Province-wide sports competition for students of schools, colleges, universities, special-education
+      schools and madaris, plus open categories, from institution trials to provincial level, with
+      Rs 500 million in cash prizes. Registration runs 15 September to 25 November 2026.
+    source_url: https://youthgames.punjab.gov.pk/
+    application_url: https://youthgames.punjab.gov.pk/
+    last_verified: 2026-11-12
+    status: Open
+    status_quote: "Registration & Trainings at Institutions + Registration (Schools / Colleges) 15 Sep – 25 Nov 2026"
+    status_source_url: https://youthgames.punjab.gov.pk/
+    opening_date: 2026-09-15
+    deadline: 2026-11-25
     criteria:
       - id: age
         field: age
-        op: gte
-        value: 18
-        label: At least 18 years old
-        quote: Eligible applicants must be at least 18 years old
-      - id: enrolled
-        field: currently_enrolled
-        op: is_true
-        label: Regular student
-        quote: be regular students of degree colleges or universities recognized by the Higher Education Commission (HEC)
-      - id: level
-        field: education_level
-        op: in
-        value: [undergraduate, graduate, postgraduate]
-        label: Student of an HEC-recognised degree college or university
-        quote: be regular students of degree colleges or universities recognized by the Higher Education Commission (HEC)
-      - id: licence
-        field: has_driving_licence
-        op: is_true
-        label: Valid motorcycle learner's permit or driving licence
-        quote: hold a valid motorcycle learner's permit or driving license
-      - id: quota
+        op: between
+        value: [10, 35]
+        label: Aged 10 to 35 (the exact bracket depends on your category)
+        quote: (15-35y & Mild Disabilities)
+      - id: bracket
         op: manual
-        label: Quota and e-balloting by domicile district if applications exceed quota
-        quote: In case applications exceed the available quota, an e-balloting process will be conducted based on domicile district.
+        label: "Age bracket by category: middle school 10-15, secondary under 17, colleges under 21, universities 17-26"
+        quote: Age Bracket (10y-15y)
     benefits:
-      - text: No down payment for students (Phase 2 announcement)
-        quote: students will not be required to pay a down payment
-      - text: Monthly instalment of about Rs. 3,000 (agreed in principle)
-        quote: A monthly instalment of approximately Rs. 3,000 has been agreed upon in principle.
-      - text: Free helmet and safety rod, plus free two-day riding training
-        quote: Students will also receive a helmet and safety rod free of cost
+      - text: Rs 500 million in cash prizes
+        quote: 500 MILLION Cash prize
+    steps:
+      - text: Register on the official online portal
+        quote: Massive registration drive through online portal
+      - text: Players are selected through trials and competitions
+        quote: Players to be selected through trials and competitions
+
+  - id: cm-rahmat-card
+    name: Rahmat Card Program
+    category: cm_punjab
+    level: provincial
+    department: Zakat & Ushr Department, Government of the Punjab
+    phase: "Phase 1"
+    sector: Social Protection
+    summary: >-
+      One-time grant for Zakat-eligible widows and orphans in Punjab: Rs 100,000 for a widow plus Rs 25,000
+      per orphan child, up to Rs 150,000 per family, with selection through PSER and NADRA.
+    source_url: https://punjab.gov.pk/rahmat-card
+    application_url: https://www.rahmatcard.punjab.gov.pk/
+    last_verified: 2026-11-12
+    status: Unverified
+    criteria:
+      - id: punjab
+        field: province
+        op: eq
+        value: punjab
+        label: Resident of Punjab
+        quote: "Targeted Assistance: For Zakat-eligible widows and orphans in Punjab"
+      - id: widow
+        field: marital_status
+        op: eq
+        value: widowed
+        label: Widow (or guardian of orphan children)
+        quote: "Targeted Assistance: For Zakat-eligible widows and orphans in Punjab"
+      - id: zakat
+        op: manual
+        label: Zakat-eligible, verified through PSER and NADRA
+        quote: "Merit-Based Selection: Verification through PSER and NADRA databases"
+    benefits:
+      - text: Rs 100,000 for a widow, Rs 25,000 per orphan child, up to Rs 150,000 per family
+        quote: widows are provided with Rs 100,000, while additional support of Rs 25,000 is provided per orphan child (up to a maximum total of Rs 150,000 per family).
+    steps:
+      - text: Apply on the web portal, the mobile app or at a local Zakat and Ushr office
+        quote: Residents can apply through a dedicated web portal, a mobile application, or by visiting local Zakat and Ushr offices.
+
+  - id: cm-asaan-karobar-card
+    name: CM Punjab Asaan Karobar Card
+    category: cm_punjab
+    level: provincial
+    department: Government of the Punjab (applications through the PITB portal)
+    sector: Business / Finance
+    summary: >-
+      Interest-free revolving credit card of up to Rs 1 million for small entrepreneurs in Punjab, repaid over
+      three years, for business payments, bills and limited cash withdrawal.
+    source_url: https://punjab.gov.pk/asaan-karobar-card
+    application_url: https://akc.punjab.gov.pk/cmpunjabfinance
+    last_verified: 2026-11-12
+    status: Unverified
+    criteria:
+      - id: age
+        field: age
+        op: between
+        value: [21, 57]
+        label: Aged 21 to 57
+        quote: "Age: 21 to 57 years"
+      - id: punjab
+        field: province
+        op: eq
+        value: punjab
+        label: Pakistani national resident in Punjab
+        quote: Pakistani National, resident in Punjab
+      - id: business
+        op: manual
+        label: Existing or planned business located in Punjab
+        quote: Existing or prospective business located in Punjab
+      - id: credit
+        op: manual
+        label: Satisfactory credit and psychometric assessment, clean credit history
+        quote: Satisfactory credit and psychometric assessment
+    benefits:
+      - text: Credit limit up to Rs 1 million
+        quote: "Maximum Limit: PKR 1 million"
+      - text: 0% interest for the borrower
+        quote: "End-User Interest Rate: 0%"
+    documents:
+      - text: Valid CNIC and a mobile number registered in your name
+        quote: Valid CNIC and mobile number registered in the applicant's name
+    steps:
+      - text: Apply online through the PITB portal (non-refundable processing fee Rs 500)
+        quote: "Non-refundable processing fee: PKR 500"
 
   - id: apni-chhat-apna-ghar
     name: Apni Chhat Apna Ghar Program
@@ -213,11 +228,7 @@ schemes:
     source_url: https://punjab.gov.pk/apni-chhat-apna-ghar
     application_url: https://acag.punjab.gov.pk/index.aspx
     last_verified: 2026-11-01
-    status: Open
-    status_quote: "Apply for Construction of New House"
-    status_source_url: "https://acag.punjab.gov.pk/index.aspx"
-    status_note: "New applications are accepted online on the official ACAG portal (no closing date published)."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: residency
         field: province
@@ -279,11 +290,7 @@ schemes:
     source_url: https://punjab.gov.pk/apni-chat-mehfoz-chat-project
     application_url: https://acag.punjab.gov.pk/index.aspx
     last_verified: 2026-11-01
-    status: Open
-    status_quote: "Apply for Addition of New Floor/Room"
-    status_source_url: "https://acag.punjab.gov.pk/index.aspx"
-    status_note: "New applications are accepted online on the official ACAG portal (no closing date published)."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: residency
         field: province
@@ -349,11 +356,7 @@ schemes:
     summary: Interest-free loans for small farmers to buy agricultural inputs such as seed and fertilizer.
     source_url: https://punjab.gov.pk/cm-kissan-card-scheme
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "For registration, write pkc<space>CNIC number and send SMS to 8070"
-    status_source_url: "https://punjab.gov.pk/cm-kissan-card-scheme"
-    status_note: "Running programme with a published registration route: SMS 'pkc <CNIC>' to 8070."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: farmer
         field: employment_type
@@ -394,11 +397,7 @@ schemes:
     summary: Monthly financial assistance for kitchen essentials for low-income households in Punjab.
     source_url: https://punjab.gov.pk/ration-card
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "Apply online by registering through Punjab Socio-Economic Registry portal"
-    status_source_url: "https://punjab.gov.pk/ration-card"
-    status_note: "Running programme; register through the Punjab Socio-Economic Registry (PSER) or an e-Khidmat Markaz."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: residency
         field: province
@@ -449,11 +448,7 @@ schemes:
     summary: Quarterly cash stipend through ATM cards for persons with disabilities (PWDs).
     source_url: https://punjab.gov.pk/cm-himmat-card-program
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "Batch III ATM Cards Distribution and Cash Transaction to 20,000 eligible individuals (Underway)"
-    status_source_url: "https://punjab.gov.pk/cm-himmat-card-program"
-    status_note: "Batch III card distribution to 20,000 people is under way."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: disability
         field: has_disability
@@ -482,11 +477,7 @@ schemes:
     source_url: https://punjab.gov.pk/punjab-dhee-rani-program
     application_url: https://cmp.punjab.gov.pk
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "Collective Marriages of 5000 poor girls will be organized across Punjab"
-    status_source_url: "https://punjab.gov.pk/punjab-dhee-rani-program"
-    status_note: "2025-26 cycle: collective marriages for 5,000 girls across Punjab."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: domicile
         field: province
@@ -528,11 +519,7 @@ schemes:
       districts, linked to 80% attendance.
     source_url: https://pspa.punjab.gov.pk/zewar-e-taleem-program
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "are getting this stipend upon successful biometric verification"
-    status_source_url: "https://pspa.punjab.gov.pk/zewar-e-taleem-program"
-    status_note: "Quarterly stipends are being paid to enrolled girls (grades 6-10) in the selected districts."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: girl
         field: gender
@@ -582,8 +569,6 @@ schemes:
     source_url: https://pspa.punjab.gov.pk/khudmukhtar-program
     last_verified: 2026-11-01
     status: Unverified
-    status_note: "The official page describes the programme but does not say whether registration is open now."
-    status_checked: 2026-11-07
     criteria:
       - id: married
         field: marital_status
@@ -623,11 +608,7 @@ schemes:
       books, stationery and transport, for children of registered workers.
     source_url: https://pwwf.punjab.gov.pk/education
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "The Directorate of Education not only provides education free of cost to enrolled workers students"
-    status_source_url: "https://pwwf.punjab.gov.pk/education"
-    status_note: "Workers Welfare schools are operating and admitting workers' children."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: worker_family
         field: registered_industrial_worker
@@ -645,6 +626,53 @@ schemes:
         quote: free Uniform, Shoes, Stationery, Books and Transport
 
   # ======================================================== FEDERAL PROGRAMMES (available in Punjab)
+  - id: pwwf-talent-scholarship
+    name: PWWF Talent Scholarship
+    category: punjab_department
+    level: provincial
+    department: Punjab Workers Welfare Fund (PWWF)
+    sector: Education
+    summary: >-
+      Education fees reimbursed plus monthly allowances for children of registered industrial and mining
+      workers, from intermediate level up to postgraduate study. Apply online within one year of admission.
+    source_url: https://pwwf.punjab.gov.pk/scholarship
+    application_url: https://mis.pwwf.punjab.gov.pk/
+    last_verified: 2026-11-12
+    status: Unverified
+    criteria:
+      - id: worker
+        op: manual
+        label: Parent is an industrial/mining worker registered with EOBI or Social Security, with at least 3 years of service
+        quote: must be registered with EOBI or Social Security and having at least 3 years accumulative service
+      - id: contributions
+        op: manual
+        label: At least nine months of EOBI or PESSI contributions in the last twelve months
+        quote: having at least nine months contribution of EOBI or PESSI out of last twelve months
+      - id: establishment
+        op: manual
+        label: Employer registered under the Factories Act 1934 or Punjab Mining Concession Rules 2002
+        quote: must be registered under Factories Act, 1934 or Punjab Mining Concession Rules, 2002.
+      - id: enrolled
+        field: currently_enrolled
+        op: is_true
+        label: Student currently admitted (apply within one year of admission)
+        quote: lication can be submitted within one year from the date of admission.
+    benefits:
+      - text: Intermediate fees reimbursed up to Rs 100,000 a year
+        quote: For intermediate / Inter Tech / A-level and equivalent programs as per actual or Rs.100,000/- per annum, whichever is lower.
+      - text: Boarding (hostel and mess) Rs 10,000 a month where admissible
+        quote: Boarding charges (Hostel+Mess) @ Rs.10,000/- per month.
+      - text: Transport Rs 5,000 a month where admissible
+        quote: Transport charges @ Rs.5,000/- per month.
+    documents:
+      - text: Employment certificate, affidavit on stamp paper, bank cheque leaf or certificate, and original fee vouchers
+        quote: upload Employement Certificate, Affidavit on Stamp Paper, Cheque Leaf / Certificate of Bank particulars and Fee Payment Vouchers in original
+    steps:
+      - text: Sign up on the PWWF MIS portal with the student's CNIC or B-Form
+        quote: "Register/Sign-up (With Student CNIC/B-Form) through the link: www.mis.pwwf.punjab.gov.pk"
+      - text: Track your application on the portal
+        quote: Keep checking your portal to see the status of your application.
+
   - id: bisp-benazir-kafaalat
     name: Benazir Kafaalat Programme (BISP)
     category: federal
@@ -656,11 +684,7 @@ schemes:
       Socio-Economic Registry (NSER) survey.
     source_url: https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "BISP is currently providing cash assistance to around 9 million families under Benazir Kafaalat programme"
-    status_source_url: "https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5"
-    status_note: "Running nationwide; eligibility is through the NSER survey at Benazir Registration Centers."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: woman
         field: gender
@@ -707,11 +731,7 @@ schemes:
       up to higher secondary level.
     source_url: https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3
     last_verified: 2026-11-01
-    status: Ongoing
-    status_quote: "in July 2020 programme has been expanded in all districts of Pakistan"
-    status_source_url: "https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3"
-    status_note: "Running in all districts; stipends are paid quarterly to enrolled children of Kafaalat families."
-    status_checked: 2026-11-07
+    status: Unverified
     criteria:
       - id: kafaalat_family
         field: bisp_beneficiary
@@ -766,3 +786,44 @@ schemes:
       - text: Or enrol through BISP's digital self-enrolment application
         quote: A digital application is established for self -enrollment.
         source_url: https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf
+
+  - id: pm-youth-business-agri-loan
+    name: PM Youth Business & Agriculture Loan Scheme (PMYB&ALS)
+    category: federal
+    level: federal
+    department: Prime Minister's Youth Programme
+    sector: Business / Agriculture
+    summary: >-
+      Business and agriculture loans in three tiers (up to Rs 7.5 million, 0-7% markup) for young Pakistani
+      residents, issued through 15 commercial, Islamic and SME banks. Applications are online only.
+    source_url: https://pmybals.pmyp.gov.pk/
+    application_url: https://pmyp.gov.pk/bankform/newapplicantform
+    last_verified: 2026-11-12
+    status: Unverified
+    criteria:
+      - id: age
+        field: age
+        op: between
+        value: [21, 45]
+        label: Aged 21 to 45 (18 to 45 for IT / e-commerce businesses)
+        quote: All Pakistani residents, aged between 21 and 45 years with entrepreneurial potential are eligible to apply for the loan.
+      - id: not_government
+        field: employment_type
+        op: not_in
+        value: [government_employee]
+        label: Not a government employee
+        quote: Government employees are not eligible from applying under this scheme.
+      - id: resident
+        op: manual
+        label: Resident Pakistani
+        quote: This scheme is only for resident Pakistanis.
+    benefits:
+      - text: "Tier 1: up to Rs 0.5 million at 0% markup"
+        quote: The range is 0.5 million PKR with 0% markup
+      - text: "Tier 2: Rs 0.5 to 1.5 million at 5% markup"
+        quote: The range is above 0.5 Million upto 1.5 Million PKR with 5% markup
+      - text: "Tier 3: Rs 1.5 to 7.5 million at 7% markup"
+        quote: The range is above 1.5 Million upto 7.5 Million PKR with 7% markup
+    steps:
+      - text: Apply online only, on the official PMYP loan form
+        quote: Applications have to be submitted online only through our website.

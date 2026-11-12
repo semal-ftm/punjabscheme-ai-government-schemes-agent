@@ -1,21 +1,28 @@
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Navigate, Route, Routes } from "react-router-dom";
 import { Compass } from "lucide-react";
 import Layout from "./components/Layout.jsx";
 import { EmptyState } from "./components/States.jsx";
 import { UserProvider } from "./lib/UserContext.jsx";
 import Chat from "./pages/Chat.jsx";
 import Compare from "./pages/Compare.jsx";
-import Dashboard from "./pages/Dashboard.jsx";
 import Eligibility from "./pages/Eligibility.jsx";
 import Explore from "./pages/Explore.jsx";
+import Home from "./pages/Home.jsx";
 import Saved from "./pages/Saved.jsx";
 import SchemeDetail from "./pages/SchemeDetail.jsx";
 import Updates from "./pages/Updates.jsx";
-import HowItWorks from "./pages/HowItWorks.jsx";
+import LiveSearch from "./pages/studio/LiveSearch.jsx";
+import McpTools from "./pages/studio/McpTools.jsx";
+import Memory from "./pages/studio/Memory.jsx";
+import Overview from "./pages/studio/Overview.jsx";
+import Prompts from "./pages/studio/Prompts.jsx";
+import RagDocs from "./pages/studio/RagDocs.jsx";
+import StudioLayout from "./pages/studio/StudioLayout.jsx";
+import Testing from "./pages/studio/Testing.jsx";
 
 function NotFound() {
   return (
-    <EmptyState icon={Compass} title="Page not found" action={<Link to="/" className="btn-primary">Go to dashboard</Link>}>
+    <EmptyState icon={Compass} title="Page not found" action={<Link to="/" className="btn-primary">Go home</Link>}>
       The page you are looking for does not exist.
     </EmptyState>
   );
@@ -26,7 +33,7 @@ export default function App() {
     <UserProvider>
       <Routes>
         <Route element={<Layout />}>
-          <Route index element={<Dashboard />} />
+          <Route index element={<Home />} />
           <Route path="chat" element={<Chat />} />
           <Route path="schemes" element={<Explore />} />
           <Route path="schemes/:id" element={<SchemeDetail />} />
@@ -34,7 +41,16 @@ export default function App() {
           <Route path="compare" element={<Compare />} />
           <Route path="saved" element={<Saved />} />
           <Route path="updates" element={<Updates />} />
-          <Route path="how-it-works" element={<HowItWorks />} />
+          <Route path="studio" element={<StudioLayout />}>
+            <Route index element={<Overview />} />
+            <Route path="rag" element={<RagDocs />} />
+            <Route path="live" element={<LiveSearch />} />
+            <Route path="mcp" element={<McpTools />} />
+            <Route path="memory" element={<Memory />} />
+            <Route path="prompts" element={<Prompts />} />
+            <Route path="testing" element={<Testing />} />
+          </Route>
+          <Route path="dashboard" element={<Navigate to="/" replace />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>

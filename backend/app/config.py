@@ -60,6 +60,15 @@ CRAWL_MAX_PDF_BYTES = int(os.getenv("CRAWL_MAX_PDF_BYTES", str(12 * 1024 * 1024)
 UPDATE_INTERVAL_HOURS = float(os.getenv("UPDATE_INTERVAL_HOURS", "24"))
 ENABLE_SCHEDULER = os.getenv("ENABLE_SCHEDULER", "true").lower() == "true"
 
+# Tavily live web search (restricted to official government domains). Get a key at https://app.tavily.com
+TAVILY_API_KEY = os.getenv("TAVILY_API_KEY", "")
+TAVILY_SEARCH_DEPTH = os.getenv("TAVILY_SEARCH_DEPTH", "advanced")
+TAVILY_MAX_RESULTS = int(os.getenv("TAVILY_MAX_RESULTS", "5"))
+TAVILY_TIMEOUT_SECONDS = float(os.getenv("TAVILY_TIMEOUT_SECONDS", "30"))
+
+# Agent Studio: runtime settings and prompt overrides edited from the web UI
+STUDIO_SETTINGS_PATH = _path("STUDIO_SETTINGS_PATH", DATA_DIR / "studio_settings.json")
+
 # MCP: the agent starts the MCP server as a child process over stdio
 MCP_SERVER_MODULE = "app.mcp_server.server"
 

@@ -1,11 +1,11 @@
 [
  {
-  "url": "https://acag.punjab.gov.pk/index.aspx",
+  "url": "https://bikes.punjab.gov.pk/",
   "source_id": null,
-  "title": "Apni Chhat Apna Ghar گھر کی تعمیر و تکمیل کا سفر",
+  "title": "CM Punjab's Green Initiative",
   "content_type": "manual_url",
-  "snapshot_path": "snapshots\\manual\\abc8d0d0e51a9f14.html",
-  "fetched_at": "2026-11-06T20:24:29+00:00"
+  "snapshot_path": "snapshots\\manual\\c33f41b74c448fa0.html",
+  "fetched_at": "2026-11-12T17:22:33+00:00"
  },
  {
   "url": "https://bisp.gov.pk/",
@@ -13,7 +13,7 @@
   "title": "Benazir Income Support Programme",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\2ca5480ec8b2d7fa.html",
-  "fetched_at": "2026-11-06T20:23:08+00:00"
+  "fetched_at": "2026-11-12T17:18:37+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/N2MxMWNkNDMtNmMwYS00N2MwLWI1ZjgtZWFkZDJmZDMwM2Jh",
@@ -21,7 +21,7 @@
   "title": "Regional Offices Contacts",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\c3fcb195b6fefdda.html",
-  "fetched_at": "2026-11-02T14:41:13+00:00"
+  "fetched_at": "2026-11-12T17:19:39+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/Y2M0MjU2MDctYzE3My00YTNkLWFlODctMWNmNDM0ODhjZGFj",
@@ -29,7 +29,7 @@
   "title": "Benazir National Socio-Economic Registry",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\e5d9611bddd058ed.html",
-  "fetched_at": "2026-11-02T14:41:19+00:00"
+  "fetched_at": "2026-11-12T17:19:46+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/YTgzNjkxM2YtN2ViMC00MjA5LWI0MDMtNzM4ZWJmMGVlNzc5",
@@ -37,7 +37,7 @@
   "title": "Benazir Kafaalat",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\acce9c5202008d9a.html",
-  "fetched_at": "2026-11-02T14:41:23+00:00"
+  "fetched_at": "2026-11-12T17:19:49+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/YjAyMjI5ZDQtMTVkOC00YTNlLWE5NjctMjA1NTYwN2JhOTE3",
@@ -45,7 +45,7 @@
   "title": "BENAZIR NASHONUMA PROGRAMME",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\001453dd10b231be.html",
-  "fetched_at": "2026-11-02T14:41:18+00:00"
+  "fetched_at": "2026-11-12T17:19:44+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/YzNlY2Q2ZGYtNjIwZS00MjNiLWFhMmEtZGM5NWNkMjZhMjQ3",
@@ -53,7 +53,7 @@
   "title": "Benazir Taleemi Wazaif",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\08a9f273a9fe091c.html",
-  "fetched_at": "2026-11-02T14:41:21+00:00"
+  "fetched_at": "2026-11-12T17:19:48+00:00"
  },
  {
   "url": "https://bisp.gov.pk/Detail/ZjE4YTk4MzAtM2MzMC00NzYyLThhNDktMzFkNDBhOGNlNGQ2",
@@ -61,7 +61,7 @@
   "title": "Overview",
   "content_type": "html",
   "snapshot_path": "snapshots\\bisp\\4725a2797abe31a5.html",
-  "fetched_at": "2026-11-02T14:39:49+00:00"
+  "fetched_at": "2026-11-12T17:18:41+00:00"
  },
  {
   "url": "https://bisp.gov.pk/SiteImage/Misc/files/KifalatEngUrdu_2022.pdf",
@@ -69,7 +69,7 @@
   "title": "BENAZIR Kafaalat Registration Process",
   "content_type": "pdf",
   "snapshot_path": "snapshots\\bisp\\028636e0169cc249.pdf",
-  "fetched_at": "2026-11-02T14:40:59+00:00"
+  "fetched_at": "2026-11-12T17:19:24+00:00"
  },
  {
   "url": "https://bisp.gov.pk/SiteImage/Misc/files/NSEREngUrdu_2022.pdf",
@@ -77,7 +77,7 @@
   "title": "BENAZIR NATIONAL SOCIO-ECONOMIC REGISTRY (NSER) Registration Process",
   "content_type": "pdf",
   "snapshot_path": "snapshots\\bisp\\491cb916c9869c46.pdf",
-  "fetched_at": "2026-11-02T14:41:05+00:00"
+  "fetched_at": "2026-11-12T17:19:28+00:00"
  },
  {
   "url": "https://bisp.gov.pk/SiteImage/Misc/files/NashonomaUrdu_2022.pdf",
@@ -85,7 +85,7 @@
   "title": "BENAZIR NASHONUMA Registration Process",
   "content_type": "pdf",
   "snapshot_path": "snapshots\\bisp\\7a638f8da7348859.pdf",
-  "fetched_at": "2026-11-02T14:41:05+00:00"
+  "fetched_at": "2026-11-12T17:19:29+00:00"
  },
  {
   "url": "https://bisp.gov.pk/SiteImage/Misc/files/Taleemi%20Wazaif_09162022.pdf",
@@ -93,7 +93,7 @@
   "title": "BENAZIR TALEEMI WAZAIF Registration Process",
   "content_type": "pdf",
   "snapshot_path": "snapshots\\bisp\\38d185d5d585e682.pdf",
-  "fetched_at": "2026-11-02T14:41:01+00:00"
+  "fetched_at": "2026-11-12T17:19:25+00:00"
  },
  {
   "url": "https://cmlaptophed.punjab.gov.pk/",
@@ -101,15 +101,15 @@
   "title": "CM Punjab Laptop Program",
   "content_type": "manual_url",
   "snapshot_path": "snapshots\\manual\\b89436c41f3df9dc.html",
-  "fetched_at": "2026-11-06T20:24:49+00:00"
+  "fetched_at": "2026-11-12T17:22:06+00:00"
  },
  {
   "url": "https://honhaarscholarship.punjabhec.gov.pk/",
   "source_id": null,
-  "title": "CM PUNJAB HONHAAR SCHOLARSHIP",
+  "title": "CM Punjab Honhaar Scholarship Program",
   "content_type": "manual_url",
   "snapshot_path": "snapshots\\manual\\3f734ad5b79aeed7.html",
-  "fetched_at": "2026-11-06T20:22:22+00:00"
+  "fetched_at": "2026-11-12T17:23:53+00:00"
  },
  {
   "url": "https://pessi.punjab.gov.pk/cash_benefits",
@@ -117,7 +117,7 @@
   "title": "Cash Benefits",
   "content_type": "html",
   "snapshot_path": "snapshots\\pessi\\a546f913f383ecb1.html",
-  "fetched_at": "2026-11-02T14:39:30+00:00"
+  "fetched_at": "2026-11-12T17:18:20+00:00"
  },
  {
   "url": "https://pessi.punjab.gov.pk/healthcare",
@@ -125,7 +125,7 @@
   "title": "Healthcare Benefits",
   "content_type": "html",
   "snapshot_path": "snapshots\\pessi\\96bdbbc3180441ac.html",
-  "fetched_at": "2026-11-02T14:39:25+00:00"
+  "fetched_at": "2026-11-12T17:18:18+00:00"
  },
  {
   "url": "https://pessi.punjab.gov.pk/node/1367",
@@ -133,7 +133,7 @@
   "title": "Commissioner's Visit to Sahiwal",
   "content_type": "html",
   "snapshot_path": "snapshots\\pessi\\b4ca7935b31292c5.html",
-  "fetched_at": "2026-11-02T14:39:20+00:00"
+  "fetched_at": "2026-11-12T17:18:12+00:00"
  },
  {
   "url": "https://pessi.punjab.gov.pk/system/files/Domestic%20worker%20Registration%20a.pdf",
@@ -141,7 +141,15 @@
   "title": "Domestic Worker Registration Form (Annex-A) | English",
   "content_type": "pdf",
   "snapshot_path": "snapshots\\pessi\\80441da1b266738e.pdf",
-  "fetched_at": "2026-11-02T14:39:30+00:00"
+  "fetched_at": "2026-11-12T17:18:22+00:00"
+ },
+ {
+  "url": "https://pmybals.pmyp.gov.pk/",
+  "source_id": null,
+  "title": "Apply for Loan",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\861140f1feaac81c.html",
+  "fetched_at": "2026-11-12T17:25:49+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/",
@@ -149,7 +157,7 @@
   "title": "Punjab Social Protection Authority",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\b5bf7dee5e3fab16.html",
-  "fetched_at": "2026-11-02T14:38:49+00:00"
+  "fetched_at": "2026-11-12T17:17:42+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/aaghosh-program",
@@ -157,7 +165,7 @@
   "title": "Aaghosh Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\d081808df4f5c201.html",
-  "fetched_at": "2026-11-02T14:39:03+00:00"
+  "fetched_at": "2026-11-12T17:17:55+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/bunyad-program",
@@ -165,7 +173,7 @@
   "title": "Bunyad Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\157d768d7a4cc98f.html",
-  "fetched_at": "2026-11-02T14:39:07+00:00"
+  "fetched_at": "2026-11-12T17:18:00+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/humqadam-program",
@@ -173,7 +181,7 @@
   "title": "Humqadam Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\c68d475843a2808f.html",
-  "fetched_at": "2026-11-02T14:38:51+00:00"
+  "fetched_at": "2026-11-12T17:17:43+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/income-generation-pwds",
@@ -181,7 +189,7 @@
   "title": "Income Generation Scheme for PWDs",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\60a8530b4501cc58.html",
-  "fetched_at": "2026-11-02T14:38:57+00:00"
+  "fetched_at": "2026-11-12T17:17:49+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/khudmukhtar-program",
@@ -189,7 +197,7 @@
   "title": "Khud Mukhtar Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\85796ad8eb71f220.html",
-  "fetched_at": "2026-11-02T14:39:05+00:00"
+  "fetched_at": "2026-11-12T17:17:58+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/masawaat-program",
@@ -197,7 +205,7 @@
   "title": "Masawaat Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\810c422faf299466.html",
-  "fetched_at": "2026-11-02T14:39:01+00:00"
+  "fetched_at": "2026-11-12T17:17:53+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/nayee-zindagi-program",
@@ -205,7 +213,7 @@
   "title": "Nayee Zindagi Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\e0afb4c3111ab478.html",
-  "fetched_at": "2026-11-02T14:38:59+00:00"
+  "fetched_at": "2026-11-12T17:17:51+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/sila-e-fun-program",
@@ -213,7 +221,7 @@
   "title": "Sila-e-Fun Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\3847eb0bb79e2e3c.html",
-  "fetched_at": "2026-11-02T14:38:55+00:00"
+  "fetched_at": "2026-11-12T17:17:47+00:00"
  },
  {
   "url": "https://pspa.punjab.gov.pk/zewar-e-taleem-program",
@@ -221,7 +229,7 @@
   "title": "Zewar-e-Taleem Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\pspa\\ed41d7050d1e9df3.html",
-  "fetched_at": "2026-11-02T14:38:53+00:00"
+  "fetched_at": "2026-11-12T17:17:45+00:00"
  },
  {
   "url": "https://punjab.gov.pk/adwc-program",
@@ -229,7 +237,7 @@
   "title": "Assistive Devices and Wheel Chair Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\5f282e6fc2ec9d09.html",
-  "fetched_at": "2026-11-02T14:38:09+00:00"
+  "fetched_at": "2026-11-12T17:17:01+00:00"
  },
  {
   "url": "https://punjab.gov.pk/apni-chat-mehfoz-chat-project",
@@ -237,7 +245,7 @@
   "title": "Apni Chhat, Mehfooz Chhat",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\c7e7bae18929a4c7.html",
-  "fetched_at": "2026-11-02T14:37:07+00:00"
+  "fetched_at": "2026-11-12T17:15:59+00:00"
  },
  {
   "url": "https://punjab.gov.pk/apni-chhat-apna-ghar",
@@ -245,7 +253,7 @@
   "title": "Apni Chhat Apna Ghar Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\a9b758e725365fb1.html",
-  "fetched_at": "2026-11-02T14:38:35+00:00"
+  "fetched_at": "2026-11-12T17:17:27+00:00"
  },
  {
   "url": "https://punjab.gov.pk/apni-zameen-apna-ghar",
@@ -253,7 +261,7 @@
   "title": "Apni Zameen Apna Ghar",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\9312a9478e344492.html",
-  "fetched_at": "2026-11-02T14:37:41+00:00"
+  "fetched_at": "2026-11-12T17:16:33+00:00"
  },
  {
   "url": "https://punjab.gov.pk/asaan-karobar-card",
@@ -261,7 +269,7 @@
   "title": "CM Punjab Asaan Karobar Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\e819e0848cbc44f5.html",
-  "fetched_at": "2026-11-02T14:37:57+00:00"
+  "fetched_at": "2026-11-12T17:16:49+00:00"
  },
  {
   "url": "https://punjab.gov.pk/asaan-karobar-finance",
@@ -269,7 +277,7 @@
   "title": "CM Punjab Asaan Karobar Finance",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\53de07f7443d901c.html",
-  "fetched_at": "2026-11-02T14:37:55+00:00"
+  "fetched_at": "2026-11-12T17:16:47+00:00"
  },
  {
   "url": "https://punjab.gov.pk/attrw-scheme",
@@ -277,7 +285,7 @@
   "title": "CM Livestock Asset Transfer to Rural Women Scheme",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\a4ca019808f92167.html",
-  "fetched_at": "2026-11-02T14:38:13+00:00"
+  "fetched_at": "2026-11-12T17:17:05+00:00"
  },
  {
   "url": "https://punjab.gov.pk/autonomous-bodies",
@@ -285,7 +293,7 @@
   "title": "Autonomous Bodies",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_autonomous_bodies\\18b73898560aaa5e.html",
-  "fetched_at": "2026-11-02T14:38:47+00:00"
+  "fetched_at": "2026-11-12T17:17:39+00:00"
  },
  {
   "url": "https://punjab.gov.pk/basant-2026",
@@ -293,7 +301,7 @@
   "title": "Basant Festival 2026 (6th",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\900fd489f86e7beb.html",
-  "fetched_at": "2026-11-02T14:37:25+00:00"
+  "fetched_at": "2026-11-12T17:16:17+00:00"
  },
  {
   "url": "https://punjab.gov.pk/children-heart-surgery-program",
@@ -301,7 +309,7 @@
   "title": "Children Heart Surgery Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\44d95aa8c3be185a.html",
-  "fetched_at": "2026-11-02T14:38:29+00:00"
+  "fetched_at": "2026-11-12T17:17:21+00:00"
  },
  {
   "url": "https://punjab.gov.pk/clinic-on-wheels",
@@ -309,7 +317,7 @@
   "title": "Clinic on Wheels",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\7aedf38ec3665ea9.html",
-  "fetched_at": "2026-11-02T14:38:41+00:00"
+  "fetched_at": "2026-11-12T17:17:33+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-ebikes-scheme",
@@ -317,7 +325,7 @@
   "title": "CM e-Bikes Scheme",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\6bb882658fa1f10d.html",
-  "fetched_at": "2026-11-02T14:38:45+00:00"
+  "fetched_at": "2026-11-12T17:17:37+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-green-tractors-scheme",
@@ -325,7 +333,7 @@
   "title": "CM Green Tractors Scheme",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\97bb3d5de27b34c0.html",
-  "fetched_at": "2026-11-02T14:38:27+00:00"
+  "fetched_at": "2026-11-12T17:17:19+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-himmat-card-program",
@@ -333,7 +341,7 @@
   "title": "CM Himmat Card Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\5f169969199cc5ef.html",
-  "fetched_at": "2026-11-02T14:38:23+00:00"
+  "fetched_at": "2026-11-12T17:17:15+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-internship-program",
@@ -341,7 +349,7 @@
   "title": "CM Internship Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\2cde416a29f4e7d4.html",
-  "fetched_at": "2026-11-02T14:38:07+00:00"
+  "fetched_at": "2026-11-12T17:16:59+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-it-internship",
@@ -349,7 +357,7 @@
   "title": "Chief Minister IT Internship Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\3e11c636e9d4ba40.html",
-  "fetched_at": "2026-11-02T14:37:33+00:00"
+  "fetched_at": "2026-11-12T17:16:25+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-kissan-card-scheme",
@@ -357,7 +365,7 @@
   "title": "CM Kissan Card Scheme",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\53051cbc5ac929ff.html",
-  "fetched_at": "2026-11-02T14:38:17+00:00"
+  "fetched_at": "2026-11-12T17:17:09+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-laptop",
@@ -365,7 +373,7 @@
   "title": "CM Punjab Laptop Program 2025",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\afd295876e7d48a5.html",
-  "fetched_at": "2026-11-02T14:37:47+00:00"
+  "fetched_at": "2026-11-12T17:16:39+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-punjab-free-solar-panel-scheme",
@@ -373,7 +381,7 @@
   "title": "CM Punjab Free Solar Panel Scheme",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\19d149a724d782dd.html",
-  "fetched_at": "2026-11-02T14:38:03+00:00"
+  "fetched_at": "2026-11-12T17:16:55+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-punjab-livestock-card",
@@ -381,7 +389,7 @@
   "title": "CM Punjab Livestock Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\506bb6b4d48153e3.html",
-  "fetched_at": "2026-11-02T14:38:11+00:00"
+  "fetched_at": "2026-11-12T17:17:03+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-punjab-tourism-internship-program",
@@ -389,7 +397,7 @@
   "title": "Chief Minister’s Magnificent Punjab Tourism Internship Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\7fe40588c33243ac.html",
-  "fetched_at": "2026-11-02T14:37:53+00:00"
+  "fetched_at": "2026-11-12T17:16:45+00:00"
  },
  {
   "url": "https://punjab.gov.pk/cm-school-meal-program",
@@ -397,7 +405,7 @@
   "title": "CM School Meal Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\2b49fbe4ef30a85b.html",
-  "fetched_at": "2026-11-02T14:38:33+00:00"
+  "fetched_at": "2026-11-12T17:17:25+00:00"
  },
  {
   "url": "https://punjab.gov.pk/e-taxi-punjab",
@@ -405,7 +413,7 @@
   "title": "E-Taxi",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\aa7a2f1e712fa138.html",
-  "fetched_at": "2026-11-02T14:37:35+00:00"
+  "fetched_at": "2026-11-12T17:16:27+00:00"
  },
  {
   "url": "https://punjab.gov.pk/ebiz-punjab",
@@ -413,7 +421,7 @@
   "title": "eBiz Punjab",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\7316a321659d687d.html",
-  "fetched_at": "2026-11-02T14:37:29+00:00"
+  "fetched_at": "2026-11-12T17:16:21+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flagship-projects?page=0",
@@ -421,7 +429,7 @@
   "title": "Flagship Projects",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\cceacabcc51cdb41.html",
-  "fetched_at": "2026-11-02T14:36:57+00:00"
+  "fetched_at": "2026-11-12T17:15:49+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flagship-projects?page=1",
@@ -429,7 +437,7 @@
   "title": "Flagship Projects",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\893ccdc5986fb01c.html",
-  "fetched_at": "2026-11-02T14:36:59+00:00"
+  "fetched_at": "2026-11-12T17:15:51+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flagship-projects?page=2",
@@ -437,7 +445,7 @@
   "title": "Flagship Projects",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\26e06254b3ec229e.html",
-  "fetched_at": "2026-11-02T14:37:01+00:00"
+  "fetched_at": "2026-11-12T17:15:53+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flagship-projects?page=3",
@@ -445,7 +453,7 @@
   "title": "Flagship Projects",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\c31aad606d424d77.html",
-  "fetched_at": "2026-11-02T14:37:03+00:00"
+  "fetched_at": "2026-11-12T17:15:55+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flagship-projects?page=4",
@@ -453,7 +461,7 @@
   "title": "Flagship Projects",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\a432be0698766714.html",
-  "fetched_at": "2026-11-02T14:37:05+00:00"
+  "fetched_at": "2026-11-12T17:15:57+00:00"
  },
  {
   "url": "https://punjab.gov.pk/flood-relief-program",
@@ -461,7 +469,7 @@
   "title": "Wazir-e-Aala Punjab Sailab Bahali Program 2025",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\4cb42e8f8f146679.html",
-  "fetched_at": "2026-11-02T14:37:27+00:00"
+  "fetched_at": "2026-11-12T17:16:19+00:00"
  },
  {
   "url": "https://punjab.gov.pk/global-it-certifications-initiative",
@@ -469,7 +477,7 @@
   "title": "Global IT Certifications Initiative",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\03e0e77cd23ae844.html",
-  "fetched_at": "2026-11-02T14:38:25+00:00"
+  "fetched_at": "2026-11-12T17:17:17+00:00"
  },
  {
   "url": "https://punjab.gov.pk/grow-more-wheat",
@@ -477,7 +485,7 @@
   "title": "Grow More Wheat Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\dd10df2582df41d8.html",
-  "fetched_at": "2026-11-02T14:37:59+00:00"
+  "fetched_at": "2026-11-12T17:16:51+00:00"
  },
  {
   "url": "https://punjab.gov.pk/high-tech-farm",
@@ -485,7 +493,7 @@
   "title": "CM Punjab High-Tech Farm Mechanization Finance Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\483b931de3a3954b.html",
-  "fetched_at": "2026-11-02T14:37:31+00:00"
+  "fetched_at": "2026-11-12T17:16:23+00:00"
  },
  {
   "url": "https://punjab.gov.pk/honorarium",
@@ -493,7 +501,7 @@
   "title": "CM Punjab Honorarium Cards for Imam Masjid",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\cdf3eccb135a1563.html",
-  "fetched_at": "2026-11-02T14:37:23+00:00"
+  "fetched_at": "2026-11-12T17:16:15+00:00"
  },
  {
   "url": "https://punjab.gov.pk/maryam-ko-batayn",
@@ -501,7 +509,7 @@
   "title": "Maryam ko Batayn",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\8e9a97a0669cfc92.html",
-  "fetched_at": "2026-11-02T14:37:19+00:00"
+  "fetched_at": "2026-11-12T17:16:11+00:00"
  },
  {
   "url": "https://punjab.gov.pk/nigehban-card",
@@ -509,7 +517,7 @@
   "title": "Ramzan Nigehban Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\1f4390270a855b94.html",
-  "fetched_at": "2026-11-02T14:37:17+00:00"
+  "fetched_at": "2026-11-12T17:16:09+00:00"
  },
  {
   "url": "https://punjab.gov.pk/node/6411",
@@ -517,7 +525,7 @@
   "title": "CM Punjab Minority Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\e3b446f9497515b7.html",
-  "fetched_at": "2026-11-02T14:38:01+00:00"
+  "fetched_at": "2026-11-12T17:16:53+00:00"
  },
  {
   "url": "https://punjab.gov.pk/node/6433",
@@ -525,7 +533,7 @@
   "title": "Chief Minister Honhaar Scholarship Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\1698b1c2f5b51ffc.html",
-  "fetched_at": "2026-11-02T14:38:05+00:00"
+  "fetched_at": "2026-11-12T17:16:57+00:00"
  },
  {
   "url": "https://punjab.gov.pk/punjab-dhee-rani-program",
@@ -533,7 +541,7 @@
   "title": "Punjab Dhee Rani Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\a7e2489fb92e031d.html",
-  "fetched_at": "2026-11-02T14:38:19+00:00"
+  "fetched_at": "2026-11-12T17:17:11+00:00"
  },
  {
   "url": "https://punjab.gov.pk/punjab-socio-economic-registry",
@@ -541,7 +549,7 @@
   "title": "Punjab Socio-Economic Registry",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\8869c2c1b0b0e7cb.html",
-  "fetched_at": "2026-11-02T14:38:37+00:00"
+  "fetched_at": "2026-11-12T17:17:29+00:00"
  },
  {
   "url": "https://punjab.gov.pk/rahmat-card",
@@ -549,7 +557,7 @@
   "title": "Rahmat Card Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\7367be52542862f6.html",
-  "fetched_at": "2026-11-02T14:37:09+00:00"
+  "fetched_at": "2026-11-12T17:16:01+00:00"
  },
  {
   "url": "https://punjab.gov.pk/ration-card",
@@ -557,7 +565,7 @@
   "title": "CM Punjab Ration Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\1daef503d8981632.html",
-  "fetched_at": "2026-11-02T14:37:43+00:00"
+  "fetched_at": "2026-11-12T17:16:35+00:00"
  },
  {
   "url": "https://punjab.gov.pk/solarization-of-agri-tubewells",
@@ -565,7 +573,7 @@
   "title": "CM Solarization Program for Agri Tubewells",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\4338d25817472957.html",
-  "fetched_at": "2026-11-02T14:37:51+00:00"
+  "fetched_at": "2026-11-12T17:16:43+00:00"
  },
  {
   "url": "https://punjab.gov.pk/special-initiative-cancer",
@@ -573,7 +581,7 @@
   "title": "Punjab Chief Minister’s Special Initiative for Cancer Patients",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\ed74d079dea0e531.html",
-  "fetched_at": "2026-11-02T14:37:13+00:00"
+  "fetched_at": "2026-11-12T17:16:05+00:00"
  },
  {
   "url": "https://punjab.gov.pk/t-cash-card",
@@ -581,7 +589,7 @@
   "title": "CM Punjab T-Cash Card",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\cffc6cc59a6ae195.html",
-  "fetched_at": "2026-11-02T14:37:37+00:00"
+  "fetched_at": "2026-11-12T17:16:29+00:00"
  },
  {
   "url": "https://punjab.gov.pk/wheat-support-program",
@@ -589,7 +597,7 @@
   "title": "CM Punjab Wheat Support Program",
   "content_type": "html",
   "snapshot_path": "snapshots\\punjab_flagship\\f80d60f6c5cc5941.html",
-  "fetched_at": "2026-11-02T14:37:39+00:00"
+  "fetched_at": "2026-11-12T17:16:31+00:00"
  },
  {
   "url": "https://pwwf.punjab.gov.pk/administration-and-welfare",
@@ -597,7 +605,7 @@
   "title": "Administration & Welfare",
   "content_type": "html",
   "snapshot_path": "snapshots\\pwwf\\ae6ab674def947bc.html",
-  "fetched_at": "2026-11-02T14:39:40+00:00"
+  "fetched_at": "2026-11-12T17:18:32+00:00"
  },
  {
   "url": "https://pwwf.punjab.gov.pk/education",
@@ -605,7 +613,15 @@
   "title": "Education",
   "content_type": "html",
   "snapshot_path": "snapshots\\pwwf\\ad806aa86a422d18.html",
-  "fetched_at": "2026-11-02T14:39:43+00:00"
+  "fetched_at": "2026-11-12T17:18:34+00:00"
+ },
+ {
+  "url": "https://pwwf.punjab.gov.pk/scholarship",
+  "source_id": null,
+  "title": "Talent Scholarship",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\052a81db2eeab9e1.html",
+  "fetched_at": "2026-11-12T17:26:16+00:00"
  },
  {
   "url": "https://www.pbm.gov.pk/projects.html",
@@ -613,6 +629,14 @@
   "title": "Pakistan Bait-ul-mal",
   "content_type": "html",
   "snapshot_path": "snapshots\\pbm\\9e921565195afb3b.html",
-  "fetched_at": "2026-11-02T14:41:49+00:00"
+  "fetched_at": "2026-11-12T17:20:15+00:00"
+ },
+ {
+  "url": "https://youthgames.punjab.gov.pk/",
+  "source_id": null,
+  "title": "World's Biggest Sporting Event by the Government of Punjab",
+  "content_type": "manual_url",
+  "snapshot_path": "snapshots\\manual\\acf86c0ad35a1d65.html",
+  "fetched_at": "2026-11-12T17:27:48+00:00"
  }
 ]

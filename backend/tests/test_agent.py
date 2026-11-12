@@ -58,6 +58,31 @@ def test_short_term_memory_resolves_follow_up(agent, fake_llm):
     assert r["profile"]["education_level"] == "undergraduate"  # profile kept within the session
 
 
+def test_short_term_memory_keeps_the_scheme_in_focus(agent):
+    """Regression: after asking about one scheme, "this scheme" / "it" must mean that scheme,
+    not whichever scheme a full eligibility check or search happened to list first."""
+    agent.run("I am a university student from Lahore. Which schemes?", "s-focus")
+    agent.run("What documents do I need for the second one?", "s-focus")
+    state = agent.session_state("s-focus")
+    assert [s["id"] for s in state["focus_schemes"]] == ["test-university-laptop"]
+    assert state["recent_schemes"][0]["id"] == "test-university-laptop"  # focus first in memory
+
+    # The (fake) LLM does not resolve "it" here: the deterministic fallback must.
+    r = agent.run("Which documents are required for it?", "s-focus")
+    resolved = [e for e in r["trace"] if e["title"] == "Short-term memory: reference resolved"]
+    assert resolved and resolved[0]["data"]["resolved_to"] == ["test-university-laptop"]
+    calls = [e["data"] for e in r["trace"] if e["type"] == "tool_call"]
+    assert calls[0] == {"tool": "get_required_documents", "args": {"scheme_id": "test-university-laptop"}}
+
+    # Naming a different scheme is a new topic, not a reference to the old one.
+    r = agent.run("Which documents are required for the school stipend?", "s-focus")
+    assert not [e for e in r["trace"] if e["title"] == "Short-term memory: reference resolved"]
+
+    # A broad question clears the focus.
+    agent.run("Which schemes can I apply for?", "s-focus")
+    assert agent.session_state("s-focus")["focus_schemes"] == []
+
+
 def test_long_term_memory_requires_consent_and_survives_new_session(agent):
     with db.session() as conn:
         db.ensure_user(conn, "ayesha_demo")

@@ -1,56 +1,42 @@
 /** @type {import('tailwindcss').Config} */
+// Warm "heritage" theme: cream paper, forest green, plum accents, ink text.
+// `navy`, `emerald` and `slate` are remapped so every existing page picks up the new look.
 export default {
   content: ["./index.html", "./src/**/*.{js,jsx}"],
   theme: {
     extend: {
       colors: {
+        // ink (text, dark surfaces)
         navy: {
-          50: "#f1f4fa", 100: "#e2e8f3", 200: "#c5d0e6", 300: "#9aaed2", 400: "#6a84b8",
-          500: "#48629c", 600: "#364b80", 700: "#2c3c68", 800: "#1f2b4d", 900: "#141d36", 950: "#0b1124",
+          50: "#f7f4ee", 100: "#ede7dc", 200: "#ddd3c3", 300: "#c2b5a0", 400: "#9c8e78",
+          500: "#7a6d5a", 600: "#5f5446", 700: "#4a4137", 800: "#37302a", 900: "#26211c", 950: "#17130f",
         },
+        // forest green (primary)
         emerald: {
-          50: "#ecfdf5", 100: "#d1fae5", 200: "#a7f3d0", 300: "#6ee7b7", 400: "#34d399",
-          500: "#10b981", 600: "#059669", 700: "#047857", 800: "#065f46", 900: "#064e3b",
+          50: "#f0f5ec", 100: "#dfe9d6", 200: "#c3d6b4", 300: "#9fbd89", 400: "#79a062",
+          500: "#5a8546", 600: "#446c35", 700: "#36582b", 800: "#2c4724", 900: "#243a1f",
         },
-        // Punjab-inspired accents: phulkari embroidery gold and magenta.
-        gold: {
-          50: "#fffaeb", 100: "#fef0c7", 200: "#fde08a", 300: "#fccb4d", 400: "#fbb424",
-          500: "#f5930b", 600: "#d96d06", 700: "#b44b09", 800: "#923a0e", 900: "#78300f",
+        // warm stone neutrals
+        slate: {
+          50: "#faf7f2", 100: "#f3eee5", 200: "#e8e0d2", 300: "#d6cbb8", 400: "#a99d89",
+          500: "#857a68", 600: "#685e4f", 700: "#4f473c", 800: "#39332b", 900: "#26221d",
         },
-        phulkari: {
-          50: "#fdf2f8", 100: "#fce7f3", 200: "#fbcfe8", 300: "#f9a8d4", 400: "#f472b6",
-          500: "#e23d8f", 600: "#c81e6f", 700: "#a3175a", 800: "#86174c", 900: "#701a42",
+        // plum / rose (secondary accent)
+        plum: {
+          50: "#fbf2f5", 100: "#f5e1e8", 200: "#ebc5d2", 300: "#dc9fb4", 400: "#c47a95",
+          500: "#a85c7a", 600: "#8e4864", 700: "#763a52", 800: "#5f2f43", 900: "#4d2838",
         },
+        gold: { 50: "#fbf5e6", 100: "#f5e6c0", 300: "#e2c27a", 400: "#d4a64a", 500: "#c08f2f", 600: "#9d7224" },
+        cream: { 50: "#fffdf9", 100: "#fbf7f0", 200: "#f6f0e4", 300: "#efe6d5" },
       },
       fontFamily: {
-        display: ["'Plus Jakarta Sans'", "Inter", "system-ui", "sans-serif"],
         sans: ["Inter", "system-ui", "Segoe UI", "sans-serif"],
+        display: ["Lora", "Georgia", "serif"],
         urdu: ["'Noto Nastaliq Urdu'", "serif"],
       },
       boxShadow: {
-        card: "0 1px 2px rgba(20,29,54,0.04), 0 4px 16px rgba(20,29,54,0.06)",
-        lift: "0 2px 4px rgba(20,29,54,0.05), 0 18px 40px -12px rgba(20,29,54,0.22)",
-        glow: "0 0 0 1px rgba(52,211,153,0.35), 0 10px 40px -10px rgba(16,185,129,0.55)",
-      },
-      keyframes: {
-        "fade-up": { "0%": { opacity: "0", transform: "translateY(12px)" }, "100%": { opacity: "1", transform: "none" } },
-        float: { "0%,100%": { transform: "translateY(0)" }, "50%": { transform: "translateY(-10px)" } },
-        blob: {
-          "0%,100%": { transform: "translate(0,0) scale(1)" },
-          "33%": { transform: "translate(30px,-20px) scale(1.08)" },
-          "66%": { transform: "translate(-20px,15px) scale(0.95)" },
-        },
-        flow: { "0%": { left: "0%", opacity: "0" }, "10%": { opacity: "1" }, "90%": { opacity: "1" }, "100%": { left: "100%", opacity: "0" } },
-        shimmer: { "100%": { transform: "translateX(100%)" } },
-        "text-swap": { "0%": { opacity: "0", transform: "translateY(8px)" }, "12%,88%": { opacity: "1", transform: "none" }, "100%": { opacity: "0", transform: "translateY(-8px)" } },
-      },
-      animation: {
-        "fade-up": "fade-up 0.55s cubic-bezier(.2,.7,.2,1) both",
-        float: "float 6s ease-in-out infinite",
-        blob: "blob 14s ease-in-out infinite",
-        flow: "flow 3.2s linear infinite",
-        "text-swap": "text-swap 3.5s ease-in-out both",
-        shimmer: "shimmer 1.6s infinite",
+        card: "0 1px 2px rgba(60,45,25,0.04), 0 4px 18px rgba(60,45,25,0.06)",
+        lift: "0 2px 4px rgba(60,45,25,0.05), 0 12px 32px rgba(60,45,25,0.10)",
       },
     },
   },

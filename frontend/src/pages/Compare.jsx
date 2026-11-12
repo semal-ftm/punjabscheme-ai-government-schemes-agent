@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { Columns3, Cpu, ExternalLink } from "lucide-react";
 import { api } from "../api.js";
-import { LevelBadge, RulesBadge } from "../components/Badges.jsx";
+import { LevelBadge, VerifiedSeal } from "../components/Badges.jsx";
 import SchemePicker from "../components/SchemePicker.jsx";
 import { EmptyState, ErrorState, PageHeader, Skeleton } from "../components/States.jsx";
 import StatusBadge from "../components/StatusBadge.jsx";
@@ -32,8 +32,8 @@ const ROWS = [
   )],
   ["Status", (s) => (
     <div className="flex flex-wrap gap-1">
-      <StatusBadge status={s.status} />
-      <RulesBadge rulesStatus={s.rules_status} />
+      <VerifiedSeal rulesStatus={s.rules_status} sourceUrl={s.source_url} />
+      <StatusBadge status={s.status} applyUrl={s.application_url} pageUrl={s.source_url} />
     </div>
   )],
   ["Benefits", (s) => <Bullets items={s.benefits} />],

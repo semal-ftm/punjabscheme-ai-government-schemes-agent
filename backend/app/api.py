@@ -14,7 +14,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from sse_starlette.sse import EventSourceResponse
 
-from app import config, db, rag, rules_loader, updates
+from app import config, db, rag, rules_loader, studio, studio_api, tavily, updates
 from app.agent.graph import SchemeAgent
 from app.agent.llm import LLMUnavailable, get_llm
 from app.agent.mcp_client import get_mcp_client, shutdown_mcp_client
@@ -79,6 +79,7 @@ def _warm_index() -> None:
 
 app = FastAPI(title="PunjabScheme AI", version="1.0.0", lifespan=lifespan)
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_methods=["*"], allow_headers=["*"])
+app.include_router(studio_api.router)
 
 
 # ---------------------------------------------------------------- models
@@ -116,7 +117,8 @@ class SaveRequest(BaseModel):
 def health() -> dict:
     agent = STATE["agent"]
     return {"status": "ok" if agent else "starting", "llm": agent.llm.name if agent else None,
-            "llm_error": STATE["llm_error"]}
+            "llm_error": STATE["llm_error"], "live_search": studio.live_search_active(),
+            "tavily_configured": tavily.is_configured()}
 
 
 @app.get("/api/agent/info")
@@ -131,6 +133,7 @@ def agent_info() -> dict:
         "embedding_model": config.EMBEDDING_MODEL, "vector_store": "ChromaDB", "chunks_indexed": chunks,
         "mcp_server": mcp.server_info, "mcp_tools": mcp.tools,
         "graph": ["load_context", "understand", "update_profile", "plan", "act", "reflect", "retrieve", "answer"],
+        "live_search": {"provider": "Tavily", "active": studio.live_search_active(), "configured": tavily.is_configured()},
         "memory": {"short_term": "LangGraph checkpointer per session", "long_term": f"SQLite ({config.DB_PATH.name})"},
     }
 
@@ -187,6 +190,10 @@ async def chat(req: ChatRequest):
             if "trace" in item:
                 yield {"event": "trace", "data": json.dumps(item["trace"], ensure_ascii=False, default=str)}
             elif "final" in item:
+                try:
+                    studio_api.record_run("chat", req.message, item["final"], session_id)
+                except Exception:  # noqa: BLE001 - recording must never break the chat
+                    log.exception("could not record run")
                 yield {"event": "final", "data": json.dumps(item["final"], ensure_ascii=False, default=str)}
             elif "error" in item:
                 yield {"event": "error", "data": json.dumps(item)}
