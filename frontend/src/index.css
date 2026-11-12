@@ -218,19 +218,26 @@
   content: "";
   position: absolute;
   inset: 0 0 auto 0;
-  height: 10px;
+  height: 13px;
   z-index: 1;
   pointer-events: none;
   background:
-    linear-gradient(135deg, #c08f2f 33%, transparent 33%) 0 4px / 12px 6px repeat-x,
-    linear-gradient(225deg, #c08f2f 33%, transparent 33%) 0 4px / 12px 6px repeat-x,
-    repeating-linear-gradient(90deg, #b03a48 0 18px, #d4a64a 18px 36px, #36582b 36px 54px, #763a52 54px 72px, #2f6f8f 72px 90px)
-      0 0 / 100% 4px no-repeat;
+    /* mirror-work dots on the band */
+    radial-gradient(circle, rgba(255, 255, 255, 0.95) 1.1px, transparent 1.7px) 8px 0 / 16px 6px repeat-x,
+    /* tassels: four colours, one 12px triangle each */
+    conic-gradient(from -45deg at 50% 100%, #d62839 90deg, transparent 0) 0 6px / 48px 6px repeat-x,
+    conic-gradient(from -45deg at 50% 100%, #f9a826 90deg, transparent 0) 12px 6px / 48px 6px repeat-x,
+    conic-gradient(from -45deg at 50% 100%, #1b998b 90deg, transparent 0) 24px 6px / 48px 6px repeat-x,
+    conic-gradient(from -45deg at 50% 100%, #c2185b 90deg, transparent 0) 36px 6px / 48px 6px repeat-x,
+    /* the colour band */
+    linear-gradient(90deg, #d62839 0 16px, #f9c74f 16px 32px, #1b998b 32px 48px, #e84393 48px 64px, #277da1 64px 80px,
+      #f28c28 80px 96px, #43aa8b 96px 112px, #7b2cbf 112px 128px) 0 0 / 128px 6px repeat-x;
+  filter: saturate(1.15);
 }
 
 /* Mughal jaali: faint eight-pointed-star lattice used as the app background. */
 .jaali {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23c08f2f' stroke-opacity='0.13' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='6'/%3E%3Cpath d='M0 0L14 14M56 0L42 14M0 56L14 42M56 56L42 42'/%3E%3C/g%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23b07a28' stroke-opacity='0.2' stroke-width='1'%3E%3Crect x='14' y='14' width='28' height='28'/%3E%3Crect x='14' y='14' width='28' height='28' transform='rotate(45 28 28)'/%3E%3Ccircle cx='28' cy='28' r='6'/%3E%3Cpath d='M0 0L14 14M56 0L42 14M0 56L14 42M56 56L42 42'/%3E%3C/g%3E%3C/svg%3E");
 }
 /* Same lattice in gold on dark panels. */
 .jaali-dark {
@@ -299,11 +306,11 @@
 /* Truck-art border: the stripes and tassels slide slowly sideways */
 @keyframes truck-slide {
   to {
-    background-position: 120px 4px, 120px 4px, 180px 0;
+    background-position: 392px 0, 384px 6px, 396px 6px, 408px 6px, 420px 6px, 384px 0;
   }
 }
 .folk-top::before {
-  animation: truck-slide 9s linear infinite;
+  animation: truck-slide 26s linear infinite;
 }
 
 /* Breathing jaali: the lattice drifts very slowly and a soft glow breathes behind the content */
@@ -315,10 +322,10 @@
 @keyframes jaali-breathe {
   0%,
   100% {
-    opacity: 0.35;
+    opacity: 0.75;
   }
   50% {
-    opacity: 0.9;
+    opacity: 1;
   }
 }
 .jaali {
@@ -331,8 +338,12 @@
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(circle at 70% 30%, rgba(212, 166, 74, 0.14), transparent 55%),
-    radial-gradient(circle at 20% 80%, rgba(118, 58, 82, 0.08), transparent 50%);
+  background:
+    radial-gradient(circle at 15% 12%, rgba(232, 67, 147, 0.17), transparent 38%),
+    radial-gradient(circle at 88% 10%, rgba(249, 168, 38, 0.24), transparent 40%),
+    radial-gradient(circle at 92% 70%, rgba(27, 153, 139, 0.17), transparent 42%),
+    radial-gradient(circle at 12% 85%, rgba(123, 44, 191, 0.13), transparent 42%),
+    radial-gradient(circle at 50% 45%, rgba(212, 166, 74, 0.14), transparent 60%);
   animation: jaali-breathe 9s ease-in-out infinite;
 }
 
